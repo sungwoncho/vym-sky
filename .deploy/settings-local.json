@@ -1,0 +1,8 @@
+{
+  "GitHubClientID": "cf56482a90e289e13c48",
+  "GitHubClientSecret": "3d49ffa110785f9628939a9176b8b32e51e9470b",
+  "GitHubWebhookSecret": "hello world",
+  "public": {
+    "GitHubWebhookPayloadUrl": "http://coddee.io/webhook"
+  }
+}
