@@ -1,17 +1,16 @@
 import React from 'react';
 
-const Layout = ({content = () => null}) => (
+import Header from '../../containers/header';
+import Footer from '../../containers/footer';
+
+const MainLayout = ({content = () => null}) => (
   <div>
-    <header>
-      header
-    </header>
+    <Header />
     <main>
       {content()}
     </main>
-    <footer>
-      footer
-    </footer>
+    <Footer />
   </div>
 );
 
-export default Layout;
+export default MainLayout;

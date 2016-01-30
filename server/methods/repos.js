@@ -1,25 +1,14 @@
-// import GithubAPI from 'github';
-// var GithubAPI = require('github');
-
+import github from 'octonode';
+import {PullRequests} from '/libs/collections';
 
 Meteor.methods({
   activateRepo(repoId) {
-    let github = new GithubAPI({
-      version: '3.0.0'
-    });
+    let client = github.client(Meteor.user().services.github.accessToken);
 
-    github.authenticate({
-      type: 'oauth',
-      token: Meteor.user().services.github.accessToken
-    });
-
-    github.repos.createHook({
+    client.hook({
 
     }, function (err, res) {
-      if (err) {
-        console.log('Error occurred while activating repo: could not create webhook');
-        console.error(err);
-      }
+
     });
   }
 });

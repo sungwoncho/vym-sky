@@ -11,6 +11,7 @@ export const initRoutes = (context, actions) => {
   const MainLayoutCtx = injectDeps(context, actions)(MainLayout);
 
   FlowRouter.route('/', {
+    name: 'main',
     action: function(params, queryParams) {
       mount(MainLayoutCtx, {
         content: () => (<Welcome />)
@@ -19,6 +20,7 @@ export const initRoutes = (context, actions) => {
   });
 
   FlowRouter.route('/home', {
+    name: 'home',
     triggersEnter: [context.routeHelpers.ensureLoggedIn],
     action: function () {
       mount(MainLayoutCtx, {
