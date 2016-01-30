@@ -1,8 +1,8 @@
 {
-  "GithubClientID": "cf56482a90e289e13c48",
-  "GithubClientSecret": "3d49ffa110785f9628939a9176b8b32e51e9470b",
-  "GithubWebhookSecret": "hl4fdtm1lum7kwk4n8dmra9bpxijptnb5nk8s6az",
+  "githubClientID": "cf56482a90e289e13c48",
+  "githubClientSecret": "3d49ffa110785f9628939a9176b8b32e51e9470b",
+  "githubWebhookSecret": "hl4fdtm1lum7kwk4n8dmra9bpxijptnb5nk8s6az",
   "public": {
-    "GithubWebhookPayloadUrl": "http://coddee.io/webhook"
+    "githubWebhookPayloadUrl": "http://coddee.io/webhook"
   }
 }

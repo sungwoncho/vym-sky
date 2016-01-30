@@ -1,11 +1,5 @@
-Meteor.startup(function () {
-  ServiceConfiguration.configurations.upsert(
-    { service: "github" },
-    {
-      $set: {
-        clientId: Meteor.settings.githubClientID,
-        secret: Meteor.settings.githubClientSecret
-      }
-    }
-  );
-});
+import {listenToWebhook} from './configs/webhook';
+import {configureGithubOauth} from './configs/oauth';
+
+listenToWebhook();
+configureGithubOauth();
