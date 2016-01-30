@@ -3,8 +3,8 @@ Meteor.startup(function () {
     { service: "github" },
     {
       $set: {
-        clientId: Meteor.settings.GitHubClientID,
-        secret: Meteor.settings.GitHubClientSecret
+        clientId: Meteor.settings.githubClientID,
+        secret: Meteor.settings.githubClientSecret
       }
     }
   );

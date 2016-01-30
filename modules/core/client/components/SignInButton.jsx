@@ -16,7 +16,7 @@ export default React.createClass({
   render() {
     return (
       <a href="" className="btn btn-success" onClick={this.login}>
-        Sign in with GitHub
+        Sign in with github
       </a>
     );
   }
