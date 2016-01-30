@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInButton from './SignInButton.jsx';
+import SignInButton from '../signinButton/index.jsx';
 
 export default React.createClass({
   render() {

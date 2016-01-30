@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default React.createClass({
+const signInButton = React.createClass({
   login() {
     Meteor.loginWithGithub({
       requestPermissions: ['public_repo']
@@ -21,3 +21,5 @@ export default React.createClass({
     );
   }
 });
+
+export default signInButton;

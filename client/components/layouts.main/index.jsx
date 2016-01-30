@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MainLayout = ({content}) => (
+const Layout = ({content = () => null}) => (
   <div>
     <header>
       header
     </header>
     <main>
-      {content}
+      {content()}
     </main>
     <footer>
       footer
@@ -14,4 +14,4 @@ const MainLayout = ({content}) => (
   </div>
 );
 
-export default MainLayout;
+export default Layout;
