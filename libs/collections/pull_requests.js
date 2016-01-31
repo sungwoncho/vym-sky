@@ -4,6 +4,24 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 const PullRequests = new Mongo.Collection('pullRequests');
 
 let schema = new SimpleSchema({
+  meta: {
+    type: Object
+  },
+  // id of the pull request returned by GitHub API
+  'meta.id': {
+    type: Number
+  },
+  // when the pr was opened
+  'meta.createdAt': {
+    type: Date,
+    denyUpdate: true
+  },
+  // when the pr was opened
+  'meta.updatedAt': {
+    type: Date,
+    optional: true,
+    denyUpdate: true
+  },
   repoId: {
     type: String
   },
@@ -30,12 +48,6 @@ let schema = new SimpleSchema({
       'closed'
     ],
     optional: true
-  },
-  // when the pr was opened
-  openedAt: {
-    type: Date,
-    optional: true,
-    denyUpdate: true
   },
   createdAt: {
     type: Date,

@@ -9,6 +9,7 @@
   "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
   "license": "ISC",
   "dependencies": {
+    "async": "^1.5.2",
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
     "moment": "^2.11.1",

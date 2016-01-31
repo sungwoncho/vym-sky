@@ -3,9 +3,9 @@ import Repos from './repos';
 import Presenations from './presentations';
 import SlideDecks from './slide_decks';
 
-export default {
-  PullRequests,
+export {
   Repos,
+  PullRequests,
   Presenations,
   SlideDecks
 };

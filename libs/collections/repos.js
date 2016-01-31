@@ -4,23 +4,34 @@ import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 const Repos = new Mongo.Collection('repos');
 
 let schema = new SimpleSchema({
+  meta: {
+    type: Object
+  },
+  // id of the repo returned by GitHub API
+  'meta.id': {
+    type: Number
+  },
   name: {
     type: String
   },
-  // id of the repo returned by GitHub API
-  id: {
-    type: Number
-  },
-  activated: {
-    type: Boolean,
-    defaultValue: false,
-    optional: true
+  owner: {
+    type: String
   },
   private: {
     type: Boolean
   },
   fork: {
     type: Boolean
+  },
+  activated: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true
+  },
+  hasWebhook: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true
   },
   createdAt: {
     type: Date,
@@ -47,5 +58,11 @@ let schema = new SimpleSchema({
 });
 
 Repos.attachSchema(schema);
+
+Repos.helpers({
+  getFullName() {
+    return `${this.owner}/${this.name}`;
+  }
+});
 
 export default Repos;

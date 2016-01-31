@@ -24,6 +24,7 @@ check@1.1.1-modules.4
 coddee:bootstrap@0.0.1
 coffeescript@1.0.12-modules.4
 cosmos:browserify@0.9.3
+dburles:collection-helpers@1.0.4
 ddp@1.2.2
 ddp-client@1.2.2-modules.4
 ddp-common@1.2.2
