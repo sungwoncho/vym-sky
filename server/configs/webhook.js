@@ -12,13 +12,13 @@ export function listenToWebhook() {
       return;
     }
 
-    handler(req, res, Meteor.bindEnvironment(function (err) {
+    handler(req, res, function (err) {
       // Never called if successfully handled
       console.error('Error in webhook handler:', err);
 
       res.statusCode = 404;
       res.end(err);
-    }));
+    });
   });
 
   handler.on('pull_request', Meteor.bindEnvironment(function (event) {

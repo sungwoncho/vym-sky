@@ -10,10 +10,18 @@ let Header =  React.createClass({
     }
   },
 
+  getRootPath() {
+    if (this.props.currentUser) {
+      return '/home';
+    } else {
+      return '/';
+    }
+  },
+
   render() {
     return (
       <nav className="navbar navbar-dark bg-inverse">
-        <a className="navbar-brand" href="/">Coddee</a>
+        <a className="navbar-brand" href={this.getRootPath()}>Coddee</a>
         {this.renderUserActions()}
       </nav>
     );

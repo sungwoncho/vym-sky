@@ -15,6 +15,20 @@ let schema = new SimpleSchema({
     type: String
   },
   owner: {
+    type: Object
+  },
+  'owner._id': {
+    type: String
+  },
+  'owner.type': {
+    type: String,
+    allowedValues: [
+      'user',
+      'organization'
+    ]
+  },
+  // github username or orgnization name
+  'owner.name': {
     type: String
   },
   private: {

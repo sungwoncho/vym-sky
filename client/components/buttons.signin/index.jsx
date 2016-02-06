@@ -15,8 +15,9 @@ const signInButton = React.createClass({
 
   render() {
     return (
-      <a href="" className="btn btn-success" onClick={this.login}>
-        Sign in with github
+      <a href="" className="btn btn-success btn-lg" onClick={this.login}>
+        <i className="fa fa-github"></i>
+        Set up Coddee
       </a>
     );
   }

@@ -4,7 +4,7 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
 
 import MainLayout from '../components/layouts.main/index.jsx';
-import Welcome from '../containers/welcome';
+import Main from '../containers/main';
 import Home from '../containers/home';
 
 export const initRoutes = (context, actions) => {
@@ -12,9 +12,16 @@ export const initRoutes = (context, actions) => {
 
   FlowRouter.route('/', {
     name: 'main',
+    triggersEnter: [
+      function (ctx, redirect) {
+        if (context.Meteor.user()) {
+          redirect('home');
+        }
+      }
+    ],
     action: function(params, queryParams) {
       mount(MainLayoutCtx, {
-        content: () => (<Welcome />)
+        content: () => (<Main />)
       });
     }
   });

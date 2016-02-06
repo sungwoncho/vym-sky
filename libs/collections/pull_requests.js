@@ -13,23 +13,24 @@ let schema = new SimpleSchema({
   },
   // when the pr was opened
   'meta.createdAt': {
-    type: Date,
-    denyUpdate: true
+    type: Date
   },
   // when the pr was opened
   'meta.updatedAt': {
-    type: Date,
-    optional: true,
-    denyUpdate: true
+    type: Date
   },
   repoId: {
     type: String
   },
+  number: {
+    type: Number
+  },
   title: {
     type: String
   },
-  description: {
-    type: String
+  body: {
+    type: String,
+    optional: true
   },
   head: {
     type: Object,
@@ -37,6 +38,10 @@ let schema = new SimpleSchema({
   },
   base: {
     type: Object,
+    blackbox: true
+  },
+  files: {
+    type: [Object],
     blackbox: true
   },
   state: {
