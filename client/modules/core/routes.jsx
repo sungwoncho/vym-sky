@@ -1,20 +1,22 @@
 import React from 'react';
-import {injectDeps} from 'react-simple-di';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
+import {Meteor} from 'meteor/meteor';
 
-import MainLayout from '../components/layouts.main/index.jsx';
-import Main from '../containers/main';
-import Home from '../containers/home';
+import MainLayout from './components/layouts.main/index.jsx';
+import Main from './containers/main';
+import Home from './containers/home';
 
-export const initRoutes = (context, actions) => {
-  const MainLayoutCtx = injectDeps(context, actions)(MainLayout);
+import routeHelpers from './libs/routeHelpers';
+
+export default function (injectDeps) {
+  const MainLayoutCtx = injectDeps(MainLayout);
 
   FlowRouter.route('/', {
     name: 'main',
     triggersEnter: [
       function (ctx, redirect) {
-        if (context.Meteor.user()) {
+        if (Meteor.user()) {
           redirect('home');
         }
       }
@@ -28,11 +30,11 @@ export const initRoutes = (context, actions) => {
 
   FlowRouter.route('/home', {
     name: 'home',
-    triggersEnter: [context.routeHelpers.ensureLoggedIn],
+    triggersEnter: [routeHelpers.ensureLoggedIn],
     action: function () {
       mount(MainLayoutCtx, {
         content: () => (<Home />)
       });
     }
   });
-};
+}
