@@ -10,6 +10,7 @@ export function generateSeed() {
       slides: [
         {
           type: 'single',
+          number: 1,
           data: {
             title: 'Slide 1',
             file: {
@@ -70,6 +71,7 @@ export function generateSeed() {
         },
         {
           type: 'single',
+          number: 2,
           data: {
             title: 'Slide 2',
             file: {

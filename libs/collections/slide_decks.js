@@ -7,13 +7,17 @@ let schema = new SimpleSchema({
   presentationId: {
     type: String
   },
+  currentSlide: {
+    type: Number,
+    optional: true,
+    defaultValue: 1
+  },
   slides: {
     type: [Object],
     optional: true
   },
-  currentSlide: {
-    type: Number,
-    optional: true
+  'slides.$.number': {
+    type: String
   },
   'slides.$.type': {
     type: String
