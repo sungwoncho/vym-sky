@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import SingleSlide from '../single/index.jsx';
 
-let Components = {
-  singleSlide: SingleSlide
+let ComponentMappings = {
+  single: SingleSlide
 };
 
 const SlideEngine = React.createClass({
@@ -30,7 +30,7 @@ const SlideEngine = React.createClass({
     let index = slideDeck.currentSlide - 1;
     let currentSlide = slideDeck.slides[index];
 
-    let ModuleName = Components[currentSlide.type + "Slide"];
+    let ModuleName = ComponentMappings[currentSlide.type];
     return  <ModuleName data={currentSlide.data} />;
   },
 
