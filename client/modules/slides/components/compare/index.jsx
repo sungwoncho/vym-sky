@@ -4,7 +4,8 @@ export default React.createClass({
   render() {
     return (
       <div className="container">
-        Compare
+        Compare diff
+
       </div>
     );
   }

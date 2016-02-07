@@ -1,5 +1,5 @@
-import presentations from './presentations';
+import slide_decks from './slide_decks';
 
 export default {
-  presentations
+  slide_decks
 };

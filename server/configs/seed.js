@@ -77,41 +77,15 @@ export function generateSeed() {
             file: {
               "chunks" : [
                 {
-                  "content" : "@@ -40,4 +40,4 @@ Warning: incoming random string ajsf09023jrn0fasd",
+                  "content" : "@@ -40,4 +40,4 @@ hello world ajsf09023jrn0fasd",
                   "changes" : [
                     {
                       "type" : "normal",
                       "normal" : true,
                       "ln1" : 40,
                       "ln2" : 40,
-                      "content" : " Warning: incoming random string ajsf09023jrn0fasd"
+                      "content" : " hello world ajsf09023jrn0fasd"
                     },
-                    {
-                      "type" : "normal",
-                      "normal" : true,
-                      "ln1" : 41,
-                      "ln2" : 41,
-                      "content" : " Warning: incoming random string ajsf09023jrn0fasd"
-                    },
-                    {
-                      "type" : "normal",
-                      "normal" : true,
-                      "ln1" : 42,
-                      "ln2" : 42,
-                      "content" : " Warning: incoming random string ajsf09023jrn0fasd"
-                    },
-                    {
-                      "type" : "del",
-                      "del" : true,
-                      "ln" : 43,
-                      "content" : "-Warning: incoming random string ajsf09023jrn0fasd"
-                    },
-                    {
-                      "type" : "add",
-                      "add" : true,
-                      "ln" : 43,
-                      "content" : "+Warning: incoming random string ajsf09023jrn0fasaad"
-                    }
                   ],
                   "oldStart" : 40,
                   "oldLines" : 4,

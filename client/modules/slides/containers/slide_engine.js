@@ -11,7 +11,13 @@ export const composer = ({context, slideDeckId}, onData) => {
   }
 };
 
+export const depsMapper = (context, actions) => ({
+  nextSlide: actions.slide_decks.nextSlide,
+  prevSlide: actions.slide_decks.prevSlide,
+  context: () => context
+});
+
 export default composeAll(
   composeWithTracker(composer),
-  useDeps()
+  useDeps(depsMapper)
 )(SlideEngine);
