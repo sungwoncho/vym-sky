@@ -1,10 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 
-import SingleSlide from '../single/index.jsx';
+import SingleSlide from './slides/single.jsx';
+import CompareSlide from './slides/compare.jsx';
 
 let ComponentMappings = {
-  single: SingleSlide
+  single: SingleSlide,
+  compare: CompareSlide
 };
 
 const SlideEngine = React.createClass({

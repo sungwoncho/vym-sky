@@ -1,6 +1,6 @@
 import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
-import SlideEngine from '../components/slide_engine/index.jsx';
+import SlideEngine from '../components/slide_engine.jsx';
 
 export const composer = ({context, slideDeckId}, onData) => {
   const {Meteor, Collections, Tracker} = context();
