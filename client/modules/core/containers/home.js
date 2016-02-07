@@ -1,6 +1,6 @@
 import Home from '../components/home/index.jsx';
 import {useDeps} from 'react-simple-di';
-import {composeAll, composeWithTracker} from 'react-komposer';
+import {composeAll, composeWithTracker} from 'mantra-core';
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();

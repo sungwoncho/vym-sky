@@ -1,13 +1,13 @@
-import Main from '../components/main/index.jsx';
 import {useDeps} from 'react-simple-di';
-import {composeAll, composeWithTracker} from 'mantra-core';
+import {composeAll, composeWithTracker, compose} from 'mantra-core';
+
+import Compare from '../components/compare/index.jsx';
 
 export const composer = ({context}, onData) => {
-  const {Meteor, Collections} = context();
   onData(null, {});
 };
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps()
-)(Main);
+)(Compare);

@@ -1,5 +1,4 @@
 import React from 'react';
-import {FlowRouter} from 'meteor/kadira:flow-router';
 import {mount} from 'react-mounter';
 import {Meteor} from 'meteor/meteor';
 
@@ -9,7 +8,7 @@ import Home from './containers/home';
 
 import routeHelpers from './libs/routeHelpers';
 
-export default function (injectDeps) {
+export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
   FlowRouter.route('/', {

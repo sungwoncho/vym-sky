@@ -1,5 +1,5 @@
 import {useDeps} from 'react-simple-di';
-import {composeAll, composeWithTracker, compose} from 'react-komposer';
+import {composeAll, composeWithTracker, compose} from 'mantra-core';
 import moment from 'moment';
 
 import Footer from '../components/footer/index.jsx';
