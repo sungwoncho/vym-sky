@@ -5,7 +5,8 @@ let Header =  React.createClass({
   renderUserActions() {
     if (this.props.currentUser) {
       return (
-        <UserActions currentUser={this.props.currentUser} />
+        <UserActions currentUser={this.props.currentUser}
+                     handleLogout={this.props.logout} />
       );
     }
   },

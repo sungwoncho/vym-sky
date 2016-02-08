@@ -8,7 +8,7 @@ export default React.createClass({
         <h1>
           Turn your pull request into a presentation
         </h1>
-        <SignInButton />
+        <SignInButton handleLogin={this.props.login} />
       </div>
     );
   }

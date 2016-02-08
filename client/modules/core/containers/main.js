@@ -7,7 +7,12 @@ export const composer = ({context}, onData) => {
   onData(null, {});
 };
 
+export const depsMapper = (context, actions) => ({
+  login: actions.users.login,
+  context: () => context
+});
+
 export default composeAll(
   composeWithTracker(composer),
-  useDeps()
+  useDeps(depsMapper)
 )(Main);

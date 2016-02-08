@@ -2,13 +2,7 @@ import React from 'react';
 
 export default React.createClass({
   logout() {
-    Meteor.logout(function (err) {
-      if (err) {
-        return console.log(err);
-      }
-
-      FlowRouter.go('main');
-    });
+    this.props.handleLogout();
   },
 
   render() {

@@ -2,15 +2,7 @@ import React from 'react';
 
 const signInButton = React.createClass({
   login() {
-    Meteor.loginWithGithub({
-      requestPermissions: ['public_repo']
-    }, function (err) {
-      if (err) {
-        return console.log(err);
-      }
-
-      FlowRouter.go('home');
-    });
+    this.props.handleLogin();
   },
 
   render() {
