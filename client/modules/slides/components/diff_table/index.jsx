@@ -1,5 +1,4 @@
 import React from 'react';
-import hljs from 'highlight.js';
 
 import FileHeader from './file_header.jsx';
 import NormalRow from './normal_row.jsx';
@@ -13,6 +12,10 @@ let RowMappings = {
 };
 
 export default React.createClass({
+  componentDidMount() {
+    this.highlightCode();
+  },
+
   render() {
     const {file} = this.props;
 
@@ -63,5 +66,9 @@ export default React.createClass({
       let RowComponent = RowMappings[change.type];
       return <RowComponent change={change} key={index} />;
     });
+  },
+
+  highlightCode() {
+
   }
 });
