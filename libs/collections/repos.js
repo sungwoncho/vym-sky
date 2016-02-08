@@ -39,13 +39,15 @@ let schema = new SimpleSchema({
   },
   activated: {
     type: Boolean,
-    defaultValue: false,
-    optional: true
+    autoValue: function () {
+      return false;
+    }
   },
   hasWebhook: {
     type: Boolean,
-    defaultValue: false,
-    optional: true
+    autoValue: function () {
+      return false;
+    }
   },
   createdAt: {
     type: Date,

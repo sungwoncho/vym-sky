@@ -2,10 +2,13 @@ import React from 'react';
 
 export default React.createClass({
   render() {
+    const {repo} = this.props;
+
     return (
-      <div className="container">
-        Home
-      </div>
+      <li>
+        {repo.name}
+      </li>
     );
-  }
+  },
+
 });

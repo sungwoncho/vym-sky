@@ -13,7 +13,7 @@ let Header =  React.createClass({
 
   getRootPath() {
     if (this.props.currentUser) {
-      return '/home';
+      return '/repos';
     } else {
       return '/';
     }
