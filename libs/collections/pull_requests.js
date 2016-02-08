@@ -42,7 +42,8 @@ let schema = new SimpleSchema({
   },
   files: {
     type: [Object],
-    blackbox: true
+    blackbox: true,
+    optional: true
   },
   state: {
     type: String,

@@ -20,5 +20,20 @@ export default {
     if (currentSlide > 1) {
       Meteor.call('slideDecks.goToSlide', slideDeckId, currentSlide - 1);
     }
+  },
+
+  toggleUnifiedView({Meteor, Collections}, slideDeckId, slideNumber) {
+    let slideDeck = Collections.SlideDecks.findOne(slideDeckId);
+    let currentSlide = slideDeck.getCurrentSlide();
+
+    if (currentSlide.type !== 'single') {
+      return console.log('Cannot do it in slide type', currentSlide.type);
+    }
+
+    // TODO: Move to method
+    let query = {_id: slideDeckId, 'slides.number': currentSlide.number};
+    let modifier = {$set: {'slides.$.unified': true}};
+
+    Collections.SlideDecks.update(query, modifier);
   }
 };

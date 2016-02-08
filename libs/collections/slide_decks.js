@@ -34,4 +34,12 @@ let schema = new SimpleSchema({
 
 SlideDecks.attachSchema(schema);
 
+SlideDecks.helpers({
+  getCurrentSlide() {
+    let currentSlideNumber = this.currentSlide;
+
+    return this.slides[currentSlideNumber - 1];
+  }
+});
+
 export default SlideDecks;

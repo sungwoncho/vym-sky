@@ -12,6 +12,7 @@
     "async": "^1.5.2",
     "github": "^0.2.4",
     "github-webhook-handler": "^0.5.0",
+    "highlight.js": "^9.1.0",
     "lodash": "^4.2.1",
     "mantra-core": "^1.2.0",
     "moment": "^2.11.1",

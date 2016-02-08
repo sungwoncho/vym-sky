@@ -13,6 +13,9 @@ Meteor.methods({
     check(prNumber, Number);
 
     let repo = Repos.findOne(repoId);
+    if (!repo) {
+      return console.log('Invalid repo');
+    }
     let user = Meteor.users.findOne(this.userId);
 
     github.authenticate({
@@ -28,6 +31,7 @@ Meteor.methods({
 
     github.pullRequests.get(options, Meteor.bindEnvironment(function (err, pr) {
       if (err) {
+        console.log(`Error while getting pull requests for ${repo.name}`);
         return console.log(err);
       }
 

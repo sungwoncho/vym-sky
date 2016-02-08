@@ -1,11 +1,13 @@
 import React from 'react';
 
 export default React.createClass({
+
   render() {
+    const {file} = this.props;
+
     return (
-      <div>
-        Single
-        {JSON.stringify(this.props.data.file)}
+      <div className="file-header">
+        {file.to}
       </div>
     );
   }

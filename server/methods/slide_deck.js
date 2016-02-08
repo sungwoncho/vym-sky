@@ -8,5 +8,5 @@ Meteor.methods({
     check(slideNumber, Number);
 
     SlideDecks.update(slideDeckId, {$set: {currentSlide: slideNumber}});
-  }
+  },
 });

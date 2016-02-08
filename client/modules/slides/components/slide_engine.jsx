@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 
-import SingleSlide from './slides/single.jsx';
-import CompareSlide from './slides/compare.jsx';
+import SlideProgress from './slide_progress.jsx';
+import SingleSlide from './slides/single/index.jsx';
+import CompareSlide from './slides/compare/index.jsx';
 
 let ComponentMappings = {
   single: SingleSlide,
@@ -19,9 +20,13 @@ const SlideEngine = React.createClass({
   },
 
   render() {
+    const {slideDeck} = this.props;
+
     return (
       <div>
         {this.renderCurrentSlide()}
+        <SlideProgress totalSlidesCount={slideDeck.slides.length}
+                       currentSlideNumber={slideDeck.currentSlide} />
       </div>
     );
   },
@@ -33,7 +38,7 @@ const SlideEngine = React.createClass({
     let currentSlide = slideDeck.slides[index];
 
     let ModuleName = ComponentMappings[currentSlide.type];
-    return  <ModuleName data={currentSlide.data} />;
+    return <ModuleName data={currentSlide.data} />;
   },
 
   handleKeyDown(e) {
