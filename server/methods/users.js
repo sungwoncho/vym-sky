@@ -5,7 +5,7 @@ import {Repos} from '/libs/collections';
 let github = new GithubAPI({version: '3.0.0'});
 
 Meteor.methods({
-  'users.syncRepos'() {
+  'users.syncRepos'(page = 1) {
     let currentUser = Meteor.users.findOne(this.userId);
 
     github.authenticate({
@@ -14,7 +14,8 @@ Meteor.methods({
     });
 
     github.repos.getAll({
-      type: 'owner'
+      type: 'owner',
+      page: page
     }, Meteor.bindEnvironment(function (err, repos) {
       if (err) {
         return console.log(err);
@@ -39,6 +40,21 @@ Meteor.methods({
 
         Repos.upsert({'meta.id': repo.id}, {$set: repoDoc});
       });
+
+      // Recurse if the response is paginated
+      function getNextPage(link) {
+        let re = /page=(\d).*>; rel="next"/;
+        let result = re.exec(link);
+
+        if (result) {
+          return result[1];
+        }
+      }
+
+      let nextPage = getNextPage(repos.meta.link);
+      if (nextPage) {
+        Meteor.call('users.syncRepos', nextPage);
+      }
     }));
   }
 });

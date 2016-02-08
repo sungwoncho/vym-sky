@@ -14,7 +14,12 @@ export const composer = ({context}, onData) => {
   }
 };
 
+export const depsMapper = (context, actions) => ({
+  syncRepos: actions.repos.syncRepos,
+  context: () => context
+});
+
 export default composeAll(
   composeWithTracker(composer),
-  useDeps()
+  useDeps(depsMapper)
 )(ManageRepo);

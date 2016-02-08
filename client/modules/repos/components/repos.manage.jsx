@@ -10,11 +10,17 @@ export default React.createClass({
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            <RepoList repos={repos}
-                      managementView={true} />
+            <RepoList repos={repos} managementView={true} />
+            <a href="#" onClick={this.handleSyncRepos}>Sync</a>
           </div>
         </div>
       </div>
     );
+  },
+
+  handleSyncRepos(e) {
+    e.preventDefault();
+
+    this.props.syncRepos();
   }
 });
