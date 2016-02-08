@@ -11,8 +11,8 @@ import {ensureLoggedIn} from '/client/modules/core/libs/helpers';
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
-  FlowRouter.route('/repos', {
-    name: 'repos',
+  FlowRouter.route('/home', {
+    name: 'home',
     triggersEnter: [ensureLoggedIn],
     action: function () {
       mount(MainLayoutCtx, {
