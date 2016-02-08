@@ -1,5 +1,5 @@
 import React from 'react';
-import UserActions from './user_actions.jsx';
+import UserActions from './header.user_actions.jsx';
 
 let Header =  React.createClass({
   renderUserActions() {

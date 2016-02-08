@@ -1,4 +1,4 @@
-import Home from '../components/home/index.jsx';
+import Home from '../components/home.jsx';
 import {useDeps} from 'react-simple-di';
 import {composeAll, composeWithTracker} from 'mantra-core';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'react-mounter';
 import {Meteor} from 'meteor/meteor';
 
-import MainLayout from './components/layouts.main/index.jsx';
+import MainLayout from './components/layouts.main.jsx';
 import Main from './containers/main';
 import Home from './containers/home';
 

@@ -1,4 +1,4 @@
-import Main from '../components/main/index.jsx';
+import Main from '../components/main.jsx';
 import {useDeps} from 'react-simple-di';
 import {composeAll, composeWithTracker} from 'mantra-core';
 
