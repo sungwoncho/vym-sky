@@ -1,21 +1,33 @@
 import React from 'react';
 
 import RepoItem from './repos.item.jsx';
+import RepoManageItem from './repos.manage.item.jsx';
 
 export default React.createClass({
   render() {
     return (
-      <ul>
+      <ul className="list-unstyled">
         {this.renderRepoList()}
       </ul>
     );
   },
 
   renderRepoList() {
-    const {repos} = this.props;
+    const {repos, toggleActivated, managementView} = this.props;
 
     return repos.map(function (repo) {
-      return <RepoItem repo={repo} key={repo._id} />;
+      if (managementView) {
+        return (
+          <RepoManageItem repo={repo}
+            key={repo._id}
+            toggleActivated={toggleActivated} />
+        );
+      } else {
+        return (
+          <RepoItem repo={repo}
+            key={repo._id} />
+        );
+      }
     });
   }
 });

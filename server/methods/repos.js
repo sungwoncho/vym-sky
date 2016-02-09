@@ -6,16 +6,12 @@ import _ from 'lodash';
 let github = new GithubAPI({version: '3.0.0'});
 
 Meteor.methods({
-  'repos.activate'(repoId) {
+  'repos.toggleActivatedStatus'(repoId) {
     check(repoId, String);
 
-    Repos.update(repoId, {$set: {activated: true}});
-  },
+    let repo = Repos.findOne(repoId);
 
-  'repos.deactivate'(repoId) {
-    check(repoId, String);
-
-    Repos.update(repoId, {$set: {activated: false}});
+    Repos.update(repoId, {$set: {activated: !repo.activated}});
   },
 
   'repos.createWebhook'(repoId) {

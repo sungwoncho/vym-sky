@@ -21,7 +21,7 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
-  FlowRouter.route('/repos/manage', {
+  FlowRouter.route('/r/manage', {
     name: 'repos.manage',
     triggersEnter: [ensureLoggedIn],
     action: function () {
@@ -30,4 +30,12 @@ export default function (injectDeps, {FlowRouter}) {
       });
     }
   });
+
+  // FlowRouter.route('/r/:ownerName/:repoName', {
+  //   name: 'repos.single',
+  //   triggersEnter: [ensureLoggedIn],
+  //   action: function () {
+  //
+  //   }
+  // });
 }

@@ -1,5 +1,8 @@
 export default {
-  syncRepos({Meteor, Collections}) {
+  syncRepos({Meteor}) {
     Meteor.call('users.syncRepos');
+  },
+  toggleActivatedStatus({Meteor}, repoId) {
+    Meteor.call('repos.toggleActivatedStatus', repoId);
   }
 };

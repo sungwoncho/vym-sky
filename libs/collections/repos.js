@@ -31,6 +31,10 @@ let schema = new SimpleSchema({
   'owner.name': {
     type: String
   },
+  description: {
+    type: String,
+    optional: true
+  },
   private: {
     type: Boolean
   },
@@ -40,13 +44,21 @@ let schema = new SimpleSchema({
   activated: {
     type: Boolean,
     autoValue: function () {
-      return false;
+      if (this.isInsert) {
+        return false;
+      } else if (this.isUpsert) {
+        return {$setOnInsert: false};
+      }
     }
   },
   hasWebhook: {
     type: Boolean,
     autoValue: function () {
-      return false;
+      if (this.isInsert) {
+        return false;
+      } else if (this.isUpsert) {
+        return {$setOnInsert: false};
+      }
     }
   },
   createdAt: {

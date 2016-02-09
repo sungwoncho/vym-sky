@@ -29,6 +29,7 @@ Meteor.methods({
             id: repo.id,
           },
           name: repo.name,
+          description: repo.description,
           owner: {
             _id: currentUser._id,
             type: 'user',

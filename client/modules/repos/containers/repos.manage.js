@@ -16,6 +16,7 @@ export const composer = ({context}, onData) => {
 
 export const depsMapper = (context, actions) => ({
   syncRepos: actions.repos.syncRepos,
+  toggleActivatedStatus: actions.repos.toggleActivatedStatus,
   context: () => context
 });
 

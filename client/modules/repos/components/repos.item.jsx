@@ -5,10 +5,16 @@ export default React.createClass({
     const {repo} = this.props;
 
     return (
-      <li>
-        {repo.name}
+      <li className="repo-item">
+        <a href="#" className="repo-item-link">
+          <div>
+            {repo.owner.name} / {repo.name}
+          </div>
+          <p className="repo-item-description">
+            {repo.description}
+          </p>
+        </a>
       </li>
     );
-  },
-
+  }
 });
