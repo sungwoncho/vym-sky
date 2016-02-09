@@ -13,7 +13,7 @@ export default function (injectDeps, {FlowRouter}) {
     triggersEnter: [
       function (ctx, redirect) {
         if (Meteor.user()) {
-          redirect('repos');
+          redirect('home');
         }
       }
     ],

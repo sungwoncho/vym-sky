@@ -47,7 +47,13 @@ let schema = new SimpleSchema({
   },
   state: {
     type: String,
-    defaultValue: 'open',
+    autoValue: function () {
+      if (this.isInsert) {
+        return 'open';
+      } else if (this.isUpsert) {
+        return {$setOnInsert: 'open'};
+      }
+    },
     allowedValues: [
       'open',
       'merged',

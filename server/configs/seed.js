@@ -6,6 +6,8 @@ export function generateSeed() {
     // SlideDecks.remove({});
 
     let sdDoc = {
+      prId: 'testPrId',
+      ownerId: 'testOwnerId',
       presentationId: 'testPresentationId',
       slides: [
         {

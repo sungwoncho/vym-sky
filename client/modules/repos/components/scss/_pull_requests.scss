@@ -1,0 +1,10 @@
+.pr-item-link {
+  padding: 1em;
+  color: inherit;
+  display: block;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #efefef;
+  }
+}

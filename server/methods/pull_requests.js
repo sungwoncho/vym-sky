@@ -53,6 +53,46 @@ Meteor.methods({
     }));
   },
 
+  'pullRequests.sync'(repoId) {
+    check(repoId, String);
+
+    let user = Meteor.users.findOne(this.userId);
+    let repo = Repos.findOne(repoId);
+
+    github.authenticate({
+      type: 'oauth',
+      token: user.services.github.accessToken
+    });
+
+    github.pullRequests.getAll({
+      user: repo.owner.name,
+      repo: repo.name,
+      state: 'all'
+    }, Meteor.bindEnvironment(function (err, prs) {
+      if (err) {
+        return console.log('Error while syncing pull requests', err);
+      }
+
+      prs.forEach(function (pr) {
+        let prDoc = {
+          meta: {
+            id: pr.id,
+            createdAt: new Date(pr.created_at),
+            updatedAt: new Date(pr.updated_at)
+          },
+          repoId: repoId,
+          number: pr.number,
+          title: pr.title,
+          body: pr.body,
+          head: pr.head,
+          base: pr.base
+        };
+
+        PullRequests.upsert({'meta.id': pr.id}, {$set: prDoc});
+      });
+    }));
+  },
+
   'pullRequests.getDiff'(prId) {
     check(prId, String);
 

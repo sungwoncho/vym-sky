@@ -11,4 +11,8 @@ export default function () {
 
     return Repos.find({'owner._id': this.userId});
   });
+
+  Meteor.publish('repo', function (ownerName, repoName) {
+    return Repos.find({'owner.name': ownerName, name: repoName});
+  });
 }
