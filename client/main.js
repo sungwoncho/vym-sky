@@ -3,7 +3,7 @@ import initContext from './configs/context';
 
 // modules
 import coreModule from './modules/core';
-import slidesModule from './modules/slides';
+import slidesModule from './modules/slide_engine';
 import repoModule from './modules/repos';
 
 const context = initContext();
