@@ -1,1 +1,1 @@
-meteor --settings .deploy/settings-local.json
+meteor --settings=settings-local.json
