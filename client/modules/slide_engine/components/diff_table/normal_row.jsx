@@ -21,7 +21,6 @@ export default React.createClass({
       return '';
     }
 
-    console.log(hljs.highlightAuto(content).value);
     return hljs.highlightAuto(content).value;
   }
 });

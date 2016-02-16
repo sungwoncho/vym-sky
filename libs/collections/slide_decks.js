@@ -26,7 +26,8 @@ let schema = new SimpleSchema({
   },
   slides: {
     type: [Object],
-    optional: true
+    optional: true,
+    defaultValue: []
   },
   'slides.$.number': {
     type: String

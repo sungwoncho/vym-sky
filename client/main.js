@@ -14,4 +14,5 @@ app.loadModule(coreModule);
 app.loadModule(slideEngineModule);
 app.loadModule(slideWizardModule);
 app.loadModule(repoModule);
+
 app.init();

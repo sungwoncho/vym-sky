@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Preview from './preview.jsx';
+
 export default React.createClass({
   render() {
     const {slideDeck} = this.props;
@@ -7,11 +9,11 @@ export default React.createClass({
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-9">
-            {slideDeck.title}
+          <div className="col-sm-2 preview-container">
+            <Preview slides={slideDeck.slides} />
           </div>
-          <div className="col-sm-3">
-
+          <div className="col-sm-10">
+            content
           </div>
         </div>
       </div>

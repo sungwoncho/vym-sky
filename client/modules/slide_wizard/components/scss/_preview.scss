@@ -1,0 +1,26 @@
+.preview-container {
+  min-height: calc(100vh - #{$navbar-height});
+  border-right: 1px solid gray;
+}
+
+.thumbnail-wrapper {
+  width: 210px;
+  height: 176px;
+  padding: 0;
+  overflow: hidden;
+  float: left;
+
+  .thumbnail-iframe {
+    width: 1480px;
+    height: 1086px;
+    border: 1px solid black;
+    -moz-transform: scale(0.14);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.14);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.14);
+    -webkit-transform-origin: 0 0;
+
+    pointer-events: none;
+  }
+}

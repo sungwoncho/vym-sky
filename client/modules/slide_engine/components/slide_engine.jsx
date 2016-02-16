@@ -2,13 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import SlideProgress from './slide_progress.jsx';
-import SingleSlide from './slides/single/index.jsx';
-import CompareSlide from './slides/compare/index.jsx';
-
-let ComponentMappings = {
-  single: SingleSlide,
-  compare: CompareSlide
-};
+import SlideRenderer from './slide_renderer.jsx';
 
 const SlideEngine = React.createClass({
   componentWillMount() {
@@ -37,8 +31,7 @@ const SlideEngine = React.createClass({
     let index = slideDeck.currentSlide - 1;
     let currentSlide = slideDeck.slides[index];
 
-    let ModuleName = ComponentMappings[currentSlide.type];
-    return <ModuleName data={currentSlide.data} />;
+    return <SlideRenderer slide={currentSlide} />;
   },
 
   handleKeyDown(e) {
