@@ -13,7 +13,7 @@ export default React.createClass({
   },
 
   renderThumbnails() {
-    const {slides} = this.props;
+    const {slides, showSlide} = this.props;
     if (! slides) {
       return;
     }
@@ -21,7 +21,12 @@ export default React.createClass({
     return slides.map(function (slide, index) {
       return (
         <li key={index}>
-          <Thumbnail width="200" height="200" pageWidth="900" pageHeight="1440">
+          <Thumbnail width="200"
+            height="200"
+            pageWidth="900"
+            pageHeight="1440"
+            showSlide={showSlide}
+            slideNumber={slide.number}>
             <SlideRenderer slide={slide} />
           </Thumbnail>
         </li>

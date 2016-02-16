@@ -26,10 +26,17 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="thumbnail-wrapper">
+      <div className="thumbnail-wrapper" onClick={this.navigateToSlide}>
         <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );
+  },
+
+  navigateToSlide(e) {
+    e.preventDefault();
+
+    const {showSlide, slideNumber} = this.props;
+    showSlide(slideNumber);
   },
 
   renderStylesheets() {

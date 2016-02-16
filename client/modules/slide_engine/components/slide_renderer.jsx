@@ -10,7 +10,8 @@ let ComponentMappings = {
 
 export default React.createClass({
   propTypes: {
-    scale: React.PropTypes.number
+    scale: React.PropTypes.number,
+    slide: React.PropTypes.object.isRequired
   },
 
   getContainerStyle(scale) {

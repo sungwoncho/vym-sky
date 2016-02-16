@@ -1,5 +1,6 @@
 import {Mongo} from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import _ from 'lodash';
 
 const SlideDecks = new Mongo.Collection('slideDecks');
 
@@ -30,7 +31,7 @@ let schema = new SimpleSchema({
     defaultValue: []
   },
   'slides.$.number': {
-    type: String
+    type: Number
   },
   'slides.$.type': {
     type: String
@@ -74,6 +75,9 @@ SlideDecks.helpers({
     let currentSlideNumber = this.currentSlide;
 
     return this.slides[currentSlideNumber - 1];
+  },
+  getSlideByNumber(number) {
+    return _.find(this.slides, {number: number});
   }
 });
 

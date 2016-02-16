@@ -13,7 +13,8 @@ export const composer = ({context, slideDeckId}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-  context: () => context
+  context: () => context,
+  showSlide: actions.slideDecks.showSlide
 });
 
 export default composeAll(

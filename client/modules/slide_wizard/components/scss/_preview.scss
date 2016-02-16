@@ -1,14 +1,17 @@
 .preview-container {
   min-height: calc(100vh - #{$navbar-height});
   border-right: 1px solid gray;
+  padding-top: 20px;
 }
 
 .thumbnail-wrapper {
   width: 210px;
-  height: 176px;
+  height: 156px;
+  margin-bottom: 20px;
   padding: 0;
   overflow: hidden;
   float: left;
+  cursor: pointer;
 
   .thumbnail-iframe {
     width: 1480px;

@@ -13,9 +13,9 @@ export default function (injectDeps, {FlowRouter}) {
   FlowRouter.route('/s/:slideDeckId/wizard', {
     name: 'slide_deck.wizard',
     triggersEnter: [ensureLoggedIn],
-    action: function ({slideDeckId}) {
+    action: function ({slideDeckId}, {slideNumber}) {
       mount(MainLayoutCtx, {
-        content: () => (<Wizard slideDeckId={slideDeckId} />)
+        content: () => (<Wizard slideDeckId={slideDeckId} slideNumber={slideNumber} />)
       });
     }
   });

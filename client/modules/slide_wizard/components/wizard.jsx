@@ -1,22 +1,30 @@
 import React from 'react';
 
 import Preview from './preview.jsx';
+import SlideRenderer from '/client/modules/slide_engine/components/slide_renderer.jsx';
 
 export default React.createClass({
   render() {
-    const {slideDeck} = this.props;
+    const {slideDeck, showSlide} = this.props;
 
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-2 preview-container">
-            <Preview slides={slideDeck.slides} />
+            <Preview slides={slideDeck.slides} showSlide={showSlide} />
           </div>
           <div className="col-sm-10">
-            content
+            {this.renderCurrentSlide()}
           </div>
         </div>
       </div>
     );
+  },
+
+  renderCurrentSlide() {
+    const {slideDeck, slideNumber} = this.props;
+    let currentSlide = slideDeck.getSlideByNumber(parseInt(slideNumber) || 1);
+
+    return <SlideRenderer slide={currentSlide} />;
   }
 });
