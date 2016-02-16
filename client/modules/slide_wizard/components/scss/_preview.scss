@@ -13,6 +13,10 @@
   float: left;
   cursor: pointer;
 
+  &.active {
+    border: 1px solid black;
+  }
+
   .thumbnail-iframe {
     width: 1480px;
     height: 1086px;

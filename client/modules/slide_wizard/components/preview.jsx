@@ -13,12 +13,14 @@ export default React.createClass({
   },
 
   renderThumbnails() {
-    const {slides, showSlide} = this.props;
+    const {slides, showSlide, currentSlideNumber} = this.props;
     if (! slides) {
       return;
     }
 
     return slides.map(function (slide, index) {
+      let isActive = currentSlideNumber === slide.number;
+
       return (
         <li key={index}>
           <Thumbnail width="200"
@@ -26,6 +28,7 @@ export default React.createClass({
             pageWidth="900"
             pageHeight="1440"
             showSlide={showSlide}
+            isActive={isActive}
             slideNumber={slide.number}>
             <SlideRenderer slide={slide} />
           </Thumbnail>

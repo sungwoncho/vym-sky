@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import ReactDOMServer from 'react-dom/server';
+import classNames from 'classnames';
 
 export default React.createClass({
   componentDidMount() {
@@ -25,8 +24,15 @@ export default React.createClass({
   },
 
   render() {
+    const {isActive} = this.props;
+
+    let thumbnailClass = classNames({
+      'thumbnail-wrapper': true,
+      'active': isActive
+    });
+
     return (
-      <div className="thumbnail-wrapper" onClick={this.navigateToSlide}>
+      <div className={thumbnailClass} onClick={this.navigateToSlide}>
         <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );

@@ -5,13 +5,15 @@ import SlideRenderer from '/client/modules/slide_engine/components/slide_rendere
 
 export default React.createClass({
   render() {
-    const {slideDeck, showSlide} = this.props;
+    const {slideDeck, showSlide, currentSlideNumber} = this.props;
 
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-2 preview-container">
-            <Preview slides={slideDeck.slides} showSlide={showSlide} />
+            <Preview slides={slideDeck.slides}
+              showSlide={showSlide}
+              currentSlideNumber={currentSlideNumber} />
           </div>
           <div className="col-sm-10">
             {this.renderCurrentSlide()}
