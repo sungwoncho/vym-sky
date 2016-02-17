@@ -21,7 +21,8 @@ export const composer = ({context, slideDeckId}, onData) => {
 export const depsMapper = (context, actions) => ({
   context: () => context,
   wizardActions: {
-    addSlide: actions.slideDecks.addSlide
+    addSlide: actions.slideDecks.addSlide,
+    removeSlide: actions.slideDecks.removeSlide
   }
 });
 

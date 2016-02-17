@@ -24,15 +24,24 @@ export default React.createClass({
   },
 
   render() {
-    const {isActive} = this.props;
+    const {isActive, slideNumber} = this.props;
 
     let thumbnailClass = classNames({
       'thumbnail-wrapper': true,
       'active': isActive
     });
 
+    if (slideNumber === -1) {
+      return (
+        <div className={thumbnailClass}>
+          Deleting...
+        </div>
+      );
+    }
+
     return (
       <div className={thumbnailClass} onClick={this.navigateToSlide}>
+        <b>{slideNumber}</b>
         <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );

@@ -2,7 +2,7 @@ import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
 import Wizard from '../components/wizard.jsx';
 
-export const composer = ({context, slideDeckId}, onData) => {
+export const composer = ({context, slideDeckId, currentSlideNumber}, onData) => {
   const {Meteor, Collections, FlowRouter} = context();
 
   if (Meteor.subscribe('slideDeck', slideDeckId).ready()) {
@@ -10,7 +10,7 @@ export const composer = ({context, slideDeckId}, onData) => {
 
     onData(null, {
       slideDeck,
-      currentSlideNumber: parseInt(FlowRouter.getQueryParam('slideNumber'))
+      currentSlideNumber
     });
   }
 };

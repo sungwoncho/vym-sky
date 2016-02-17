@@ -1,7 +1,8 @@
 .preview-container {
-  min-height: calc(100vh - #{$navbar-height});
-  border-right: 1px solid gray;
+  height: calc(100vh - #{$navbar-height});
+  border-right: 1px solid #A5AAA9;
   padding-top: 20px;
+  overflow-y: scroll;
 }
 
 .thumbnail-wrapper {
@@ -14,7 +15,7 @@
   cursor: pointer;
 
   &.active {
-    border: 1px solid black;
+    border: 2.5px solid #7EC3CE;
   }
 
   .thumbnail-iframe {

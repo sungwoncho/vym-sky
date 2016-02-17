@@ -2,9 +2,9 @@ import React from 'react';
 
 import Header from '../containers/header';
 
-const WizardLayout = ({content = () => null, slideDeckId}) => (
+const WizardLayout = ({content = () => null, slideDeckId, slideNumber}) => (
   <div>
-    <Header slideDeckId={slideDeckId} />
+    <Header slideDeckId={slideDeckId} currentSlideNumber={slideNumber} />
     <main>
       {content()}
     </main>

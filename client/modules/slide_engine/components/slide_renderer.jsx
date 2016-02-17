@@ -25,6 +25,15 @@ export default React.createClass({
 
   render() {
     const {slide, scale} = this.props;
+
+    if (slide.number === -1) {
+      return (
+        <div>
+          Deleting...
+        </div>
+      );
+    }
+
     let ModuleName = ComponentMappings[slide.type];
     let containerStyle = scale ? this.getContainerStyle(scale) : {};
 

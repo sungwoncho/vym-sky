@@ -39,7 +39,8 @@ let schema = new SimpleSchema({
   },
   'slides.$.data': {
     type: Object,
-    blackbox: true
+    blackbox: true,
+    optional: true
   },
   'slides.$.data.title': {
     type: String,

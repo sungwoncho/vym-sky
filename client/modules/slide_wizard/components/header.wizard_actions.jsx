@@ -9,14 +9,26 @@ export default React.createClass({
             <i className="fa fa-plus"></i>
           </a>
         </li>
+        <li className="nav-item wizard-action">
+          <a href="#" className="nav-link" onClick={this.removeSlide}>
+            <i className="fa fa-minus"></i>
+          </a>
+        </li>
       </div>
     );
   },
 
   addSlide(e) {
     e.preventDefault();
-    const {actions, slideDeck} = this.props;
+    const {addSlide, slideDeck} = this.props;
 
-    actions.addSlide(slideDeck._id);
+    addSlide(slideDeck._id);
+  },
+
+  removeSlide(e) {
+    e.preventDefault();
+    const {removeSlide, slideDeck, slideNumber} = this.props;
+
+    removeSlide(slideDeck._id, slideNumber);
   }
 });

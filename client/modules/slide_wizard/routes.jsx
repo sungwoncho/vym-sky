@@ -16,7 +16,11 @@ export default function (injectDeps, {FlowRouter}) {
     action: function ({slideDeckId}, {slideNumber}) {
       mount(WizardLayoutCtx, {
         slideDeckId: slideDeckId,
-        content: () => (<Wizard slideDeckId={slideDeckId} slideNumber={slideNumber} />)
+        slideNumber: parseInt(slideNumber),
+        content: () => (
+          <Wizard slideDeckId={slideDeckId}
+            slideNumber={slideNumber}
+            currentSlideNumber={parseInt(slideNumber)} />)
       });
     }
   });

@@ -15,7 +15,7 @@ export default React.createClass({
               showSlide={showSlide}
               currentSlideNumber={currentSlideNumber} />
           </div>
-          <div className="col-sm-10">
+          <div className="col-sm-10 slide-container">
             {this.renderCurrentSlide()}
           </div>
         </div>
@@ -27,6 +27,14 @@ export default React.createClass({
     const {slideDeck, slideNumber} = this.props;
     let currentSlide = slideDeck.getSlideByNumber(parseInt(slideNumber) || 1);
 
-    return <SlideRenderer slide={currentSlide} />;
+    if (currentSlide) {
+      return <SlideRenderer slide={currentSlide} />;
+    } else {
+      return (
+        <div>
+          No slide
+        </div>
+      );
+    }
   }
 });

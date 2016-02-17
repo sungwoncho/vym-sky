@@ -6,7 +6,7 @@ import WizardActions from './header.wizard_actions.jsx';
 
 export default React.createClass({
   render() {
-    const {currentUser, wizardActions, slideDeck} = this.props;
+    const {currentUser, wizardActions, slideDeck, currentSlideNumber} = this.props;
 
     return (
       <nav className="navbar navbar-full navbar-wizard">
@@ -14,7 +14,10 @@ export default React.createClass({
           <img src="/images/logo-black.png" alt="logo" className="logo" />
         </a>
 
-        <WizardActions actions={wizardActions} slideDeck={slideDeck} />
+        <WizardActions slideDeck={slideDeck}
+          addSlide={wizardActions.addSlide}
+          removeSlide={wizardActions.removeSlide}
+          slideNumber={currentSlideNumber} />
         <UserActions user={currentUser} />
       </nav>
     );
