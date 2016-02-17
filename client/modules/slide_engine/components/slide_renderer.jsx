@@ -28,6 +28,10 @@ export default React.createClass({
     let ModuleName = ComponentMappings[slide.type];
     let containerStyle = scale ? this.getContainerStyle(scale) : {};
 
+    if (! ModuleName) {
+      return <div></div>;
+    }
+
     return (
       <div style={containerStyle}>
         <ModuleName data={slide.data} />

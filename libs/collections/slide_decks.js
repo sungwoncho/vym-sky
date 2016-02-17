@@ -34,7 +34,8 @@ let schema = new SimpleSchema({
     type: Number
   },
   'slides.$.type': {
-    type: String
+    type: String,
+    optional: true
   },
   'slides.$.data': {
     type: Object,
@@ -78,6 +79,11 @@ SlideDecks.helpers({
   },
   getSlideByNumber(number) {
     return _.find(this.slides, {number: number});
+  },
+  getLastSlide() {
+    let slides = this.slides;
+
+    return slides[slides.length - 1];
   }
 });
 

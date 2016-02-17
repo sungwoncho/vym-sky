@@ -3,6 +3,7 @@ import {check} from 'meteor/check';
 import {SlideDecks} from '/libs/collections';
 
 Meteor.methods({
+  // Used in presentation mode
   'slideDecks.goToSlide'(slideDeckId, slideNumber) {
     check(slideDeckId, String);
     check(slideNumber, Number);
@@ -18,5 +19,20 @@ Meteor.methods({
     }
 
     return SlideDecks.insert(sdDoc);
+  },
+  'slideDecks.addSlideInDeck'(slideDeckId) {
+    check(slideDeckId, String);
+
+    let slideDeck = SlideDecks.findOne(slideDeckId);
+    let lastSlideNumber = slideDeck.getLastSlide().number;
+
+    let newSlide = {
+      number: lastSlideNumber + 1,
+      data: {}
+    };
+
+    SlideDecks.update(slideDeckId, {$addToSet: {slides: newSlide}});
+
+    return newSlide;
   }
 });

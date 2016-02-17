@@ -1,0 +1,39 @@
+.navbar-wizard {
+  background-color: #ffffff;
+  border-bottom: 1px solid #A5AAA9;
+  padding: 0.2rem 0.6rem;
+  color: #303837;
+
+  .logo {
+    width: 35px;
+  }
+
+  .navbar-brand {
+    margin-right: 10px;
+  }
+
+  .profile-picture{
+    width: 35px;
+    border-radius: 50%;
+  }
+
+  .dropdown-toggle {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+
+    &::after {
+      color: #000;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: #303837;
+    }
+  }
+
+  .wizard-actions {
+    padding: 0.1rem;
+    font-size: 20px;
+  }
+}
