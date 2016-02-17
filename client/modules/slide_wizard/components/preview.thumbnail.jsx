@@ -31,14 +31,6 @@ export default React.createClass({
       'active': isActive
     });
 
-    if (slideNumber === -1) {
-      return (
-        <div className={thumbnailClass}>
-          Deleting...
-        </div>
-      );
-    }
-
     return (
       <div className={thumbnailClass} onClick={this.navigateToSlide}>
         <b>{slideNumber}</b>

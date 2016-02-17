@@ -30,6 +30,9 @@ let schema = new SimpleSchema({
     optional: true,
     defaultValue: []
   },
+  'slides.$.uid': {
+    type: String
+  },
   'slides.$.number': {
     type: Number
   },

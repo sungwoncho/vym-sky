@@ -2,6 +2,7 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {SlideDecks} from '/libs/collections';
 import _ from 'lodash';
+import shortid from 'shortid';
 
 Meteor.methods({
   /**
@@ -31,6 +32,7 @@ Meteor.methods({
 
     let newSlide = {
       number: lastSlideNumber + 1,
+      uid: shortid.generate(),
       data: {}
     };
 
@@ -43,9 +45,9 @@ Meteor.methods({
     check(slideDeckId, String);
     check(slideNumber, Number);
 
-    SlideDecks.update({_id: slideDeckId, 'slides.number': slideNumber}, {$set: {'slides.$.number': -1}});
+    let slide = SlideDecks.findOne(slideDeckId).getSlideByNumber(slideNumber);
 
-    // Update slide numbers to eliminate the jump created by removing the slide
+    // Decrement `number` of slides that come after the slide to remove
     let slideDeck = SlideDecks.findOne({_id: slideDeckId});
     slideDeck.slides.forEach(function (slide) {
       if (slide.number > slideNumber) {
@@ -55,7 +57,6 @@ Meteor.methods({
 
     let slideDeckDoc = _.omit(slideDeck, '_id');
     SlideDecks.update(slideDeckId, {$set: slideDeckDoc});
-
-    SlideDecks.update(slideDeckId, {$pull: {slides: {number: -1}}});
+    SlideDecks.update(slideDeckId, {$pull: {slides: {uid: slide.uid}}});
   }
 });
