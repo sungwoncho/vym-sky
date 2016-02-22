@@ -28,21 +28,26 @@ Meteor.methods({
     check(slideDeckId, String);
     check(slideNumber, Number);
 
+    // Increment the number for slides that come after `slideNumber`
+    let slides = SlideDecks.findOne(slideDeckId).slides;
+    slides.forEach(function (slide) {
+      if (slide.number >= slideNumber) {
+        slide.number++;
+      }
+    });
+    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
+
+    // Insert the new slide
     let newSlide = {
       number: slideNumber,
       uid: shortid.generate(),
       data: {}
     };
+    SlideDecks.update(slideDeckId, {$push: {slides: newSlide}});
 
-    SlideDecks.update(slideDeckId, {$addToSet: {slides: newSlide}});
-
-    let slides = SlideDecks.findOne(slideDeckId).slides;
-    slides.forEach(function (slide) {
-      if (slide.number > slideNumber) {
-        slide.number++;
-      }
-    });
-    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
+    // Sort the slides by number
+    let newSlides = SlideDecks.findOne(slideDeckId).slides;
+    SlideDecks.update(slideDeckId, {$set: {slides: _.sortBy(newSlides, 'number')}});
 
     return newSlide;
   },
