@@ -28,11 +28,17 @@ export default React.createClass({
     return !! this.props.currentSlideNumber;
   },
 
+  scrollPreviewToActiveSlide() {
+    document.getElementsByClassName('thumbnail-wrapper active')[0].scrollIntoView();
+  },
+
   addSlide(e) {
     e.preventDefault();
     const {addSlide, slideDeck, currentSlideNumber} = this.props;
 
-    addSlide(slideDeck._id, currentSlideNumber + 1);
+    addSlide(slideDeck._id, currentSlideNumber + 1, () => {
+      this.scrollPreviewToActiveSlide();
+    });
   },
 
   removeSlide(e) {
@@ -43,6 +49,8 @@ export default React.createClass({
 
     const {removeSlide, slideDeck, currentSlideNumber} = this.props;
 
-    removeSlide(slideDeck._id, currentSlideNumber);
+    removeSlide(slideDeck._id, currentSlideNumber, () => {
+      this.scrollPreviewToActiveSlide();
+    });
   }
 });
