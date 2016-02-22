@@ -6,7 +6,7 @@ export const composer = ({context}, onData) => {
   const {Meteor, Collections, FlowRouter} = context();
 
   function getCurrentSlideNumber() {
-    return parseInt(FlowRouter.getQueryParam('slideNumber')) || 1;
+    return parseInt(FlowRouter.getQueryParam('slideNumber')) || 0;
   }
 
   const slideDeckId = FlowRouter.getParam('slideDeckId');

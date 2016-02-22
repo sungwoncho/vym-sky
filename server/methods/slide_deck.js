@@ -46,12 +46,18 @@ Meteor.methods({
 
     return newSlide;
   },
-  // TODO: Write test
+  /**
+   * @return {Object} - an object containing info about neighboring slides.
+   *         Used by the wizard to navigate to other slides after removal.
+   */
   'slideDecks.removeSlideInDeck'(slideDeckId, slideNumber) {
     check(slideDeckId, String);
     check(slideNumber, Number);
 
-    let slide = SlideDecks.findOne(slideDeckId).getSlideByNumber(slideNumber);
+    let slideDeck = SlideDecks.findOne(slideDeckId);
+    let slide = slideDeck.getSlideByNumber(slideNumber);
+    let nextSlide = slideDeck.getSlideByNumber(slideNumber + 1);
+    let prevSlide = slideDeck.getSlideByNumber(slideNumber - 1);
 
     // Decrement `number` of slides that come after the slide to remove
     let slides = SlideDecks.findOne(slideDeckId).slides;
@@ -63,5 +69,10 @@ Meteor.methods({
 
     SlideDecks.update(slideDeckId, {$set: {slides: slides}});
     SlideDecks.update(slideDeckId, {$pull: {slides: {uid: slide.uid}}});
+
+    return {
+      hasPrevSlide: !!prevSlide,
+      hasNextSlide: !!nextSlide
+    };
   }
 });
