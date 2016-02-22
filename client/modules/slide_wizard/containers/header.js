@@ -2,8 +2,15 @@ import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
 import Header from '../components/header.jsx';
 
-export const composer = ({context, slideDeckId}, onData) => {
-  const {Meteor, Collections} = context();
+export const composer = ({context}, onData) => {
+  const {Meteor, Collections, FlowRouter} = context();
+
+  function getCurrentSlideNumber() {
+    return parseInt(FlowRouter.getQueryParam('slideNumber')) || 1;
+  }
+
+  const slideDeckId = FlowRouter.getParam('slideDeckId');
+  const currentSlideNumber = getCurrentSlideNumber();
 
   if (Meteor.subscribe('currentUser').ready() &&
       Meteor.subscribe('slideDeck', slideDeckId).ready()) {
@@ -11,9 +18,12 @@ export const composer = ({context, slideDeckId}, onData) => {
     const currentUser = Meteor.user();
     const slideDeck = Collections.SlideDecks.findOne(slideDeckId);
 
+
     onData(null, {
       currentUser,
-      slideDeck
+      slideDeck,
+      slideDeckId,
+      currentSlideNumber
     });
   }
 };

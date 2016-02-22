@@ -15,8 +15,6 @@ export default function (injectDeps, {FlowRouter}) {
     triggersEnter: [ensureLoggedIn],
     action: function ({slideDeckId}, {slideNumber}) {
       mount(WizardLayoutCtx, {
-        slideDeckId: slideDeckId,
-        slideNumber: parseInt(slideNumber),
         content: () => (
           <Wizard slideDeckId={slideDeckId}
             slideNumber={slideNumber}
