@@ -17,7 +17,7 @@ export default React.createClass({
         <WizardActions slideDeck={slideDeck}
           addSlide={wizardActions.addSlide}
           removeSlide={wizardActions.removeSlide}
-          slideNumber={currentSlideNumber} />
+          currentSlideNumber={currentSlideNumber} />
         <UserActions user={currentUser} />
       </nav>
     );

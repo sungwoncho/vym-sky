@@ -6,8 +6,8 @@ export default {
   showSlide({FlowRouter}, slideNumber) {
     _showSlide(FlowRouter, slideNumber);
   },
-  addSlide({Meteor, FlowRouter}, slideDeckId) {
-    Meteor.call('slideDecks.addSlideInDeck', slideDeckId, function (err, newSlide) {
+  addSlide({Meteor, FlowRouter}, slideDeckId, slideNumber) {
+    Meteor.call('slideDecks.addSlideInDeck', slideDeckId, slideNumber, function (err, newSlide) {
       FlowRouter.setQueryParams({slideNumber: newSlide.number});
     });
   },

@@ -24,19 +24,25 @@ Meteor.methods({
 
     return SlideDecks.insert(sdDoc);
   },
-  'slideDecks.addSlideInDeck'(slideDeckId) {
+  'slideDecks.addSlideInDeck'(slideDeckId, slideNumber) {
     check(slideDeckId, String);
-
-    let slideDeck = SlideDecks.findOne(slideDeckId);
-    let lastSlideNumber = slideDeck.getLastSlide().number;
+    check(slideNumber, Number);
 
     let newSlide = {
-      number: lastSlideNumber + 1,
+      number: slideNumber,
       uid: shortid.generate(),
       data: {}
     };
 
     SlideDecks.update(slideDeckId, {$addToSet: {slides: newSlide}});
+
+    let slides = SlideDecks.findOne(slideDeckId).slides;
+    slides.forEach(function (slide) {
+      if (slide.number > slideNumber) {
+        slide.number++;
+      }
+    });
+    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
 
     return newSlide;
   },
@@ -48,15 +54,14 @@ Meteor.methods({
     let slide = SlideDecks.findOne(slideDeckId).getSlideByNumber(slideNumber);
 
     // Decrement `number` of slides that come after the slide to remove
-    let slideDeck = SlideDecks.findOne({_id: slideDeckId});
-    slideDeck.slides.forEach(function (slide) {
-      if (slide.number > slideNumber) {
-        slide.number--;
+    let slides = SlideDecks.findOne(slideDeckId).slides;
+    slides.forEach(function (s) {
+      if (s.number > slideNumber) {
+        s.number--;
       }
     });
 
-    let slideDeckDoc = _.omit(slideDeck, '_id');
-    SlideDecks.update(slideDeckId, {$set: slideDeckDoc});
+    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
     SlideDecks.update(slideDeckId, {$pull: {slides: {uid: slide.uid}}});
   }
 });

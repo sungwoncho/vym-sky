@@ -20,15 +20,15 @@ export default React.createClass({
 
   addSlide(e) {
     e.preventDefault();
-    const {addSlide, slideDeck} = this.props;
+    const {addSlide, slideDeck, currentSlideNumber} = this.props;
 
-    addSlide(slideDeck._id);
+    addSlide(slideDeck._id, currentSlideNumber + 1);
   },
 
   removeSlide(e) {
     e.preventDefault();
-    const {removeSlide, slideDeck, slideNumber} = this.props;
+    const {removeSlide, slideDeck, currentSlideNumber} = this.props;
 
-    removeSlide(slideDeck._id, slideNumber);
+    removeSlide(slideDeck._id, currentSlideNumber);
   }
 });
