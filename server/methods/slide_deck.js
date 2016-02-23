@@ -3,6 +3,7 @@ import {check} from 'meteor/check';
 import {SlideDecks} from '/libs/collections';
 import _ from 'lodash';
 import shortid from 'shortid';
+import _s from '../libs/slide_utils';
 
 Meteor.methods({
   /**
@@ -28,26 +29,19 @@ Meteor.methods({
     check(slideDeckId, String);
     check(slideNumber, Number);
 
-    // Increment the number for slides that come after `slideNumber`
-    let slides = SlideDecks.findOne(slideDeckId).slides;
-    slides.forEach(function (slide) {
-      if (slide.number >= slideNumber) {
-        slide.number++;
-      }
-    });
-    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
-
-    // Insert the new slide
+    let slideDeck = SlideDecks.findOne(slideDeckId);
+    let slides = slideDeck.slides;
     let newSlide = {
       number: slideNumber,
       uid: shortid.generate(),
       data: {}
     };
-    SlideDecks.update(slideDeckId, {$push: {slides: newSlide}});
 
-    // Sort the slides by number
-    let newSlides = SlideDecks.findOne(slideDeckId).slides;
-    SlideDecks.update(slideDeckId, {$set: {slides: _.sortBy(newSlides, 'number')}});
+    slides = _s(slides).bumpNumbers(slideNumber, slides.length, 1)
+              .add(newSlide)
+              .sort();
+
+    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
 
     return newSlide;
   },
@@ -60,24 +54,40 @@ Meteor.methods({
     check(slideNumber, Number);
 
     let slideDeck = SlideDecks.findOne(slideDeckId);
-    let slide = slideDeck.getSlideByNumber(slideNumber);
+    let slides = slideDeck.slides;
+    let targetSlide = slideDeck.getSlideByNumber(slideNumber);
     let nextSlide = slideDeck.getSlideByNumber(slideNumber + 1);
     let prevSlide = slideDeck.getSlideByNumber(slideNumber - 1);
 
-    // Decrement `number` of slides that come after the slide to remove
-    let slides = SlideDecks.findOne(slideDeckId).slides;
-    slides.forEach(function (s) {
-      if (s.number > slideNumber) {
-        s.number--;
-      }
-    });
+    slides = _s(slides).bumpNumbers(slideNumber, slides.length, -1)
+                       .remove({uid: targetSlide.uid})
+                       .sort();
 
     SlideDecks.update(slideDeckId, {$set: {slides: slides}});
-    SlideDecks.update(slideDeckId, {$pull: {slides: {uid: slide.uid}}});
 
     return {
       hasPrevSlide: !!prevSlide,
       hasNextSlide: !!nextSlide
     };
+  },
+  'slideDecks.reorderSlide'(slideDeckId, fromSlideNumber, toSlideNumber) {
+    check(slideDeckId, String);
+    check(fromSlideNumber, Number);
+    check(toSlideNumber, Number);
+
+    let min = Math.min(fromSlideNumber, toSlideNumber);
+    let max = Math.max(fromSlideNumber, toSlideNumber);
+    let isMovingDown = toSlideNumber > fromSlideNumber;
+    let delta = isMovingDown ? -1 : 1;
+
+    let slideDecks = SlideDecks.findOne(slideDeckId);
+    let slides = slideDecks.slides;
+    let targetSlide = slideDecks.getSlideByNumber(fromSlideNumber);
+
+    slides = _s(slides).bumpNumbers(min, max, delta)
+                       .setSlideNumber(targetSlide.uid, toSlideNumber)
+                       .sort();
+
+    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
   }
 });
