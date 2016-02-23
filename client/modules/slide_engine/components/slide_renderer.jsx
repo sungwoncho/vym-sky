@@ -30,7 +30,7 @@ export default React.createClass({
     let containerStyle = scale ? this.getContainerStyle(scale) : {};
 
     if (! ModuleName) {
-      return <div></div>;
+      return <div><h1>{slide.uid}</h1></div>;
     }
 
     return (

@@ -5,7 +5,7 @@ import SlideRenderer from '/client/modules/slide_engine/components/slide_rendere
 
 export default React.createClass({
   render() {
-    const {slideDeck, showSlide, currentSlideNumber} = this.props;
+    const {slideDeck, showSlide, currentSlideNumber, reorderSlide} = this.props;
 
     return (
       <div className="container-fluid">
@@ -13,6 +13,7 @@ export default React.createClass({
           <div className="col-sm-2 preview-container">
             <Preview slides={slideDeck.slides}
               showSlide={showSlide}
+              onThumbnailMove={this.onThumbnailMove}
               currentSlideNumber={currentSlideNumber} />
           </div>
           <div className="col-sm-10 slide-container">
@@ -24,8 +25,8 @@ export default React.createClass({
   },
 
   renderCurrentSlide() {
-    const {slideDeck, slideNumber} = this.props;
-    let currentSlide = slideDeck.getSlideByNumber(parseInt(slideNumber) || 1);
+    const {slideDeck, currentSlideNumber} = this.props;
+    let currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
     if (currentSlide) {
       return <SlideRenderer slide={currentSlide} />;
@@ -36,5 +37,15 @@ export default React.createClass({
         </div>
       );
     }
+  },
+
+  onThumbnailMove(fromSlideNumber, toSlideNumber) {
+    if (fromSlideNumber === toSlideNumber) {
+      return;
+    }
+
+    const {slideDeck, reorderSlide} = this.props;
+
+    reorderSlide(slideDeck._id, fromSlideNumber, toSlideNumber);
   }
 });

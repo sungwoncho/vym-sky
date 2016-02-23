@@ -1,4 +1,4 @@
-import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
+import {useDeps, composeAll,compose,  composeWithTracker} from 'mantra-core';
 
 import Wizard from '../components/wizard.jsx';
 
@@ -17,7 +17,8 @@ export const composer = ({context, slideDeckId, currentSlideNumber}, onData) => 
 
 export const depsMapper = (context, actions) => ({
   context: () => context,
-  showSlide: actions.slideDecks.showSlide
+  showSlide: actions.slideDecks.showSlide,
+  reorderSlide: actions.slideDecks.reorderSlide
 });
 
 export default composeAll(

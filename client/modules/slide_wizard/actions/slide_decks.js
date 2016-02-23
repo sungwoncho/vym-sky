@@ -23,5 +23,8 @@ export default {
         done();
       }
     });
+  },
+  reorderSlide({Meteor}, slideDeckId, fromSlideNumber, toSlideNumber) {
+    Meteor.call('slideDecks.reorderSlide', slideDeckId, fromSlideNumber, toSlideNumber);
   }
 };
