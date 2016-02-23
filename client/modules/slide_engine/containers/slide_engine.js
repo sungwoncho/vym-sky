@@ -12,8 +12,8 @@ export const composer = ({context, slideDeckId}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-  nextSlide: actions.slide_decks.nextSlide,
-  prevSlide: actions.slide_decks.prevSlide,
+  nextSlide: actions.slide_engine_slide_decks.nextSlide,
+  prevSlide: actions.slide_engine_slide_decks.prevSlide,
   context: () => context
 });
 

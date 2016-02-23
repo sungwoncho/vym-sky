@@ -1,5 +1,5 @@
-import slide_decks from './slide_decks';
+import slide_engine_slide_decks from './slide_decks';
 
 export default {
-  slide_decks
+  slide_engine_slide_decks
 };
