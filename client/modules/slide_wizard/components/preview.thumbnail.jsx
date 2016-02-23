@@ -13,7 +13,8 @@ export default React.createClass({
 
     let thumbnailClass = classNames({
       'thumbnail-wrapper': true,
-      'active': isActive
+      'active': isActive,
+      [`thumbnail-slide-${slideNumber}`]: true
     });
 
     let content = (

@@ -11,7 +11,12 @@ export default React.createClass({
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <DiffTable file={file} />
+              {
+                file ?
+                <DiffTable file={file} />
+                :
+                <div>click here to add file</div>
+              }
             </div>
           </div>
         </div>

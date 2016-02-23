@@ -17,7 +17,7 @@ export default function (injectDeps, {FlowRouter}) {
       mount(WizardLayoutCtx, {
         content: () => (
           <Wizard slideDeckId={slideDeckId}
-            currentSlideNumber={parseInt(slideNumber)} />)
+            currentSlideNumber={parseInt(slideNumber) || 1} />)
       });
     }
   });

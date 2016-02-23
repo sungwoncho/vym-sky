@@ -1,7 +1,11 @@
 import _ from 'lodash';
 
 export default function _s(slides) {
-  return _.assign(slides, utils);
+  let wrapped = {
+    _val: slides,
+  };
+
+  return _.assign(wrapped, utils);
 }
 
 function bumpSlideNumbers(slides, options) {
@@ -33,14 +37,20 @@ function bumpSlideNumbers(slides, options) {
 }
 
 let utils = {
+  getVal() {
+    return this._val;
+  },
+
   sort() {
-    return _.sortBy(this, 'number');
+    this._val = _.sortBy(this._val, 'number');
+
+    return this;
   },
 
   setSlideNumber(uid, number) {
-    for (var i = 0; i < this.length; i++) {
-      if (this[i].uid === uid) {
-        this[i].number = number;
+    for (var i = 0; i < this._val.length; i++) {
+      if (this._val[i].uid === uid) {
+        this._val[i].number = number;
         break;
       }
     }
@@ -57,12 +67,35 @@ let utils = {
       options.fromInclusive = true;
     }
 
-    return bumpSlideNumbers(this, options);
+    bumpSlideNumbers(this._val, options);
+    return this;
   },
 
   add(slide) {
-    this.push(slide);
-    console.log('this', this);
+    this._val.push(slide);
+    return this;
+  },
+
+  update(query, modifier) {
+    function checkMatch(slide) {
+      let keys = Object.getOwnPropertyNames(query);
+      for (var i = 0; i < keys.length; i++) {
+        let currentKey = keys[i];
+        if (query[currentKey] !== slide[currentKey]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    for (var i = 0; i < this._val.length; i++) {
+      let currentSlide = this._val[i];
+      if (checkMatch(currentSlide)) {
+        _.assign(currentSlide, modifier);
+      }
+    }
+
     return this;
   },
 
@@ -70,6 +103,8 @@ let utils = {
    * @param condition - an object used to match slide object. e.g. {number: 1}
    */
   remove(condition) {
-    return _.reject(this, condition);
+    this._val = _.reject(this._val, condition);
+
+    return this;
   }
 };

@@ -39,7 +39,8 @@ Meteor.methods({
 
     slides = _s(slides).bumpNumbers(slideNumber, slides.length, 1)
               .add(newSlide)
-              .sort();
+              .sort()
+              .getVal();
 
     SlideDecks.update(slideDeckId, {$set: {slides: slides}});
 
@@ -61,7 +62,8 @@ Meteor.methods({
 
     slides = _s(slides).bumpNumbers(slideNumber, slides.length, -1)
                        .remove({uid: targetSlide.uid})
-                       .sort();
+                       .sort()
+                       .getVal();
 
     SlideDecks.update(slideDeckId, {$set: {slides: slides}});
 
@@ -80,13 +82,29 @@ Meteor.methods({
     let isMovingDown = toSlideNumber > fromSlideNumber;
     let delta = isMovingDown ? -1 : 1;
 
-    let slideDecks = SlideDecks.findOne(slideDeckId);
-    let slides = slideDecks.slides;
-    let targetSlide = slideDecks.getSlideByNumber(fromSlideNumber);
+    let slideDeck = SlideDecks.findOne(slideDeckId);
+    let slides = slideDeck.slides;
+    let targetSlide = slideDeck.getSlideByNumber(fromSlideNumber);
 
     slides = _s(slides).bumpNumbers(min, max, delta)
                        .setSlideNumber(targetSlide.uid, toSlideNumber)
-                       .sort();
+                       .sort()
+                       .getVal();
+
+    SlideDecks.update(slideDeckId, {$set: {slides: slides}});
+  },
+  'slideDecks.updateSlide'(slideDeckId, slideNumber, modifier) {
+    check(slideDeckId, String);
+    check(slideNumber, Number);
+    check(modifier, Object);
+
+    let slideDeck = SlideDecks.findOne(slideDeckId);
+    let slides = slideDeck.slides;
+    console.log(modifier);
+    slides = _s(slides).update({number: slideNumber}, modifier)
+                       .getVal();
+
+    console.log('slides', slides);
 
     SlideDecks.update(slideDeckId, {$set: {slides: slides}});
   }

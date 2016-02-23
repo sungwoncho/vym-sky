@@ -24,7 +24,7 @@ export default React.createClass({
   },
 
   render() {
-    const {slide, scale} = this.props;
+    const {slide, scale, isEditing} = this.props;
 
     let ModuleName = ComponentMappings[slide.type];
     let containerStyle = scale ? this.getContainerStyle(scale) : {};

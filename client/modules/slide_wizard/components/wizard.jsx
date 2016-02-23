@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Preview from './preview.jsx';
+import SlideMenu from './slide_menu.jsx';
 import SlideRenderer from '/client/modules/slide_engine/components/slide_renderer.jsx';
 
 export default React.createClass({
   render() {
-    const {slideDeck, showSlide, currentSlideNumber, reorderSlide} = this.props;
+    const {slideDeck, showSlide, currentSlideNumber, reorderSlide, updateSlide} = this.props;
+    const currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
     return (
       <div className="container-fluid">
@@ -17,26 +19,24 @@ export default React.createClass({
               currentSlideNumber={currentSlideNumber} />
           </div>
           <div className="col-sm-10 slide-container">
-            {this.renderCurrentSlide()}
+            <div className="row">
+              <div className="col-sm-12 slide-menu-bar">
+                <SlideMenu currentSlide={currentSlide}
+                  currentSlideNumber={currentSlideNumber}
+                  slideDeckId={slideDeck._id}
+                  updateSlide={updateSlide} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-12">
+                <SlideRenderer isEditing={true}
+                  slide={currentSlide} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
-  },
-
-  renderCurrentSlide() {
-    const {slideDeck, currentSlideNumber} = this.props;
-    let currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
-
-    if (currentSlide) {
-      return <SlideRenderer slide={currentSlide} />;
-    } else {
-      return (
-        <div>
-          No slide
-        </div>
-      );
-    }
   },
 
   onThumbnailMove(fromSlideNumber, toSlideNumber) {
