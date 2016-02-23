@@ -30,7 +30,8 @@ export default React.createClass({
             <div className="row">
               <div className="col-sm-12">
                 <SlideRenderer isEditing={true}
-                  slide={currentSlide} />
+                  slide={currentSlide}
+                  scale={1.2} />
               </div>
             </div>
           </div>
