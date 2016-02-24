@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {SlideDecks} from '/libs/collections';
+import {SlideDecks} from '/lib/collections';
 
 export function generateSeed() {
   if (process.env.NODE_ENV !== 'production' && SlideDecks.find().fetch().length === 0) {

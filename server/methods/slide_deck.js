@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
-import {SlideDecks} from '/libs/collections';
+import {SlideDecks} from '/lib/collections';
 import _ from 'lodash';
 import shortid from 'shortid';
 import _s from '../libs/slide_utils';

@@ -1,4 +1,4 @@
-import {Repos} from '/libs/collections';
+import {Repos} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 

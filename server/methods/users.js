@@ -1,6 +1,6 @@
 import GithubAPI from 'github';
 import {check} from 'meteor/check';
-import {Repos} from '/libs/collections';
+import {Repos} from '/lib/collections';
 
 let github = new GithubAPI({version: '3.0.0'});
 

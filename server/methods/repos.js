@@ -1,5 +1,5 @@
 import GithubAPI from 'github';
-import {Repos} from '/libs/collections';
+import {Repos} from '/lib/collections';
 import {check} from 'meteor/check';
 import _ from 'lodash';
 

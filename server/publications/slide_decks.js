@@ -1,4 +1,4 @@
-import {SlideDecks} from '/libs/collections';
+import {SlideDecks} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 

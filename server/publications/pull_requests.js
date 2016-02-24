@@ -1,4 +1,4 @@
-import {PullRequests} from '/libs/collections';
+import {PullRequests} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 

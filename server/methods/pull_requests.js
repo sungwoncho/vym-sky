@@ -1,7 +1,7 @@
 import GithubAPI from 'github';
 import parseDiff from 'parse-diff';
-import {PullRequests} from '/libs/collections';
-import {Repos} from '/libs/collections';
+import {PullRequests} from '/lib/collections';
+import {Repos} from '/lib/collections';
 import {check} from 'meteor/check';
 import {Mongo} from 'meteor/mongo';
 
