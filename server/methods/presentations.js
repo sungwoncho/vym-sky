@@ -2,10 +2,12 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Presentations} from '/lib/collections';
 
-Meteor.methods({
-  'presentations.create'(presDoc) {
-    check(presDoc, Object);
+export default function () {
+  Meteor.methods({
+    'presentations.create'(presDoc) {
+      check(presDoc, Object);
 
-    Prsentations.insert(presDoc);
-  },
-});
+      Prsentations.insert(presDoc);
+    },
+  });  
+}
