@@ -2,10 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 export default React.createClass({
+  propTypes: {
+    children: React.PropTypes.object.isRequired // Nested component
+  },
+
+  componentWillMount() {
+    // Keep track of children props to compare with new children props later
+    // when component is updating and optionally re-render iframe if the
+    // children props are updated
+    //
+    // Necessary because we need to know when to re-render the iframe content
+    // Rendering iframe content within this.render() with 'srcDoc' attribute
+    // Causes errors because we are injecting dependencies in Mantra
+    this.setState({childrenProps: this.props.children.props});
+  },
+
   componentDidMount() {
-    // this.renderIframeContent();
+    this.renderIframeContent();
+  },
+
+  shouldComponentUpdate(nextProps) {
+    if (! _.isEqual(nextProps.children.props, this.state.childrenProps)) {
+      this.setState({childrenProps: nextProps.children.props});
+      this.renderIframeContent();
+    }
+    return true;
   },
 
   render() {
@@ -17,25 +41,14 @@ export default React.createClass({
       [`thumbnail-slide-${slideNumber}`]: true
     });
 
-    let content = (
-      <div>
-        {this.renderStylesheets()}
-        {children}
-      </div>
-    );
-    let srcDoc = ReactDOMServer.renderToStaticMarkup(content);
-
     return (
       <div className={thumbnailClass} onClick={this.navigateToSlide}>
         <b>{slideNumber}</b>
-        <iframe className="thumbnail-iframe" srcDoc={srcDoc}></iframe>
+        <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );
   },
 
-  // Not being used for now.
-  // Instead, pass srcDoc to iframe because that way, it can rerender itself
-  // when the iframe content changes.
   renderIframeContent() {
     let doc = this.refs.frame.contentDocument;
     let {children} = this.props;
