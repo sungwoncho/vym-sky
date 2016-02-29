@@ -1,6 +1,5 @@
 import React from 'react';
 
-import FileHeader from './file_header.jsx';
 import NormalRow from './normal_row.jsx';
 import AddedRow from './added_row.jsx';
 import DeletedRow from './deleted_row.jsx';
@@ -14,22 +13,23 @@ let RowMappings = {
 };
 
 export default React.createClass({
-  componentDidMount() {
-    // this.highlightCode();
-  },
-
   render() {
     const {file} = this.props;
 
     return (
       <div className="dt-container">
-        <FileHeader file={file} />
+        <div className="file-header">
+          {file.filename}
+          <a href="#" className="pull-xs-right" onClick={this.removeFile}>remove file</a>
+        </div>
         {this.renderTable()}
       </div>
     );
   },
 
   renderTable() {
+    let {file} = this.props;
+
     return (
       <div className="dt-wrapper">
         <table className="diff-table">
@@ -48,5 +48,12 @@ export default React.createClass({
       let RowComponent = RowMappings[change.type];
       return <RowComponent change={change} key={index} />;
     });
+  },
+
+  removeFile(e) {
+    e.preventDefault();
+
+    const {onRemoveFile} = this.props;
+    onRemoveFile(null);
   }
 });

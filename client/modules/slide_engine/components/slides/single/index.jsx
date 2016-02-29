@@ -13,7 +13,7 @@ export default React.createClass({
             <div className="col-xs-12">
               {
                 slide.data.file ?
-                  <DiffTable file={slide.data.file} />
+                  <DiffTable file={slide.data.file} onRemoveFile={this.handleSetFile} />
                 :
                   <FileList files={files} onSetFile={this.handleSetFile} />
               }

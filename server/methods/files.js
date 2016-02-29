@@ -11,7 +11,6 @@ export default function () {
   Meteor.methods({
     'files.getAll'(pullRequestId) {
       let pr = PullRequests.findOne(pullRequestId);
-      console.log('pr', pr);
       let repo = Repos.findOne(pr.repoId);
       let user = Meteor.users.findOne(this.userId);
 
