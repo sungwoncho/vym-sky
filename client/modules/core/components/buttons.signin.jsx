@@ -9,7 +9,7 @@ const signInButton = React.createClass({
     return (
       <a href="" className="btn btn-success btn-lg" onClick={this.login}>
         <i className="fa fa-github"></i>
-        Set up Coddee
+        Set up vym
       </a>
     );
   }

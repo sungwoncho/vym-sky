@@ -8,7 +8,7 @@ export default React.createClass({
   render() {
     return (
       <footer className="main-footer">
-        Coddee &copy; {this.getYear()}
+        vym &copy; {this.getYear()}
       </footer>
     );
   }

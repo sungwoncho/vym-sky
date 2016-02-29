@@ -12,7 +12,7 @@ let Header =  React.createClass({
       return (
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
-            <a className="nav-link" href="http://blog.coddee.io">
+            <a className="nav-link" href="http://blog.vym.io">
               Blog
             </a>
           </li>
@@ -34,7 +34,7 @@ let Header =  React.createClass({
       <nav className="navbar navbar-dark">
         <div className="container">
           <a className="navbar-brand" href={this.getRootPath()}>
-            Coddee
+            vym
           </a>
 
           {this.renderMenus()}

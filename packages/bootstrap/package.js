@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'coddee:bootstrap',
+  name: 'vym:bootstrap',
   version: '0.0.1',
   summary: 'Twitter Bootstrap 4.0 alpha',
 });

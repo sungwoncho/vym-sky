@@ -19,7 +19,7 @@ kadira:flow-router
 service-configuration
 accounts-github
 fourseven:scss
-coddee:bootstrap
+vym:bootstrap
 aldeed:collection2
 dburles:collection-helpers
 standard-minifier-css

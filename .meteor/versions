@@ -20,7 +20,7 @@ caching-compiler@1.0.1-beta.11
 caching-html-compiler@1.0.3-beta.11
 callback-hook@1.0.5-beta.11
 check@1.1.1-beta.11
-coddee:bootstrap@0.0.1
+vym:bootstrap@0.0.1
 coffeescript@1.0.12-beta.11
 cosmos:browserify@0.9.3
 dburles:collection-helpers@1.0.4
