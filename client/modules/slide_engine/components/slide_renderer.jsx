@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SingleSlide from './slides/single/index.jsx';
+import SingleSlide from '../containers/slides/single';
 import CompareSlide from './slides/compare/index.jsx';
 
 let ComponentMappings = {
@@ -24,7 +24,8 @@ export default React.createClass({
   },
 
   render() {
-    const {slide, scale, isEditing} = this.props;
+    // files, slideDeckId are only needed if editMode
+    const {slide, scale, editMode, files, slideDeckId} = this.props;
 
     let ModuleName = ComponentMappings[slide.type];
     let containerStyle = scale ? this.getContainerStyle(scale) : {};
@@ -35,7 +36,10 @@ export default React.createClass({
 
     return (
       <div style={containerStyle}>
-        <ModuleName data={slide.data} />
+        <ModuleName slide={slide}
+          editMode={editMode}
+          slideDeckId={slideDeckId}
+          files={files} />
       </div>
     );
   }

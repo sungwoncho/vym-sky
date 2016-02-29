@@ -1,26 +1,31 @@
 import React from 'react';
 
 import DiffTable from '../../diff_table/index.jsx';
+import FileList from '/client/modules/slide_engine/components/file_list.jsx';
 
 export default React.createClass({
   render() {
-    const {file} = this.props.data;
-
+    const {files, slide} = this.props;
     return (
       <div className="single slide">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
               {
-                file ?
-                <DiffTable file={file} />
+                slide.data.file ?
+                  <DiffTable file={slide.data.file} />
                 :
-                <div>click here to add file</div>
+                  <FileList files={files} onSetFile={this.handleSetFile} />
               }
             </div>
           </div>
         </div>
       </div>
     );
+  },
+
+  handleSetFile(file) {
+    const {slide, slideDeckId, updateSlide} = this.props;
+    updateSlide(slideDeckId, slide.number, {data: {file: file}});
   }
 });

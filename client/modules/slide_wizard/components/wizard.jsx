@@ -5,8 +5,14 @@ import SlideMenu from './slide_menu.jsx';
 import SlideRenderer from '/client/modules/slide_engine/components/slide_renderer.jsx';
 
 export default React.createClass({
+  componentDidMount() {
+    const {slideDeck, getFiles} = this.props;
+
+    getFiles(slideDeck.prId);
+  },
+
   render() {
-    const {slideDeck, showSlide, currentSlideNumber, reorderSlide, updateSlide} = this.props;
+    const {slideDeck, files, showSlide, currentSlideNumber, reorderSlide, updateSlide} = this.props;
     const currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
     return (
@@ -16,7 +22,8 @@ export default React.createClass({
             <Preview slides={slideDeck.slides}
               showSlide={showSlide}
               onThumbnailMove={this.onThumbnailMove}
-              currentSlideNumber={currentSlideNumber} />
+              currentSlideNumber={currentSlideNumber}
+              ctx={this.props.context} />
           </div>
           <div className="col-sm-10 slide-container">
             <div className="row">
@@ -29,9 +36,11 @@ export default React.createClass({
             </div>
             <div className="row">
               <div className="col-sm-12">
-                <SlideRenderer isEditing={true}
+                <SlideRenderer editMode={true}
                   slide={currentSlide}
-                  scale={1.2} />
+                  scale={1.2}
+                  files={files}
+                  slideDeckId={slideDeck._id}/>
               </div>
             </div>
           </div>

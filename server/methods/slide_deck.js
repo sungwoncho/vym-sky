@@ -101,13 +101,11 @@ export default function () {
 
       let slideDeck = SlideDecks.findOne(slideDeckId);
       let slides = slideDeck.slides;
-      console.log(modifier);
+
       slides = _s(slides).update({number: slideNumber}, modifier)
                          .getVal();
 
-      console.log('slides', slides);
-
       SlideDecks.update(slideDeckId, {$set: {slides: slides}});
     }
-  });  
+  });
 }
