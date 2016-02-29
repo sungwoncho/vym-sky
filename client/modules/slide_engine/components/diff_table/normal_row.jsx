@@ -7,8 +7,8 @@ export default React.createClass({
 
     return (
       <tr className="dt-normal">
-        <td className="dt-line-num">{change.ln1}</td>
-        <td className="dt-line-num">{change.ln2}</td>
+        <td className="dt-line-num">{change.base}</td>
+        <td className="dt-line-num">{change.head}</td>
         <td className="dt-code"
             dangerouslySetInnerHTML={{__html: this.highlight(change.content)}}>
         </td>

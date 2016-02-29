@@ -7,7 +7,7 @@ export default React.createClass({
 
     return (
       <div className="file-header">
-        {file.to}
+        {file.filename}
       </div>
     );
   }
