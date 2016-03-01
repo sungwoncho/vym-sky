@@ -1,25 +1,20 @@
 import React from 'react';
 
 import {pathFor} from '/client/modules/core/libs/helpers';
-import UserActions from './header.user_actions.jsx';
 import WizardActions from './header.wizard_actions.jsx';
 
-export default React.createClass({
-  render() {
-    const {currentUser, wizardActions, slideDeck, currentSlideNumber} = this.props;
+const Header = ({currentUser, wizardActions, slideDeck, currentSlideNumber}) => (
+  <nav className="navbar navbar-full navbar-dark navbar-wizard">
+    <a className="navbar-brand" href={pathFor('home')}>
+      vym
+    </a>
 
-    return (
-      <nav className="navbar navbar-full navbar-wizard">
-        <a className="navbar-brand" href={pathFor('home')}>
-          <img src="/images/logo-black.png" alt="logo" className="logo" />
-        </a>
+    <div className="nav navbar-nav pull-xs-right top-actions">
+      <a href="#" className="nav-item nav-link">
+        Share
+      </a>
+    </div>
+  </nav>
+)
 
-        <WizardActions slideDeck={slideDeck}
-          addSlide={wizardActions.addSlide}
-          removeSlide={wizardActions.removeSlide}
-          currentSlideNumber={currentSlideNumber} />
-        <UserActions user={currentUser} />
-      </nav>
-    );
-  }
-});
+export default Header;

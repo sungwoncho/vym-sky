@@ -27,11 +27,15 @@ export default React.createClass({
     // files, slideDeckId are only needed if editMode
     const {slide, scale, editMode, files, slideDeckId} = this.props;
 
+    if (! slide) {
+      return <div>No slide, jose</div>;
+    }
+
     let ModuleName = ComponentMappings[slide.type];
     let containerStyle = scale ? this.getContainerStyle(scale) : {};
 
     if (! ModuleName) {
-      return <div><h1>{slide.uid}</h1></div>;
+      return <div></div>;
     }
 
     return (

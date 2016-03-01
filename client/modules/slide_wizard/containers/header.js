@@ -9,15 +9,14 @@ export const composer = ({context}, onData) => {
     return parseInt(FlowRouter.getQueryParam('slideNumber')) || 0;
   }
 
-  const slideDeckId = FlowRouter.getParam('slideDeckId');
-  const currentSlideNumber = getCurrentSlideNumber();
+  let slideDeckId = FlowRouter.getParam('slideDeckId');
+  let currentSlideNumber = getCurrentSlideNumber();
 
   if (Meteor.subscribe('currentUser').ready() &&
       Meteor.subscribe('slideDeck', slideDeckId).ready()) {
 
-    const currentUser = Meteor.user();
-    const slideDeck = Collections.SlideDecks.findOne(slideDeckId);
-
+    let currentUser = Meteor.user();
+    let slideDeck = Collections.SlideDecks.findOne(slideDeckId);
 
     onData(null, {
       currentUser,
