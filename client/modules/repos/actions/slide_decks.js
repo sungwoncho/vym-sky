@@ -5,12 +5,12 @@ export default {
       ownerId: Meteor.userId()
     };
 
-    Meteor.call('slideDecks.create', sdDoc, function (err, slideDeckId) {
+    Meteor.call('slideDecks.create', sdDoc, function (err, slideDeckUid) {
       if (err) {
         return console.log('error while creating slideDeck', err);
       }
 
-      FlowRouter.go('slide_deck.wizard', {slideDeckId: slideDeckId});
+      FlowRouter.go('slide_deck.wizard', {slideDeckUid: slideDeckUid});
     });
   }
 };

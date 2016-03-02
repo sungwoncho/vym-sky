@@ -4,6 +4,7 @@ import {SlideDecks} from '/lib/collections';
 import _ from 'lodash';
 import shortid from 'shortid';
 import _s from '../libs/slide_utils';
+import randtoken from 'rand-token';
 
 export default function () {
   Meteor.methods({
@@ -16,15 +17,24 @@ export default function () {
 
       SlideDecks.update(slideDeckId, {$set: {currentSlide: slideNumber}});
     },
+    /**
+     * Generates a uid for a given slideDeck document and inserts it into the
+     * database
+     */
     'slideDecks.create'(sdDoc) {
       check(sdDoc, Object);
 
       let possibleDup = SlideDecks.findOne(sdDoc);
       if (possibleDup) {
-        return possibleDup._id;
+        return possibleDup.uid;
       }
 
-      return SlideDecks.insert(sdDoc);
+      // Set uid for slideDeck
+      let uid = randtoken.uid(10);
+      sdDoc.uid = uid;
+
+      SlideDecks.insert(sdDoc);
+      return uid;
     },
     'slideDecks.addSlideInDeck'(slideDeckId, slideNumber) {
       check(slideDeckId, String);

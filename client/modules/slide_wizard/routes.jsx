@@ -10,12 +10,12 @@ import {ensureLoggedIn} from '/client/modules/core/libs/helpers';
 export default function (injectDeps, {FlowRouter}) {
   const WizardLayoutCtx = injectDeps(WizardLayout);
 
-  FlowRouter.route('/s/:slideDeckId/wizard', {
+  FlowRouter.route('/s/:slideDeckUid/wizard', {
     name: 'slide_deck.wizard',
     triggersEnter: [ensureLoggedIn],
-    action: function ({slideDeckId}, {slideNumber}) {
+    action: function ({slideDeckUid}, {slideNumber}) {
       mount(WizardLayoutCtx, {
-        content: () => (<Wizard slideDeckId={slideDeckId}
+        content: () => (<Wizard slideDeckUid={slideDeckUid}
           currentSlideNumber={parseInt(slideNumber)} />)
       });
     }

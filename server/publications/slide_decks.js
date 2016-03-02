@@ -4,6 +4,6 @@ import {check} from 'meteor/check';
 
 export default function () {
   Meteor.publish('slideDeck', function (slideDeckId) {
-    return SlideDecks.find(slideDeckId);
+    return SlideDecks.find({uid: slideDeckId});
   });
 }
