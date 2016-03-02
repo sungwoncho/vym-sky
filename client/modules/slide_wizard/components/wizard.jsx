@@ -2,7 +2,7 @@ import React from 'react';
 
 import Preview from './preview.jsx';
 import SlideMenu from './slide_menu.jsx';
-import SlideRenderer from '/client/modules/slide_engine/components/slide_renderer.jsx';
+import Slide from '/client/modules/slide_engine/components/slide.jsx';
 import SlideAction from './slide_action.jsx';
 import SlideSettings from './slide_settings.jsx';
 
@@ -63,7 +63,7 @@ export default React.createClass({
             </div>
             <div className="row">
               <div className="col-sm-12">
-                <SlideRenderer editMode={true}
+                <Slide editMode={true}
                   slide={currentSlide}
                   scale={1.2}
                   files={files}

@@ -13,7 +13,9 @@ export default React.createClass({
             <div className="col-xs-12">
               {
                 slide.data.file ?
-                  <DiffTable file={slide.data.file} onRemoveFile={this.handleSetFile} />
+                  <DiffTable file={slide.data.file}
+                    fileKey="file"
+                    onRemoveFile={this.handleSetFile} />
                 :
                   <FileList files={files} onSetFile={this.handleSetFile} />
               }
@@ -24,8 +26,11 @@ export default React.createClass({
     );
   },
 
-  handleSetFile(file) {
+  handleSetFile(fileKey, file) {
     const {slide, slideDeckId, updateSlide} = this.props;
-    updateSlide(slideDeckId, slide.number, {data: {file: file}});
+    let modifier = {data: {}};
+    modifier.data[fileKey] = file;
+
+    updateSlide(slideDeckId, slide.number, modifier);
   }
 });

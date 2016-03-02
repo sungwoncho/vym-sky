@@ -29,7 +29,7 @@ export default {
       FlowRouter.setQueryParams({slideNumber: toSlideNumber});
     });
   },
-  updateSlide({Meteor}, slideDeckId, slideNumber, modifier) {
-    Meteor.call('slideDecks.updateSlide', slideDeckId, slideNumber, modifier);
+  updateSlide({Meteor}, slideDeckId, slideNumber, modifier, options) {
+    Meteor.call('slideDecks.updateSlide', slideDeckId, slideNumber, modifier, options);
   }
 };

@@ -13,11 +13,19 @@ let RowMappings = {
 };
 
 export default React.createClass({
+  getDefaultProps() {
+    return {
+      height: 'auto',
+      width: 'auto',
+      fileKey: 'file'
+    };
+  },
+
   render() {
-    const {file} = this.props;
+    const {file, height, width} = this.props;
 
     return (
-      <div className="dt-container">
+      <div className="dt-container" style={{height: height, width: width}}>
         <div className="file-header">
           {file.filename}
           <a href="#" className="pull-xs-right" onClick={this.removeFile}>remove file</a>
@@ -53,7 +61,7 @@ export default React.createClass({
   removeFile(e) {
     e.preventDefault();
 
-    const {onRemoveFile} = this.props;
-    onRemoveFile(null);
+    const {onRemoveFile, fileKey} = this.props;
+    onRemoveFile(fileKey, null);
   }
 });

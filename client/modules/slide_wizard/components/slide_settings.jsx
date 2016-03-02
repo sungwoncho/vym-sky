@@ -4,7 +4,8 @@ const SlideSettings = React.createClass({
   render() {
     const slideTypes = [
       'none',
-      'single'
+      'single',
+      'double_vertical'
     ];
     const {showing, slide} = this.props;
 
@@ -38,7 +39,7 @@ const SlideSettings = React.createClass({
     let slideType = this.refs.slideType.value;
     let modifier = {type: slideType};
 
-    updateSlide(slideDeckId, slide.number, modifier);
+    updateSlide(slideDeckId, slide.number, modifier, {resetData: true});
   }
 });
 

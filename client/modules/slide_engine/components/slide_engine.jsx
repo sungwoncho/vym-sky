@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 
 import SlideProgress from './slide_progress.jsx';
-import SlideRenderer from './slide_renderer.jsx';
+import Slide from './slide.jsx';
 
 const SlideEngine = React.createClass({
   componentWillMount() {
@@ -31,7 +31,7 @@ const SlideEngine = React.createClass({
     let index = slideDeck.currentSlide - 1;
     let currentSlide = slideDeck.slides[index];
 
-    return <SlideRenderer slide={currentSlide} />;
+    return <Slide slide={currentSlide} />;
   },
 
   handleKeyDown(e) {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SlideRenderer from '/client/modules/slide_engine/components/slide_renderer.jsx';
+import Slide from '/client/modules/slide_engine/components/slide.jsx';
 import Thumbnail from './preview.thumbnail.jsx';
 import SortableMixin from 'sortablejs/react-sortable-mixin';
 
@@ -41,7 +41,7 @@ export default React.createClass({
             isActive={isActive}
             slideId={slide.uid}
             slideNumber={slide.number}>
-            <SlideRenderer slide={slide} />
+            <Slide slide={slide} />
           </Thumbnail>
         </li>
       );

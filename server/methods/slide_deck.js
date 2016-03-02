@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {check} from 'meteor/check';
+import {check, Match} from 'meteor/check';
 import {SlideDecks} from '/lib/collections';
 import _ from 'lodash';
 import shortid from 'shortid';
@@ -94,15 +94,21 @@ export default function () {
 
       SlideDecks.update(slideDeckId, {$set: {slides: slides}});
     },
-    'slideDecks.updateSlide'(slideDeckId, slideNumber, modifier) {
+
+    /**
+     * @param [options] - options (see slide_utils.update for more details)
+     *        resetData: Resets the slide data before applying the modifier
+     */
+    'slideDecks.updateSlide'(slideDeckId, slideNumber, modifier, options) {
       check(slideDeckId, String);
       check(slideNumber, Number);
       check(modifier, Object);
+      check(options, Match.Optional(Object));
 
       let slideDeck = SlideDecks.findOne(slideDeckId);
       let slides = slideDeck.slides;
 
-      slides = _s(slides).update({number: slideNumber}, modifier)
+      slides = _s(slides).update({number: slideNumber}, modifier, options)
                          .getVal();
 
       SlideDecks.update(slideDeckId, {$set: {slides: slides}});

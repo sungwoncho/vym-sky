@@ -24,8 +24,8 @@ const FileTable = React.createClass({
   setFile(file, e) {
     e.preventDefault();
 
-    const {onSetFile} = this.props;
-    onSetFile(file);
+    const {fileKey, onSetFile} = this.props;
+    onSetFile(fileKey, file);
   }
 });
 

@@ -5,7 +5,13 @@ import FileTable from './file_table.jsx';
 export default React.createClass({
   getInitialState() {
     return {
-      showingFiles: false
+      showingFiles: false,
+    };
+  },
+
+  getDefaultProps() {
+    return {
+      fileKey: 'file'
     };
   },
 
@@ -17,7 +23,8 @@ export default React.createClass({
         {
           this.state.showingFiles ?
             <FileTable files={files}
-              onSetFile={this.props.onSetFile} />
+              onSetFile={this.props.onSetFile}
+              fileKey={this.props.fileKey} />
           :
             <a href="#" onClick={this.handleShowFiles}>click here to add file</a>
         }

@@ -76,7 +76,7 @@ let utils = {
     return this;
   },
 
-  update(query, modifier) {
+  update(query, modifier, options) {
     function checkMatch(slide) {
       let keys = Object.getOwnPropertyNames(query);
       for (var i = 0; i < keys.length; i++) {
@@ -92,7 +92,12 @@ let utils = {
     for (var i = 0; i < this._val.length; i++) {
       let currentSlide = this._val[i];
       if (checkMatch(currentSlide)) {
-        _.assign(currentSlide, modifier);
+        if (options && options.resetData) {
+          console.log('Resetting slide.data');
+          currentSlide.data = {};
+        }
+
+        _.merge(currentSlide, modifier);
       }
     }
 
