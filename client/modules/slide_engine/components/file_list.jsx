@@ -24,17 +24,22 @@ export default React.createClass({
           this.state.showingFiles ?
             <FileTable files={files}
               onSetFile={this.props.onSetFile}
-              fileKey={this.props.fileKey} />
+              fileKey={this.props.fileKey}
+              toggleShowFiles={this.toggleShowFiles} />
           :
-            <a href="#" onClick={this.handleShowFiles}>click here to add file</a>
+            <a href="#" onClick={this.toggleShowFiles}>
+              <div className="add-file-box">
+                click here to add file
+              </div>
+            </a>
         }
 
       </div>
     );
   },
 
-  handleShowFiles(e) {
+  toggleShowFiles(e) {
     e.preventDefault();
-    this.setState({showingFiles: true});
+    this.setState({showingFiles: !this.state.showingFiles});
   }
 });

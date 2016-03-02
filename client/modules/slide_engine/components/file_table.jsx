@@ -3,15 +3,18 @@ import React from 'react';
 const FileTable = React.createClass({
   render() {
     return (
-      <table>
+      <table className="table table-hover file-table">
         <tbody>
+          <tr onClick={this.goBackToList}>
+            <td>
+              Go back
+            </td>
+          </tr>
           {this.props.files.map((file) => {
             return (
-              <tr key={file._id}>
+              <tr key={file._id} onClick={this.setFile.bind(this, file)}>
                 <td>
-                  <a href="#" onClick={this.setFile.bind(this, file)}>
-                    {file.filename}
-                  </a>
+                  {file.filename}
                 </td>
               </tr>
             );
@@ -19,6 +22,13 @@ const FileTable = React.createClass({
         </tbody>
       </table>
     );
+  },
+
+  goBackToList(e) {
+    e.preventDefault();
+
+    const {toggleShowFiles} = this.props;
+    toggleShowFiles(e);
   },
 
   setFile(file, e) {
