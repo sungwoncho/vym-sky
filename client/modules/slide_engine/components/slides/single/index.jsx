@@ -15,7 +15,8 @@ export default React.createClass({
                 slide.data.file ?
                   <DiffTable file={slide.data.file}
                     fileKey="file"
-                    onRemoveFile={this.handleSetFile} />
+                    onRemoveFile={this.handleSetFile}
+                    height="700px" />
                 :
                   <FileList files={files} onSetFile={this.handleSetFile} />
               }
