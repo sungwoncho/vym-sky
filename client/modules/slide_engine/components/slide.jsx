@@ -1,12 +1,10 @@
 import React from 'react';
 
 import SingleSlide from '../containers/slides/single';
-import CompareSlide from './slides/compare/index.jsx';
 import DoubleVerticalSlide from '../containers/slides/double_vertical';
 
 let ComponentMappings = {
   single: SingleSlide,
-  compare: CompareSlide,
   double_vertical: DoubleVerticalSlide
 };
 
