@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {pathFor} from '/client/modules/core/libs/helpers';
-import WizardActions from './header.wizard_actions.jsx';
 
 const Header = ({currentUser, wizardActions, slideDeck, currentSlideNumber}) => (
   <nav className="navbar navbar-full navbar-dark navbar-wizard">

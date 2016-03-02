@@ -43,7 +43,6 @@ export default React.createClass({
 
     return (
       <div className={thumbnailClass} onClick={this.navigateToSlide}>
-        <b>{slideNumber}</b>
         <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );

@@ -4,12 +4,19 @@ import Preview from './preview.jsx';
 import SlideMenu from './slide_menu.jsx';
 import SlideRenderer from '/client/modules/slide_engine/components/slide_renderer.jsx';
 import SlideAction from './slide_action.jsx';
+import SlideSettings from './slide_settings.jsx';
 
 export default React.createClass({
   componentDidMount() {
     const {slideDeck, getFiles} = this.props;
 
     getFiles(slideDeck.prId);
+  },
+
+  getInitialState() {
+    return {
+      showSlideSettings: false
+    };
   },
 
   render() {
@@ -43,8 +50,15 @@ export default React.createClass({
               <div className="col-sm-12 slide-menu-bar">
                 <SlideMenu currentSlide={currentSlide}
                   currentSlideNumber={currentSlideNumber}
-                  slideDeckId={slideDeck._id}
-                  updateSlide={updateSlide} />
+                  handleToggleSetting={this.handleToggleSetting} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-12 slide-settings-container">
+                <SlideSettings slide={currentSlide}
+                  showing={this.state.showSlideSettings}
+                  updateSlide={updateSlide}
+                  slideDeckId={slideDeck._id} />
               </div>
             </div>
             <div className="row">
@@ -70,5 +84,9 @@ export default React.createClass({
     const {slideDeck, reorderSlide} = this.props;
 
     reorderSlide(slideDeck._id, fromSlideNumber, toSlideNumber);
+  },
+
+  handleToggleSetting() {
+    this.setState({showSlideSettings: !this.state.showSlideSettings});
   }
 });

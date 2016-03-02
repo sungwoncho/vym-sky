@@ -14,23 +14,23 @@
   padding-bottom: 10px;
   color: #fff;
   margin-bottom: 15px;
-  max-height: 51px;
+  max-height: 50px;
   position: fixed;
+}
 
-  .slide-actions {
+.slide-actions {
 
-    li {
-      margin-right: 10px;
-      display: inline-block;
-    }
+  li {
+    margin-right: 10px;
+    display: inline-block;
+  }
 
-    a {
-      color: #fff;
+  a {
+    color: #fff;
 
-      &.disabled {
-        color: #818a91;
-        cursor: not-allowed;
-      }
+    &.disabled {
+      color: #818a91;
+      cursor: not-allowed;
     }
   }
 }
