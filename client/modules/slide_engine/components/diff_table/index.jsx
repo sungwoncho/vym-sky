@@ -22,17 +22,27 @@ export default React.createClass({
   },
 
   render() {
-    const {file, height, width} = this.props;
+    const {file, height, width, editMode} = this.props;
 
-    return (
-      <div className="dt-container" style={{height: height, width: width}}>
-        <div className="file-header">
-          {file.filename}
-          <a href="#" className="pull-xs-right" onClick={this.removeFile}>remove file</a>
+    if (! file) {
+      return <div>No file</div>;
+    } else {
+      return (
+        <div className="dt-container" style={{height: height, width: width}}>
+          <div className="file-header">
+            {file.filename}
+            {
+              editMode ?
+                <a href="#" className="pull-xs-right" onClick={this.removeFile}>remove file</a>
+              :
+                <span></span>
+            }
+
+          </div>
+          {this.renderTable()}
         </div>
-        {this.renderTable()}
-      </div>
-    );
+      );
+    }
   },
 
   renderTable() {
