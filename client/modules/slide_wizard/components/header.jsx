@@ -14,6 +14,6 @@ const Header = ({currentUser, wizardActions, slideDeck, currentSlideNumber}) => 
       </a>
     </div>
   </nav>
-)
+);
 
 export default Header;

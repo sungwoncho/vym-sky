@@ -18,6 +18,6 @@ export default React.createClass({
 
     const {createDeck, pullRequest} = this.props;
 
-    createDeck(pullRequest._id);
+    createDeck(pullRequest._id, pullRequest.repoId);
   }
 });

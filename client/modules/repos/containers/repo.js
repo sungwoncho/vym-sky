@@ -7,9 +7,11 @@ export const composer = ({context, ownerName, repoName}, onData) => {
 
   if (Meteor.subscribe('repo', ownerName, repoName).ready()) {
     let query = {name: repoName, 'owner.name': ownerName};
-    const repo = Collections.Repos.findOne(query);
+    let repo = Collections.Repos.findOne(query);
+    Meteor.subscribe('slideDecks', repo._id);
+    let slideDecks = Collections.SlideDecks.find({repoId: repo._id}).fetch();
 
-    onData(null, {repo});
+    onData(null, {repo, slideDecks});
   }
 };
 

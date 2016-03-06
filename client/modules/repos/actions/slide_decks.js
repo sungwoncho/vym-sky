@@ -1,7 +1,8 @@
 export default {
-  createSlideDeck({Meteor, FlowRouter}, prId) {
+  createSlideDeck({Meteor, FlowRouter}, prId, repoId) {
     let sdDoc = {
       prId: prId,
+      repoId: repoId,
       ownerId: Meteor.userId()
     };
 

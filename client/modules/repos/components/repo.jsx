@@ -4,7 +4,7 @@ import {pathFor} from '/client/modules/core/libs/helpers';
 
 export default React.createClass({
   render() {
-    const {repo} = this.props;
+    const {repo, slideDecks} = this.props;
 
     return (
       <div className="container">
@@ -19,8 +19,23 @@ export default React.createClass({
               Create new deck
             </a>
           </div>
+          <SlideDeckList slideDecks={slideDecks} />
         </div>
       </div>
     );
   }
 });
+
+const SlideDeckList = ({slideDecks}) => (
+  <ul>
+    {
+      slideDecks.map(function(sd) {
+        return <li>
+          {sd.uid}
+          <a href={pathFor('slide_deck.wizard', {slideDeckUid: sd.uid})}>Edit</a>
+          <a href={pathFor('slide_deck', {slideDeckUid: sd.uid})}>View</a>
+        </li>;
+      })
+    }
+  </ul>
+);
