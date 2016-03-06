@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
-import {SlideDecks} from '/lib/collections';
+import {SlideDecks, Repos} from '/lib/collections';
 import _ from 'lodash';
 import shortid from 'shortid';
 import _s from '../libs/slide_utils';
@@ -20,6 +20,7 @@ export default function () {
     /**
      * Generates a uid for a given slideDeck document and inserts it into the
      * database
+     * @return {String} - uid of the slide deck that was created
      */
     'slideDecks.create'(sdDoc) {
       check(sdDoc, Object);
@@ -32,6 +33,13 @@ export default function () {
       // Set uid for slideDeck
       let uid = randtoken.uid(10);
       sdDoc.uid = uid;
+
+      // Denormalize repo data
+      let repo = Repos.findOne(sdDoc.repoId);
+      sdDoc.repo = {
+        name: repo.name,
+        ownerName: repo.owner.name
+      };
 
       SlideDecks.insert(sdDoc);
       return uid;

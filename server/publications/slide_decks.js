@@ -3,8 +3,8 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function () {
-  Meteor.publish('slideDeck', function (slideDeckId) {
-    return SlideDecks.find({uid: slideDeckId});
+  Meteor.publish('slideDeck', function (slideDeckUid) {
+    return SlideDecks.find({uid: slideDeckUid});
   });
 
   Meteor.publish('slideDecks', function (repoId) {
