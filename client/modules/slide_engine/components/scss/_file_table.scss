@@ -1,6 +1,7 @@
 .file-table {
   max-height: 700px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  display: inline-block;
 
   tr {
     cursor: pointer;
