@@ -2,10 +2,12 @@ import React from 'react';
 
 import SingleSlide from '../containers/slides/single';
 import DoubleVerticalSlide from '../containers/slides/double_vertical';
+import ParagraphSlide from '../containers/slides/paragraph';
 
 let ComponentMappings = {
   single: SingleSlide,
-  double_vertical: DoubleVerticalSlide
+  double_vertical: DoubleVerticalSlide,
+  paragraph: ParagraphSlide
 };
 
 function getContainerStyle(scale) {
@@ -42,7 +44,7 @@ const Slide = ({slide, scale, editMode, files, slideDeckId}) => {
         files={files} />
     </div>
   );
-}
+};
 
 Slide.propTypes = {
   scale: React.PropTypes.number,

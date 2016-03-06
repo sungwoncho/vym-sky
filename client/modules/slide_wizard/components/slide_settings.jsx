@@ -5,7 +5,8 @@ const SlideSettings = React.createClass({
     const slideTypes = [
       'none',
       'single',
-      'double_vertical'
+      'double_vertical',
+      'paragraph'
     ];
     const {showing, slide} = this.props;
 
