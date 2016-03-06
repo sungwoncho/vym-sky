@@ -5,7 +5,7 @@ import FileList from '/client/modules/slide_engine/components/file_list.jsx';
 
 export default React.createClass({
   render() {
-    const {files, slide} = this.props;
+    const {files, slide, editMode} = this.props;
     return (
       <div className="single slide">
         <div className="container-fluid">
@@ -17,11 +17,13 @@ export default React.createClass({
                     slide.data.fileOne ?
                       <DiffTable file={slide.data.fileOne}
                         fileKey="fileOne"
-                        onRemoveFile={this.handleSetFile} />
+                        onRemoveFile={this.handleSetFile}
+                        editMode={editMode} />
                     :
                       <FileList files={files}
                         fileKey="fileOne"
-                        onSetFile={this.handleSetFile} />
+                        onSetFile={this.handleSetFile}
+                        editMode={editMode} />
                   }
                 </div>
                 <div className="col-xs-6">
