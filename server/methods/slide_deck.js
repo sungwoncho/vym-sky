@@ -53,7 +53,8 @@ export default function () {
       let newSlide = {
         number: slideNumber,
         uid: shortid.generate(),
-        data: {}
+        data: {},
+        options: {}
       };
 
       slides = _s(slides).bumpNumbers(slideNumber, slides.length, 1)

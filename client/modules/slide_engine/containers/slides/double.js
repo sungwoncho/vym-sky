@@ -1,6 +1,6 @@
 import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
-import DoubleVerticalSlide from '/client/modules/slide_engine/components/slides/double_vertical/index.jsx';
+import DoubleSlide from '/client/modules/slide_engine/components/slides/double/index.jsx';
 
 export const composer = ({context, slide, files, slideDeckId}, onData) => {
   const {Meteor, Collections, Tracker} = context();
@@ -10,10 +10,10 @@ export const composer = ({context, slide, files, slideDeckId}, onData) => {
 
 export const depsMapper = (context, actions) => ({
   context: () => context,
-  updateSlide: actions.slideDecks.updateSlide
+  setFile: actions.slideDecks.setFile
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(DoubleVerticalSlide);
+)(DoubleSlide);

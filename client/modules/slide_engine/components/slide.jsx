@@ -1,12 +1,12 @@
 import React from 'react';
 
 import SingleSlide from '../containers/slides/single';
-import DoubleVerticalSlide from '../containers/slides/double_vertical';
+import DoubleSlide from '../containers/slides/double';
 import ParagraphSlide from '../containers/slides/paragraph';
 
 let ComponentMappings = {
   single: SingleSlide,
-  double_vertical: DoubleVerticalSlide,
+  double: DoubleSlide,
   paragraph: ParagraphSlide
 };
 

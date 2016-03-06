@@ -1,7 +1,6 @@
 import React from 'react';
 
-import DiffTable from '../../diff_table/index.jsx';
-import FileList from '/client/modules/slide_engine/components/file_list.jsx';
+import Section from '../../section.jsx';
 
 export default React.createClass({
   render() {
@@ -11,16 +10,11 @@ export default React.createClass({
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              {
-                editMode && !slide.data.file ?
-                  <FileList files={files} onSetFile={this.handleSetFile} />
-                :
-                  <DiffTable file={slide.data.file}
-                    fileKey="file"
-                    onRemoveFile={this.handleSetFile}
-                    height="700px"
-                    editMode={editMode} />
-              }
+              <Section files={files}
+                file={slide.data.file}
+                fileKey="file"
+                onSetFile={this.handleSetFile}
+                editMode={editMode} />
             </div>
           </div>
         </div>
@@ -29,10 +23,7 @@ export default React.createClass({
   },
 
   handleSetFile(fileKey, file) {
-    const {slide, slideDeckId, updateSlide} = this.props;
-    let modifier = {data: {}};
-    modifier.data[fileKey] = file;
-
-    updateSlide(slideDeckId, slide.number, modifier);
+    const {slide, slideDeckId, setFile} = this.props;
+    setFile(slideDeckId, slide.number, fileKey, file);
   }
 });

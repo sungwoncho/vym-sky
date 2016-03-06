@@ -95,6 +95,7 @@ let utils = {
         if (options && options.resetData) {
           console.log('Resetting slide.data');
           currentSlide.data = {};
+          currentSlide.option = {};
         }
 
         _.merge(currentSlide, modifier);
