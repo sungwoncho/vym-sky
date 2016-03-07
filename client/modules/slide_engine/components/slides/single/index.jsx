@@ -11,9 +11,10 @@ export default React.createClass({
           <div className="row">
             <div className="col-xs-12">
               <Section files={files}
-                file={slide.data.file}
-                fileKey="file"
-                onSetFile={this.handleSetFile}
+                section={_.find(slide.sections, {position: 1})}
+                sectionPosition={1}
+                onSetSection={this.handleSetSection}
+                onRemoveSection={this.handleRemoveSection}
                 editMode={editMode} />
             </div>
           </div>
@@ -22,8 +23,14 @@ export default React.createClass({
     );
   },
 
-  handleSetFile(fileKey, file) {
-    const {slide, slideDeckId, setFile} = this.props;
-    setFile(slideDeckId, slide.number, fileKey, file);
+  handleSetSection(sectionDoc, position) {
+    const {slide, slideDeckId, setSection} = this.props;
+    setSection(slideDeckId, slide.number, sectionDoc, position);
+  },
+
+  handleRemoveSection(position) {
+    const {slide, slideDeckId, removeSection} = this.props;
+    console.log(position);
+    removeSection(slideDeckId, slide.number, position);
   }
 });

@@ -20,7 +20,7 @@ const FileTable = React.createClass({
           </tr>
           {this.props.files.map((file) => {
             return (
-              <tr key={file._id} onClick={this.setFile.bind(this, file)}>
+              <tr key={file._id} onClick={this.setSection.bind(this, file)}>
                 <td>
                   {file.filename}
                 </td>
@@ -39,11 +39,17 @@ const FileTable = React.createClass({
     toggleShowFiles(e);
   },
 
-  setFile(file, e) {
+  setSection(file, e) {
     e.preventDefault();
+    const {sectionPosition, onSetSection} = this.props;
 
-    const {fileKey, onSetFile} = this.props;
-    onSetFile(fileKey, file);
+    let sectionDoc = {
+      position: sectionPosition,
+      type: 'file',
+      data: file
+    };
+
+    onSetSection(sectionDoc, sectionPosition);
   }
 });
 

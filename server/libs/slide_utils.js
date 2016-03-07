@@ -93,12 +93,13 @@ let utils = {
       let currentSlide = this._val[i];
       if (checkMatch(currentSlide)) {
         if (options && options.resetData) {
-          console.log('Resetting slide.data');
-          currentSlide.data = {};
+          console.log('Resetting slide.sections');
+          currentSlide.sections = {};
           currentSlide.options = {};
         }
 
-        _.merge(currentSlide, modifier);
+        _.assign(currentSlide, modifier);
+        console.log(currentSlide);
       }
     }
 

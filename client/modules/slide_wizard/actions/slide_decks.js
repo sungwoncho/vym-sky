@@ -32,10 +32,10 @@ export default {
   updateSlide({Meteor}, slideDeckId, slideNumber, modifier, options = {}) {
     Meteor.call('slideDecks.updateSlide', slideDeckId, slideNumber, modifier, options);
   },
-  setFile({Meteor}, slideDeckId, slideNumber, fileKey, file, options = {}) {
-    let modifier = {data: {}};
-    modifier.data[fileKey] = file;
-
-    Meteor.call('slideDecks.updateSlide', slideDeckId, slideNumber, modifier, options);
+  setSection({Meteor}, slideDeckId, slideNumber, sectionDoc, position) {
+    Meteor.call('slideDecks.upsertSectionInSlide', slideDeckId, slideNumber, sectionDoc, position);
+  },
+  removeSection({Meteor}, slideDeckId, slideNumber, position) {
+    Meteor.call('slideDecks.removeSectionFromSlide', slideDeckId, slideNumber, position);
   }
 };

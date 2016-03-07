@@ -3,19 +3,19 @@ import React from 'react';
 import DiffTable from './diff_table/index.jsx';
 import FileList from '/client/modules/slide_engine/components/file_list.jsx';
 
-const Section = ({files, file, fileKey, onSetFile, editMode, height = 'auto', width = 'auto'}) => (
+const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection, editMode, height = 'auto', width = 'auto'}) => (
   <div className="slide-section" style={{height: height, width: width}}>
     {
-      editMode && !file ?
+      editMode && !section ?
         <FileList files={files}
-          fileKey={fileKey}
-          onSetFile={onSetFile}
+          sectionPosition={sectionPosition}
+          onSetSection={onSetSection}
           editMode={editMode}
           height={height} />
        :
-        <DiffTable file={file}
-          fileKey={fileKey}
-          onRemoveFile={onSetFile}
+        <DiffTable file={section.data}
+          sectionPosition={section.position}
+          onRemoveFile={onRemoveSection}
           editMode={editMode}
           height={height} />
     }

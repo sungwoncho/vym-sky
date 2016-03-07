@@ -7,6 +7,17 @@ import _s from '../libs/slide_utils';
 import randtoken from 'rand-token';
 
 export default function () {
+
+  function updateSlide(slideDeckId, slideNumber, modifier, options) {
+    let slideDeck = SlideDecks.findOne(slideDeckId);
+    let slides = slideDeck.slides;
+
+    slides = _s(slides).update({number: slideNumber}, modifier, options)
+                       .getVal();
+
+    return SlideDecks.update(slideDeckId, {$set: {slides: slides}});
+  }
+
   Meteor.methods({
     /**
     * Used to navigate in presentation or preview mode
@@ -53,7 +64,7 @@ export default function () {
       let newSlide = {
         number: slideNumber,
         uid: shortid.generate(),
-        data: {},
+        sections: [],
         options: {}
       };
 
@@ -124,13 +135,61 @@ export default function () {
       check(modifier, Object);
       check(options, Match.Optional(Object));
 
+      updateSlide(slideDeckId, slideNumber, modifier, options);
+    },
+
+    /**
+     * Inserts a section inside a slide. If a section exists at the desired position,
+       * overwrite it. Can also be used to remove a section by passing an empty
+     * Object as sectionDoc.
+     */
+    'slideDecks.upsertSectionInSlide'(slideDeckId, slideNumber, sectionDoc, position) {
+      check(slideDeckId, String);
+      check(slideNumber, Number);
+      check(sectionDoc, Object);
+      check(position, Number); 
+
+      // sectionDoc needs position
+      sectionDoc.position = position;
+
       let slideDeck = SlideDecks.findOne(slideDeckId);
-      let slides = slideDeck.slides;
+      let slide = slideDeck.getSlideByNumber(slideNumber);
+      let sectionExists = false;
 
-      slides = _s(slides).update({number: slideNumber}, modifier, options)
-                         .getVal();
+      for (var i = 0; i < slide.sections.length; i++) {
+        if (slide.sections[i].position === position) {
+          slide.sections[i] = sectionDoc;
+          sectionExists = true;
+          break;
+        }
+      }
 
-      SlideDecks.update(slideDeckId, {$set: {slides: slides}});
+      if (!sectionExists) {
+        slide.sections.push(sectionDoc);
+      }
+
+      return updateSlide(slideDeckId, slideNumber, {sections: slide.sections});
+    },
+
+    'slideDecks.removeSectionFromSlide'(slideDeckId, slideNumber, position) {
+      check(slideDeckId, String);
+      check(slideNumber, Number);
+      check(position, Number);
+
+      console.log(position);
+
+      let slideDeck = SlideDecks.findOne(slideDeckId);
+      let slide = slideDeck.getSlideByNumber(slideNumber);
+
+      _.remove(slide.sections, function(section) {
+        console.log(section.position);
+        console.log(position);
+        console.log(section.position === position);
+        return section.position === position;
+      });
+      console.log(slide.sections);
+
+      return updateSlide(slideDeckId, slideNumber, {sections: slide.sections});
     }
   });
 }

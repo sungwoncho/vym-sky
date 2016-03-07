@@ -11,21 +11,21 @@ export default React.createClass({
 
   getDefaultProps() {
     return {
-      fileKey: 'file',
+      sectionPosition: 1,
       height: 'auto'
     };
   },
 
   render() {
-    const {files, slideDeckId, height} = this.props;
+    const {files, height} = this.props;
 
     return (
       <div className="section-file" style={{lineHeight: height}}>
         {
           this.state.showingFiles ?
             <FileTable files={files}
-              onSetFile={this.props.onSetFile}
-              fileKey={this.props.fileKey}
+              onSetSection={this.props.onSetSection}
+              sectionPosition={this.props.sectionPosition}
               toggleShowFiles={this.toggleShowFiles}
               height={height} />
           :

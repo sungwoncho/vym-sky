@@ -71,7 +71,7 @@ export default React.createClass({
   removeFile(e) {
     e.preventDefault();
 
-    const {onRemoveFile, fileKey} = this.props;
-    onRemoveFile(fileKey, null);
+    const {onRemoveFile} = this.props;
+    onRemoveFile(this.props.sectionPosition);
   }
 });

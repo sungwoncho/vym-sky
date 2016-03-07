@@ -11,7 +11,7 @@ export const composer = ({context, slide, files, slideDeckId}, onData) => {
 export const depsMapper = (context, actions) => ({
   context: () => context,
   updateSlide: actions.slideDecks.updateSlide,
-  setFile: actions.slideDecks.setFile
+  setSection: actions.slideDecks.setSection
 });
 
 export default composeAll(
