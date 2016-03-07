@@ -11,15 +11,16 @@ export default React.createClass({
 
   getDefaultProps() {
     return {
-      fileKey: 'file'
+      fileKey: 'file',
+      height: 'auto'
     };
   },
 
   render() {
-    const {files, slideDeckId} = this.props;
+    const {files, slideDeckId, height} = this.props;
 
     return (
-      <div>
+      <div className="section-file" style={{lineHeight: height}}>
         {
           this.state.showingFiles ?
             <FileTable files={files}

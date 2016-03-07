@@ -6,8 +6,21 @@
 .add-file-box {
   text-align: center;
   font-size: 35px;
-  min-height: 500px;
-  padding-top: 200px;
-  border: 1px solid gray;
-  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.slide-section {
+  width: auto;
+
+  .section-file {
+    height: 100%;
+  }
+}
+
+.horizontal-double {
+  .section-container {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
 }
