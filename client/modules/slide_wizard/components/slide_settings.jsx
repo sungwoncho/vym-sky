@@ -22,6 +22,19 @@ const SlideSettings = React.createClass({
               })
             }
           </select>
+          {
+            slide.type === 'double' ?
+              <div>
+                <label>
+                  <input type="radio" value="vertical" name="display" ref="verticalOption" defaultChecked={slide.options.display !== 'horizontal'}/> Vertical
+                </label>
+                <label>
+                  <input type="radio" value="horizontal" name="display" ref="horizontalOption" defaultChecked={slide.options.display === 'horizontal'}/> Horizontal
+                </label>
+              </div>
+              :
+              <span></span>
+          }
           <button className="btn btn small btn-success" onClick={this.onSlideEdit}>
             Save
           </button>
@@ -38,9 +51,16 @@ const SlideSettings = React.createClass({
     const {updateSlide, slide, slideDeckId} = this.props;
 
     let slideType = this.refs.slideType.value;
+    let isTypeChanged = (slide.type !== slideType);
     let modifier = {type: slideType};
 
-    updateSlide(slideDeckId, slide.number, modifier, {resetData: true});
+    if (slide.type === 'double') {
+      modifier.options = {
+        display: this.refs.verticalOption.checked ? 'vertical' : 'horizontal'
+      };
+    }
+
+    updateSlide(slideDeckId, slide.number, modifier, {resetData: isTypeChanged});
   }
 });
 

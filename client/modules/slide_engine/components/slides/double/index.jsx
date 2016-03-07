@@ -9,7 +9,7 @@ export default React.createClass({
       <div className="single slide">
         <div className="container-fluid">
           {
-            slide.option.horizontal ?
+            slide.options.display && slide.options.display === 'horizontal'?
               <Horizontal files={files}
                 slide={slide}
                 handleSetFile={this.handleSetFile}
@@ -46,8 +46,8 @@ const Horizontal = ({files, slide, handleSetFile, editMode}) => (
     <div className="row section-container">
       <div className="col-xs-12">
         <Section files={files}
-          file={slide.data.fileOne}
-          fileKey="fileOne"
+          file={slide.data.fileTwo}
+          fileKey="fileTwo"
           onSetFile={handleSetFile}
           editMode={editMode}
           height="340px"/>

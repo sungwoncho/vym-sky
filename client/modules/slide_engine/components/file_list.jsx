@@ -26,7 +26,8 @@ export default React.createClass({
             <FileTable files={files}
               onSetFile={this.props.onSetFile}
               fileKey={this.props.fileKey}
-              toggleShowFiles={this.toggleShowFiles} />
+              toggleShowFiles={this.toggleShowFiles}
+              height={height} />
           :
             <a href="#" onClick={this.toggleShowFiles}>
               <div className="add-file-box">
