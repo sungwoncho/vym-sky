@@ -52,7 +52,6 @@ export default React.createClass({
    *         rather than this.props. Usually passed by shouldComponentUpdate.
    */
   renderIframeContent(newProps) {
-    console.log('rendering..');
     let doc = this.refs.frame.contentDocument;
     let {children} = newProps || this.props;
     let content = (
