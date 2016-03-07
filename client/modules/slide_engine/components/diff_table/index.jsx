@@ -16,8 +16,7 @@ export default React.createClass({
   getDefaultProps() {
     return {
       height: 'auto',
-      width: 'auto',
-      fileKey: 'file'
+      width: 'auto'
     };
   },
 

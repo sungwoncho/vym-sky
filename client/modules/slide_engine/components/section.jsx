@@ -13,11 +13,14 @@ const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection
           editMode={editMode}
           height={height} />
        :
+         section ?
         <DiffTable file={section.data}
           sectionPosition={section.position}
           onRemoveFile={onRemoveSection}
           editMode={editMode}
           height={height} />
+        :
+          <span></span>
     }
   </div>
  );

@@ -176,18 +176,12 @@ export default function () {
       check(slideNumber, Number);
       check(position, Number);
 
-      console.log(position);
-
       let slideDeck = SlideDecks.findOne(slideDeckId);
       let slide = slideDeck.getSlideByNumber(slideNumber);
 
       _.remove(slide.sections, function(section) {
-        console.log(section.position);
-        console.log(position);
-        console.log(section.position === position);
         return section.position === position;
       });
-      console.log(slide.sections);
 
       return updateSlide(slideDeckId, slideNumber, {sections: slide.sections});
     }

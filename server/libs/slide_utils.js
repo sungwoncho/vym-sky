@@ -93,13 +93,11 @@ let utils = {
       let currentSlide = this._val[i];
       if (checkMatch(currentSlide)) {
         if (options && options.resetData) {
-          console.log('Resetting slide.sections');
-          currentSlide.sections = {};
+          currentSlide.sections = [];
           currentSlide.options = {};
         }
 
         _.assign(currentSlide, modifier);
-        console.log(currentSlide);
       }
     }
 

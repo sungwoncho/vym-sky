@@ -25,9 +25,8 @@ export default React.createClass({
   },
 
   shouldComponentUpdate(nextProps) {
-    if (! _.isEqual(nextProps.children.props, this.state.childrenProps)) {
-      this.setState({childrenProps: nextProps.children.props});
-      this.renderIframeContent();
+    if (! _.isEqual(nextProps.children.props.slide, this.props.children.props.slide)) {
+      this.renderIframeContent(nextProps);
     }
     return true;
   },
@@ -48,9 +47,14 @@ export default React.createClass({
     );
   },
 
-  renderIframeContent() {
+  /**
+   * @params [newProps] - if passed, the method will look for children in newProps
+   *         rather than this.props. Usually passed by shouldComponentUpdate.
+   */
+  renderIframeContent(newProps) {
+    console.log('rendering..');
     let doc = this.refs.frame.contentDocument;
-    let {children} = this.props;
+    let {children} = newProps || this.props;
     let content = (
       <div>
         {this.renderStylesheets()}

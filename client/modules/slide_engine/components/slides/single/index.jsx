@@ -30,7 +30,6 @@ export default React.createClass({
 
   handleRemoveSection(position) {
     const {slide, slideDeckId, removeSection} = this.props;
-    console.log(position);
     removeSection(slideDeckId, slide.number, position);
   }
 });
