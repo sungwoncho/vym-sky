@@ -10,7 +10,8 @@ export const composer = ({context, slide, files, slideDeckId}, onData) => {
 
 export const depsMapper = (context, actions) => ({
   context: () => context,
-  setSection: actions.slideDecks.setSection
+  setSection: actions.slideDecks.setSection,
+  removeSection: actions.slideDecks.removeSection
 });
 
 export default composeAll(

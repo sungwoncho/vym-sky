@@ -13,11 +13,13 @@ export default React.createClass({
               <Horizontal files={files}
                 slide={slide}
                 handleSetSection={this.handleSetSection}
+                handleRemoveSection={this.handleRemoveSection}
                 editMode={editMode} />
             :
               <Vertical files={files}
                 slide={slide}
                 handleSetSection={this.handleSetSection}
+                handleRemoveSection={this.handleRemoveSection}
                 editMode={editMode} />
           }
         </div>
@@ -28,16 +30,23 @@ export default React.createClass({
   handleSetSection(sectionDoc, position) {
     const {slide, slideDeckId, setSection} = this.props;
     setSection(slideDeckId, slide.number, sectionDoc, position);
+  },
+
+  handleRemoveSection(position) {
+    const {slide, slideDeckId, removeSection} = this.props;
+    removeSection(slideDeckId, slide.number, position);
   }
 });
 
-const Horizontal = ({files, slide, handleSetSection, editMode}) => (
+const Horizontal = ({files, slide, handleRemoveSection, handleSetSection, editMode}) => (
   <div className="horizontal-double">
     <div className="row section-container">
       <div className="col-xs-12">
         <Section files={files}
           section={_.find(slide.sections, {position: 1})}
+          sectionPosition={1}
           onSetSection={handleSetSection}
+          onRemoveSection={handleRemoveSection}
           editMode={editMode}
           height="340px"/>
       </div>
@@ -46,7 +55,9 @@ const Horizontal = ({files, slide, handleSetSection, editMode}) => (
       <div className="col-xs-12">
         <Section files={files}
           section={_.find(slide.sections, {position: 2})}
+          sectionPosition={2}
           onSetSection={handleSetSection}
+          onRemoveSection={handleRemoveSection}
           editMode={editMode}
           height="340px"/>
       </div>
@@ -54,19 +65,23 @@ const Horizontal = ({files, slide, handleSetSection, editMode}) => (
   </div>
 );
 
-const Vertical = ({files, slide, handleSetSection, editMode}) => (
+const Vertical = ({files, slide, handleRemoveSection, handleSetSection, editMode}) => (
   <div className="row vertical-double">
     <div className="col-xs-6 section-container">
       <Section files={files}
         section={_.find(slide.sections, {position: 1})}
+        sectionPosition={1}
         onSetSection={handleSetSection}
+        onRemoveSection={handleRemoveSection}
         editMode={editMode}
         height="750px" />
     </div>
     <div className="col-xs-6 section-container">
        <Section files={files}
         section={_.find(slide.sections, {position: 2})}
+        sectionPosition={2}
         onSetSection={handleSetSection}
+        onRemoveSection={handleRemoveSection}
         editMode={editMode}
         height="750px"/>
     </div>
