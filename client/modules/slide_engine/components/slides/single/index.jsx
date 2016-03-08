@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Section from '../../section.jsx';
+import Section from '/client/modules/slide_engine/containers/section';
 
 export default React.createClass({
   render() {
