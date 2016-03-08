@@ -9,7 +9,7 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('fourseven:scss@3.4.1');
 
-  api.addFiles('js/bootstrap.min.js', 'client');
+//  api.addFiles('js/bootstrap.min.js', 'client');
 
   api.addFiles([
     'scss/mixins/_alert.scss',
