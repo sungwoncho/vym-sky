@@ -12,7 +12,7 @@ class EditTextBox extends React.Component {
 
   render() {
     const {section, editMode} = this.props;
-    let text = section.data || '';
+    let text = section.data;
 
     return (
       <div>
