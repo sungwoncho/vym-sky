@@ -2,7 +2,8 @@ import React from 'react';
 
 import DiffTable from './diff_table/index.jsx';
 import FileList from '/client/modules/slide_engine/components/file_list.jsx';
-
+import EditTextBox from '/client/modules/slide_engine/components/edit_text_box.jsx';
+import TextBox from '/client/modules/slide_engine/components/text_box.jsx';
 
 const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection, editMode, height = 'auto', width = 'auto'}) => {
   let SectionComponent;
@@ -109,11 +110,13 @@ const TextSection = ({section, onSetSection, onRemoveSection, editMode}) => {
             <a href="#" onClick={removeSection.bind(this, section.position)}>
               Remove section
             </a>
-            todo: editor (md)
+            <EditTextBox section={section} 
+              onSetSection={onSetSection} 
+              onRemoveSection={onRemoveSection} />
           </div>
          :
            <div>
-             todo: text content
+             <TextBox text={section.data} />
            </div>
       }
     </div>

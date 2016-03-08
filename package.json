@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "https://bitbucket.org/sungwoncho/vym/overview",
+  "repository": "https://bitbucket.org/sungwoncho/vym",
+  "private": true,
   "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
   "license": "ISC",
   "dependencies": {
@@ -16,6 +19,7 @@
     "highlight.js": "^9.1.0",
     "lodash": "^4.2.1",
     "mantra-core": "^1.2.0",
+    "marked": "^0.3.5",
     "moment": "^2.11.1",
     "parse-diff": "https://github.com/reviewninja/parse-diff",
     "rand-token": "^0.2.1",
