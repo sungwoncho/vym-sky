@@ -3,3 +3,4 @@ settings.json
 mup.json
 digital_ocean.pem
 *.sw*
+mup-sandbox.json
