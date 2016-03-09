@@ -5,7 +5,8 @@ import {Meteor} from 'meteor/meteor';
 import MainLayout from './components/layouts.main.jsx';
 import Main from './containers/main';
 import Home from './containers/home';
-
+import Repo from './containers/repo';
+import NewDeck from './containers/new_deck';
 import Settings from './containers/settings';
 
 export default function (injectDeps, {FlowRouter}) {
@@ -45,4 +46,21 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
+  FlowRouter.route('/r/:ownerName/:repoName', {
+    name: 'repo',
+    action: function ({ownerName, repoName}) {
+      mount(MainLayoutCtx, {
+        content: () => (<Repo ownerName={ownerName} repoName={repoName} />)
+      });
+    }
+  });
+  
+  FlowRouter.route('/r/:ownerName/:repoName/decks/new', {
+    name: 'new_deck',
+    action: function ({ownerName, repoName}) {
+      mount(MainLayoutCtx, {
+        content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
+      });
+    }
+  });
 }

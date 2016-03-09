@@ -6,7 +6,7 @@ import Footer from '../containers/footer';
 const MainLayout = ({content = () => null}) => (
   <div>
     <Header />
-    <main>
+    <main className="main-container">
       {content()}
     </main>
     <Footer />

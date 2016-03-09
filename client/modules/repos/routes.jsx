@@ -6,7 +6,7 @@ import MainLayout from '../core/components/layouts.main.jsx';
 //import Repos from './containers/repos';
 //import Repo from './containers/repo';
 //import ManageRepo from './containers/repos.manage';
-//import NewDeck from './containers/decks.new';
+//import NewDeck from './containers/new_deck';
 //
 //import {ensureLoggedIn} from '/client/modules/core/libs/helpers';
 
@@ -23,8 +23,8 @@ export default function (injectDeps, {FlowRouter}) {
   //    }
   //  });
   //
-  //  FlowRouter.route('/r/:ownerName/:repoName/decks/new', {
-  //    name: 'decks.new',
+  //  FlowRouter.route('/r/:ownerName/:repoName/new_deck', {
+  //    name: 'new_deck',
   //    triggersEnter: [ensureLoggedIn],
   //    action: function ({ownerName, repoName}) {
   //      mount(MainLayoutCtx, {

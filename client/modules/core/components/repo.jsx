@@ -14,7 +14,7 @@ export default React.createClass({
               {repo.name}
             </h2>
 
-            <a href={pathFor('decks.new', {ownerName: repo.owner.name, repoName: repo.name})}
+            <a href={pathFor('new_deck', {ownerName: repo.owner.name, repoName: repo.name})}
               className="btn btn-md btn-success">
               Create new deck
             </a>

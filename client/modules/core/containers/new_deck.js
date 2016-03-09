@@ -1,6 +1,6 @@
 import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 
-import NewDeck from '../components/decks.new.jsx';
+import NewDeck from '../components/new_deck.jsx';
 
 export const composer = ({context, ownerName, repoName}, onData) => {
   const {Meteor, Collections} = context();
