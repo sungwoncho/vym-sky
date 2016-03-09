@@ -11,7 +11,7 @@ export default React.createClass({
     return (
       <div className="container">
         <RepoList repos={repos} />
-        <a href={pathFor('repos.manage')}>
+        <a href={pathFor('settings.repo')}>
           Manage repos
         </a>
       </div>

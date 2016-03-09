@@ -13,16 +13,6 @@ import MainLayout from '../core/components/layouts.main.jsx';
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
-  //  FlowRouter.route('/r/manage', {
-  //    name: 'repos.manage',
-  //    triggersEnter: [ensureLoggedIn],
-  //    action: function () {
-  //      mount(MainLayoutCtx, {
-  //        content: () => (<ManageRepo />)
-  //      });
-  //    }
-  //  });
-  //
   //  FlowRouter.route('/r/:ownerName/:repoName', {
   //    name: 'repo',
   //    triggersEnter: [ensureLoggedIn],

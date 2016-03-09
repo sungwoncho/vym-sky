@@ -10,4 +10,16 @@ export default function () {
   Meteor.publish('slideDecks', function (repoId) {
     return SlideDecks.find({repoId: repoId});
   });
+
+  Meteor.publish('recentSlideDecksForUser', function (userId) {
+    if (! userId) {
+      this.ready();
+      return;
+    }
+
+    let user = Meteor.users.findOne(userId);
+    //TODO
+    return;
+
+  });
 }
