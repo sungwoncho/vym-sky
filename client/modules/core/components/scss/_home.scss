@@ -1,0 +1,46 @@
+.home {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  .github-avatar {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .repo-list-container {
+    margin-top: 40px;
+  }
+
+  .repo-list {
+    border: 1px solid #CCCCCC;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 14px;
+
+    .repo-item {
+      &:not(:last-child) {
+        border-bottom: 1px solid #CCCCCC;
+      }
+    }
+
+    .repo-item-link {
+      padding: 10px;
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+        background-color: #efefef;
+      }
+    }
+  }
+
+  .repo-list-header {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: block;
+    border-bottom: 0;
+    background-color: #F1F1F1;
+  }
+}

@@ -4,6 +4,7 @@ import {Meteor} from 'meteor/meteor';
 
 import MainLayout from './components/layouts.main.jsx';
 import Main from './containers/main';
+import Home from './containers/home';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -23,4 +24,14 @@ export default function (injectDeps, {FlowRouter}) {
       });
     }
   });
+
+  FlowRouter.route('/home', {
+    name: 'home',
+    action: function () {
+      mount(MainLayoutCtx, {
+        content: () => (<Home />)
+      });
+    }
+  });
+
 }
