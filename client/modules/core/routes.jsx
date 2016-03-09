@@ -5,7 +5,8 @@ import {Meteor} from 'meteor/meteor';
 import MainLayout from './components/layouts.main.jsx';
 import Main from './containers/main';
 import Home from './containers/home';
-import RepoManagement from './containers/repo_management';
+
+import Settings from './containers/settings';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -35,12 +36,11 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
-  // Settings
-  FlowRouter.route('/settings/repo', {
-    name: 'settings.repo',
-    action: function () {
+  FlowRouter.route('/settings/:section?', {
+    name: 'settings', 
+    action: function(params) {
       mount(MainLayoutCtx, {
-        content: () => (<RepoManagement />)
+        content: () => (<Settings currentSection={params.section} />)
       });
     }
   });

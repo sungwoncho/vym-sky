@@ -6,7 +6,7 @@ const RepoList = ({repos}) => (
   <div className="repo-list-container">
     <div className="repo-list-header">
       Repositories
-      <a href={pathFor('settings.repo')} className="pull-xs-right">
+      <a href={pathFor('settings', {section: 'repos'})} className="pull-xs-right">
         <i className="fa fa-cog"></i>
       </a>
     </div>
