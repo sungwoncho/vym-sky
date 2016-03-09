@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {pathFor} from '/client/modules/core/libs/helpers.js';
+
 const Header = ({currentUser, logout}) => {
   function getRootPath() {
     if (currentUser) {
@@ -56,6 +58,9 @@ const UserActions = ({currentUser, handleLogout}) => {
           {currentUser.profile.name}
         </a>
         <div className="dropdown-menu">
+          <a className="dropdown-item" href={pathFor('settings')}>
+            Settings
+          </a>
           <a className="dropdown-item" href="#" onClick={onLogout}>
             Logout
           </a>
