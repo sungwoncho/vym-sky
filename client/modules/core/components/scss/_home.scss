@@ -18,12 +18,14 @@
   }
 }
 
-.sd-card {
-  padding: 1.5em;
-  border: 1px solid #E2E2E2;
-  margin-top: 20px;
-  background: #FDFDFD;
-  height: 175px;
+.sd-card-container {
+  .sd-card {
+    padding: 1.5em;
+    border: 1px solid #E2E2E2;
+    margin-top: 20px;
+    background: #FDFDFD;
+    height: 175px;
+  }
 
   .sd-card-body {
     position: relative;
@@ -39,4 +41,9 @@
     bottom: 0;
     right: 0;
   }
+
+  .new-sd-btn {
+    display: block;
+    width: 100%;
+  }  
 }

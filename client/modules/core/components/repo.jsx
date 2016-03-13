@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Nav from './nav.jsx';
-import SlideDeckList from './slide_deck_list.jsx';
+import SlideDeckList from '../containers/slide_deck_list';
 import CollaboratorList from '../containers/collaborator_list';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
@@ -24,12 +24,12 @@ class Repo extends React.Component {
   render() {
     let {repo, slideDecks} = this.props;
     let CurrentTab = tabMapping[this.state.currentTab];
-    let availableTabs = ['slides', 'collaborators'];
+    let availableTabs = ['slides', 'newSlides', 'collaborators'];
 
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-xs-12">
             <h2>
               {repo.name}
             </h2>

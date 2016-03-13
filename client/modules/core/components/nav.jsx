@@ -1,11 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import classNames from 'classnames';
+import {humanize} from 'underscore.string';
 
 const Nav = ({tabNames, currentTab, handleChangeTab}) => {
   function getTabClass(tabName) {
     return classNames('nav-link', {'active': currentTab === tabName});
   }
+
 
   function onChangeTab(tabName, e) {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Nav = ({tabNames, currentTab, handleChangeTab}) => {
               <li className="nav-item" key={index}>
                 <a className={getTabClass(tabName)}
                   onClick={onChangeTab.bind(this, tabName)}
-                  href="#">{_.capitalize(tabName)}</a>
+                  href="#">{humanize(tabName)}</a>
               </li>
             );
           })

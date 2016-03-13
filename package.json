@@ -30,6 +30,7 @@
     "react-select": "^1.0.0-beta10",
     "react-simple-di": "^1.0.1",
     "shortid": "^2.2.4",
-    "sortablejs": "^1.4.2"
+    "sortablejs": "^1.4.2",
+    "underscore.string": "^3.3.4"
   }
 }

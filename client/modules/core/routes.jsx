@@ -38,7 +38,7 @@ export default function (injectDeps, {FlowRouter}) {
   });
 
   FlowRouter.route('/settings/:section?', {
-    name: 'settings', 
+    name: 'settings',
     action: function(params) {
       mount(MainLayoutCtx, {
         content: () => (<Settings currentSection={params.section} />)
@@ -54,10 +54,10 @@ export default function (injectDeps, {FlowRouter}) {
       });
     }
   });
-  
-  FlowRouter.route('/r/:ownerName/:repoName/decks/new', {
-    name: 'new_deck',
-    action: function ({ownerName, repoName}) {
+
+  FlowRouter.route('/s/new', {
+    name: 'slide_deck.new',
+    action: function ({}, {ownerName, repoName}) {
       mount(MainLayoutCtx, {
         content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
       });

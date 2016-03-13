@@ -4,8 +4,10 @@ import moment from 'moment';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 
-const SlideDeckList = ({slideDecks}) => (
+const SlideDeckList = ({slideDecks, repo, showNewSlideDeckForm}) => (
   <ul className="list-unstyled row">
+    <NewSlideDeckBtn repo={repo}
+      onShowSlideDeckForm={showNewSlideDeckForm} />
     {
       slideDecks.map(function (sd) {
         return <SlideDeckItem slideDeck={sd}
@@ -15,8 +17,27 @@ const SlideDeckList = ({slideDecks}) => (
   </ul>
 );
 
+const NewSlideDeckBtn = ({repo, onShowSlideDeckForm}) => {
+  function handleShowSlideDeckForm() {
+    if (repo) {
+      onShowSlideDeckForm(repo.owner.name, repo.name);
+    } else {
+      onShowSlideDeckForm();
+    }
+  }
+
+  return (
+    <li className="col-lg-4 col-md-6 col-xs-12 sd-card-container">
+      <button href="#" className="sd-card new-sd-btn" onClick={handleShowSlideDeckForm}>
+        <i className="fa fa-plus fa-2x"></i>
+      </button>
+    </li>
+  );
+}
+
+
 const SlideDeckItem = ({slideDeck}) => (
-  <li className="col-lg-4 col-md-6 col-xs-12">
+  <li className="col-lg-4 col-md-6 col-xs-12 sd-card-container">
     <div className="sd-card">
       <div className="sd-card-body">
         <div className="info">
