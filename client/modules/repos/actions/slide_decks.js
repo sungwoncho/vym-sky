@@ -13,15 +13,5 @@ export default {
 
       FlowRouter.go('slide_deck.wizard', {slideDeckUid: slideDeckUid});
     });
-  },
-  showNewSlideDeckForm({FlowRouter}, repoOwner, repoName) {
-    let queryParams = {};
-
-    if (repoOwner && repoName) {
-      queryParams.repoOwner = repoOwner;
-      queryParams.repoName = repoName;
-    }
-
-    FlowRouter.go('slide_deck.new', {}, queryParams);
   }
 };

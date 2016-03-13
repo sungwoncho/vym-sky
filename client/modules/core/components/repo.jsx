@@ -7,7 +7,7 @@ import {pathFor} from '/client/modules/core/libs/helpers';
 
 let tabMapping = {
   'slides': SlideDeckList,
-  'collaborators': CollaboratorList
+  'collaborators': CollaboratorList,
 };
 
 class Repo extends React.Component {
@@ -24,24 +24,21 @@ class Repo extends React.Component {
   render() {
     let {repo, slideDecks} = this.props;
     let CurrentTab = tabMapping[this.state.currentTab];
-    let availableTabs = ['slides', 'newSlides', 'collaborators'];
+    let availableTabs = ['slides', 'collaborators'];
 
     return (
-      <div className="container">
+      <div className="container repo">
         <div className="row">
           <div className="col-xs-12">
-            <h2>
-              {repo.name}
-            </h2>
+            <div className="info">
+              <div className="repo-name">
+                {repo.getFullName()}
+              </div>
+            </div>
 
             <Nav tabNames={availableTabs}
               currentTab={this.state.currentTab}
               handleChangeTab={this.changeTab} />
-
-            <a href={pathFor('new_deck', {ownerName: repo.owner.name, repoName: repo.name})}
-              className="btn btn-md btn-success">
-              Create new deck
-            </a>
 
             <CurrentTab slideDecks={slideDecks}
               repo={repo} />

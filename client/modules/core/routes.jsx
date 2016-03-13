@@ -55,12 +55,12 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
-  FlowRouter.route('/s/new', {
-    name: 'slide_deck.new',
-    action: function ({}, {ownerName, repoName}) {
-      mount(MainLayoutCtx, {
-        content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
-      });
-    }
-  });
+  // FlowRouter.route('/r/:ownerName/:repoName/new', {
+  //   name: 'slide_deck.new',
+  //   action: function ({}, {ownerName, repoName}) {
+  //     mount(MainLayoutCtx, {
+  //       content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
+  //     });
+  //   }
+  // });
 }

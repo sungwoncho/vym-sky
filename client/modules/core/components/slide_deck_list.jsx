@@ -4,10 +4,8 @@ import moment from 'moment';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 
-const SlideDeckList = ({slideDecks, repo, showNewSlideDeckForm}) => (
+const SlideDeckList = ({slideDecks, repo}) => (
   <ul className="list-unstyled row">
-    <NewSlideDeckBtn repo={repo}
-      onShowSlideDeckForm={showNewSlideDeckForm} />
     {
       slideDecks.map(function (sd) {
         return <SlideDeckItem slideDeck={sd}

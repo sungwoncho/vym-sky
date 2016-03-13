@@ -1,0 +1,18 @@
+.new-sd-form {
+  padding: 2em;
+}
+
+.repo {
+  .info {
+    margin-bottom: 30px;
+  }
+
+  .repo-name {
+    text-align: center;
+    font-size: 1.5em;
+
+    @include screen(xsmall) {
+      font-size: 1.2em;
+    }
+  }
+}
