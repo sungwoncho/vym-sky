@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 
+import Nav from './nav.jsx';
 import SlideDeckList from './slide_deck_list.jsx';
 import RepoList from './repo_list.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
@@ -18,12 +18,14 @@ class Home extends React.Component {
 
   render() {
     let {slideDecks, repos} = this.props;
+    let availableTabs = ['slides', 'repos'];
 
     return (
       <div className="container home">
         <div className="row">
           <div className="col-xs-12">
-            <Nav currentTab={this.state.currentTab}
+            <Nav tabNames={availableTabs}
+              currentTab={this.state.currentTab}
               handleChangeTab={this.changeTab} />
 
             {
@@ -38,30 +40,5 @@ class Home extends React.Component {
     );
   }
 }
-
-
-const Nav = ({currentTab, handleChangeTab}) => {
-  function getTabClass(tabName) {
-    return classNames('nav-link', {'active': currentTab === tabName});
-  }
-
-  function onChangeTab(tabName, e) {
-    e.preventDefault();
-    handleChangeTab(tabName);
-  }
-
-  return  (
-    <div className="nav-center">
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a className={getTabClass('slides')} onClick={onChangeTab.bind(this, 'slides')} href="#">Slides</a>
-        </li>
-        <li className="nav-item">
-          <a className={getTabClass('repos')} onClick={onChangeTab.bind(this, 'repos')} href="#">Repos</a>
-        </li>
-      </ul>
-    </div>
-  );
-};
 
 export default Home;

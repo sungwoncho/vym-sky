@@ -10,5 +10,5 @@ listenToWebhook();
 configureGithubOauth();
 
 if (process.env.NODE_ENV !== 'production') {
-  // generateSeed();
+  generateSeed();
 }

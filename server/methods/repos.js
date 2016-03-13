@@ -5,6 +5,10 @@ import _ from 'lodash';
 
 let github = new GithubAPI({version: '3.0.0'});
 
+function checkUserExists(userId) {
+  return Meteor.users.find(userId, {fields: {_id: 1}}).count() === 1;
+}
+
 export default function () {
   Meteor.methods({
     'repos.toggleActivatedStatus'(repoId) {
@@ -82,7 +86,25 @@ export default function () {
           Repos.update(repoId, {$set: {hasWebhook: false}});
         }));
       }));
+    },
 
+    'repos.addCollaborator'(repoId, userId) {
+      check(repoId, String);
+      check(userId, String);
+
+      if (checkUserExists(userId)) {
+        return Repos.update(repoId, {$addToSet: {collaboratorIds: userId}});
+      }
+    },
+
+    'repos.removeCollaborator'(repoId, userId) {
+      check(repoId, String);
+      check(userId, String);
+
+      if (checkUserExists(userId)) {
+        return Repos.update(repoId, {$pull: {collaboratorIds: userId}});
+      }
     }
-  });  
+
+  });
 }
