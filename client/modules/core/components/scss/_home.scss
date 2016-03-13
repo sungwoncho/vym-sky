@@ -1,44 +1,42 @@
-.home {
+.nav-center {
+  text-align: center;
 
-  .github-avatar {
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .repo-list-container {
-    margin-top: 40px;
-  }
-
-  .repo-list {
-    border: 1px solid #CCCCCC;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 14px;
-
-    .repo-item {
-      &:not(:last-child) {
-        border-bottom: 1px solid #CCCCCC;
-      }
-    }
-
-    .repo-item-link {
-      padding: 10px;
-      display: block;
-
-      &:hover {
-        text-decoration: none;
-        background-color: #efefef;
-      }
-    }
-  }
-
-  .repo-list-header {
-    padding: 10px;
-    border: 1px solid #CCCCCC;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  .nav-tabs {
     display: block;
-    border-bottom: 0;
-    background-color: #F1F1F1;
+
+    .nav-item {
+      float: none;
+    }
+
+    li {
+      display: inline-block;
+
+      a {
+        float: none;
+      }
+    }
+  }
+}
+
+.sd-card {
+  padding: 1.5em;
+  border: 1px solid #E2E2E2;
+  margin-top: 20px;
+  background: #FDFDFD;
+  height: 175px;
+
+  .sd-card-body {
+    position: relative;
+    height: 100%;
+  }
+
+  .sd-repo-name {
+    font-size: 15px;
+  }
+
+  .actions {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 }

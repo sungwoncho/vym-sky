@@ -2,7 +2,7 @@ import React from 'react';
 
 import {pathFor} from '/client/modules/core/libs/helpers.js';
 
-const Header = ({currentUser, logout}) => {
+const Header = ({currentUser, logout, login}) => {
   function getRootPath() {
     if (currentUser) {
       return '/home';
@@ -11,53 +11,33 @@ const Header = ({currentUser, logout}) => {
     }
   }
 
-  return (
-    <nav className="navbar navbar-dark">
-      <div className="container">
-        <a className="navbar-brand" href={getRootPath()}>
-          vym
-        </a>
-
-        <Menus currentUser={currentUser}
-          logout={logout} />
-      </div>
-    </nav>
-  );
-};
-
-
-const Menus = ({currentUser, logout}) => {
-  if (currentUser) {
-    return (
-      <UserActions currentUser={currentUser}
-                   handleLogout={logout} />
-    );
-  } else {
-    return (
-      <ul className="nav navbar-nav pull-xs-right">
-        <li className="nav-item">
-          <a className="nav-link" href="http://blog.vym.io">
-            Blog
-          </a>
-        </li>
-      </ul>
-    );
-  }
-};
-
-const UserActions = ({currentUser, handleLogout}) => {
   function onLogout(e) {
     e.preventDefault();
     handleLogout();
   }
 
+  function onLogin(e) {
+    e.preventDefault();
+    handleLogin();
+  }
+
+  function getAvatarUrl() {
+    const baseUrl = 'https://avatars.githubusercontent.com';
+
+    return `${baseUrl}/${currentUser.services.github.username}?s=300`;
+  }
+
   return (
-    <ul className="nav navbar-nav pull-xs-right">
-      <div className="nav-item dropdown">
+    <nav className="navbar">
+      <a className="navbar-brand" href={getRootPath()}>
+        vym
+      </a>
+
+      <div className="nav-item dropdown pull-sm-right">
         <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
-          {currentUser.profile.name}
+          <img src={getAvatarUrl()} alt="avatar" className="avatar" />
         </a>
-        <div className="dropdown-menu">
+        <div className="dropdown-menu dropdown-menu-right">
           <a className="dropdown-item" href={pathFor('settings')}>
             Settings
           </a>
@@ -66,8 +46,49 @@ const UserActions = ({currentUser, handleLogout}) => {
           </a>
         </div>
       </div>
-    </ul>
+    </nav>
   );
 };
+
+// const UserActions = ({currentUser, handleLogout, handleLogin}) => {
+//   function onLogout(e) {
+//     e.preventDefault();
+//     handleLogout();
+//   }
+//
+//   function onLogin(e) {
+//     e.preventDefault();
+//     handleLogin();
+//   }
+//
+//   return (
+//     <ul className="nav navbar-nav pull-xs-right">
+//       {
+//         currentUser ?
+//           <div className="nav-item dropdown">
+//             <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
+//               {currentUser.profile.name}
+//             </a>
+//             <div className="dropdown-menu">
+//               <a className="dropdown-item" href={pathFor('settings')}>
+//                 Settings
+//               </a>
+//               <a className="dropdown-item" href="#" onClick={onLogout}>
+//                 Logout
+//               </a>
+//             </div>
+//           </div>
+//         :
+//           <ul className="nav navbar-nav">
+//             <li className="nav-item">
+//               <a className="nav-link" href="#" onClick={onLogin}>
+//                 Login
+//               </a>
+//             </li>
+//           </ul>
+//       }
+//     </ul>
+//   );
+// };
 
 export default Header;

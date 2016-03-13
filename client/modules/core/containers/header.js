@@ -6,12 +6,15 @@ import Header from '../components/header.jsx';
 export const composer = ({context}, onData) => {
   const {Meteor} = context();
 
-  onData(null, {
-    currentUser: Meteor.user()
-  });
+  if (Meteor.subscribe('currentUser').ready()) {
+    onData(null, {
+      currentUser: Meteor.user()
+    });
+  }
 };
 
 export const depsMapper = (context, actions) => ({
+  login: actions.users.login,
   logout: actions.users.logout,
   context: () => context
 });

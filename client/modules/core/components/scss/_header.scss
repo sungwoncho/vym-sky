@@ -1,18 +1,19 @@
 .navbar {
   border-radius: 0;
-  padding: 0.8rem 1rem;
-  background-color: #34495e;
+  background-color: #F5F5F5;
+  padding: 0;
 
   .navbar-brand {
-    text-transform: uppercase;
     margin-right: 60px;
+    color: black;
+    padding: 0;
   }
 
   .nav-link {
-    color: rgba(255, 255, 255, 0.75);
+    color: black;
   }
 
-  .logo {
-    width: 40px;
+  .avatar {
+    width: 20px;
   }
 }

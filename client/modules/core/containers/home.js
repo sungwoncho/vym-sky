@@ -6,15 +6,17 @@ export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
 
   if (Meteor.subscribe('ownedRepos').ready() &&
-      Meteor.subscribe('currentUser').ready()) {
+      Meteor.subscribe('currentUser').ready() &&
+      Meteor.subscribe('slideDecksForUser', Meteor.userId()).ready()) {
 
+    let currentUser = Meteor.user();
     let repos = Collections.Repos.find({
       'owner._id': Meteor.userId(),
       activated: true
     }).fetch();
-    let currentUser = Meteor.user();
+    let slideDecks = Collections.SlideDecks.find().fetch();
 
-    onData(null, {repos, currentUser});
+    onData(null, {currentUser, repos, slideDecks});
   }
 };
 
