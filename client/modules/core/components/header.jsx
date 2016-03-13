@@ -33,7 +33,7 @@ const Header = ({currentUser, logout, login}) => {
         vym
       </a>
 
-      <div className="nav-item dropdown pull-sm-right">
+      <div className="nav-item dropdown pull-xs-right">
         <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
           <img src={getAvatarUrl()} alt="avatar" className="avatar" />
         </a>
@@ -49,46 +49,5 @@ const Header = ({currentUser, logout, login}) => {
     </nav>
   );
 };
-
-// const UserActions = ({currentUser, handleLogout, handleLogin}) => {
-//   function onLogout(e) {
-//     e.preventDefault();
-//     handleLogout();
-//   }
-//
-//   function onLogin(e) {
-//     e.preventDefault();
-//     handleLogin();
-//   }
-//
-//   return (
-//     <ul className="nav navbar-nav pull-xs-right">
-//       {
-//         currentUser ?
-//           <div className="nav-item dropdown">
-//             <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
-//               {currentUser.profile.name}
-//             </a>
-//             <div className="dropdown-menu">
-//               <a className="dropdown-item" href={pathFor('settings')}>
-//                 Settings
-//               </a>
-//               <a className="dropdown-item" href="#" onClick={onLogout}>
-//                 Logout
-//               </a>
-//             </div>
-//           </div>
-//         :
-//           <ul className="nav navbar-nav">
-//             <li className="nav-item">
-//               <a className="nav-link" href="#" onClick={onLogin}>
-//                 Login
-//               </a>
-//             </li>
-//           </ul>
-//       }
-//     </ul>
-//   );
-// };
 
 export default Header;

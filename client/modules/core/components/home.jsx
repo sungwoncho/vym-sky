@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import SlideDeckList from './slide_deck_list.jsx';
+import RepoList from './repo_list.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 class Home extends React.Component {
@@ -16,12 +17,12 @@ class Home extends React.Component {
   }
 
   render() {
-    let {slideDecks} = this.props;
+    let {slideDecks, repos} = this.props;
 
     return (
       <div className="container home">
         <div className="row">
-          <div className="col-sm-12">
+          <div className="col-xs-12">
             <Nav currentTab={this.state.currentTab}
               handleChangeTab={this.changeTab} />
 
@@ -29,7 +30,7 @@ class Home extends React.Component {
               this.state.currentTab === 'slides' ?
                 <SlideDeckList slideDecks={slideDecks} />
               :
-                <span></span>
+                <RepoList repos={repos} />
             }
           </div>
         </div>
@@ -62,22 +63,5 @@ const Nav = ({currentTab, handleChangeTab}) => {
     </div>
   );
 };
-
-// const ProfileInfo = ({user}) => {
-  // function getAvatarUrl() {
-  //   const baseUrl = 'https://avatars.githubusercontent.com';
-  //
-  //   return `${baseUrl}/${user.services.github.username}?s=300`;
-  // }
-//
-//   return (
-//     <div>
-//       <img src={getAvatarUrl()} alt="github-avatar"
-//         className="github-avatar" />
-//       <h4>{user.profile.name}</h4>
-//       <h5 className="text-muted">{user.services.github.username}</h5>
-//     </div>
-//   );
-// };
 
 export default Home;

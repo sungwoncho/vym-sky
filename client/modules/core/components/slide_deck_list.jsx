@@ -14,7 +14,7 @@ const SlideDeckList = ({slideDecks}) => (
 );
 
 const SlideDeckItem = ({slideDeck}) => (
-  <li className="col-sm-3">
+  <li className="col-lg-3 col-md-6 col-xs-12">
     <div className="sd-card">
       <div className="sd-card-body">
         <div className="info">
