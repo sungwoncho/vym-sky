@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../containers/header';
 import Footer from '../containers/footer';
 
-const MainLayout = ({content = () => null}) => (
+const LayoutRepo = ({content = () => null, repo}) => (
   <div>
     <Header />
     <main className="main-container">
@@ -13,4 +13,4 @@ const MainLayout = ({content = () => null}) => (
   </div>
 );
 
-export default MainLayout;
+export default LayoutRepo;

@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'react-mounter';
 import {Meteor} from 'meteor/meteor';
 
-import MainLayout from '../core/components/layouts.main.jsx';
+import MainLayout from '../core/components/layout_main.jsx';
 //import Repos from './containers/repos';
 //import Repo from './containers/repo';
 //import ManageRepo from './containers/repos.manage';

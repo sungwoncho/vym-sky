@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainLayout from './layouts.main.jsx';
+import MainLayout from './layout_main.jsx';
 
 const SettingLayout = ({content = () => null}) => {
 

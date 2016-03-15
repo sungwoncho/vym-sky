@@ -3,16 +3,23 @@
 }
 
 .repo {
-  .info {
+
+  .info-container {
+    overflow: auto;
     margin-bottom: 30px;
   }
 
   .repo-name {
-    text-align: center;
     font-size: 1.5em;
 
     @include screen(xsmall) {
+      text-align: center;
       font-size: 1.2em;
+      margin-bottom: 15px;
     }
+  }
+
+  .slides-menu {
+    margin-bottom: 15px;
   }
 }

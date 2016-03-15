@@ -4,7 +4,7 @@ import {check} from 'meteor/check';
 
 export default function () {
   Meteor.publish('pullRequests', function (repoId) {
-    return PullRequests.find({repoId: repoId});
+    return PullRequests.find({repoId});
   });
 
   Meteor.publish('pullRequest', function (prId) {

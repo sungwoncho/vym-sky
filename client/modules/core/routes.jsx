@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'react-mounter';
 import {Meteor} from 'meteor/meteor';
 
-import MainLayout from './components/layouts.main.jsx';
+import MainLayout from './components/layout_main.jsx';
 import Main from './containers/main';
 import Home from './containers/home';
 import Repo from './containers/repo';
@@ -21,7 +21,7 @@ export default function (injectDeps, {FlowRouter}) {
         }
       }
     ],
-    action: function(params, queryParams) {
+    action() {
       mount(MainLayoutCtx, {
         content: () => (<Main />)
       });
@@ -30,7 +30,7 @@ export default function (injectDeps, {FlowRouter}) {
 
   FlowRouter.route('/home', {
     name: 'home',
-    action: function () {
+    action() {
       mount(MainLayoutCtx, {
         content: () => (<Home />)
       });
@@ -39,7 +39,7 @@ export default function (injectDeps, {FlowRouter}) {
 
   FlowRouter.route('/settings/:section?', {
     name: 'settings',
-    action: function(params) {
+    action(params) {
       mount(MainLayoutCtx, {
         content: () => (<Settings currentSection={params.section} />)
       });
@@ -48,19 +48,19 @@ export default function (injectDeps, {FlowRouter}) {
 
   FlowRouter.route('/r/:ownerName/:repoName', {
     name: 'repo',
-    action: function ({ownerName, repoName}) {
+    action({ownerName, repoName}) {
       mount(MainLayoutCtx, {
         content: () => (<Repo ownerName={ownerName} repoName={repoName} />)
       });
     }
   });
 
-  // FlowRouter.route('/r/:ownerName/:repoName/new', {
-  //   name: 'slide_deck.new',
-  //   action: function ({}, {ownerName, repoName}) {
-  //     mount(MainLayoutCtx, {
-  //       content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
-  //     });
-  //   }
-  // });
+  FlowRouter.route('/r/:ownerName/:repoName/new', {
+    name: 'slide_deck.new',
+    action({ownerName, repoName}) {
+      mount(MainLayoutCtx, {
+        content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
+      });
+    }
+  });
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import Nav from './nav.jsx';
-import SlideDeckList from '../containers/slide_deck_list';
+import SlidesTab from './slides_tab.jsx';
 import CollaboratorList from '../containers/collaborator_list';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 let tabMapping = {
-  'slides': SlideDeckList,
+  'slides': SlidesTab,
   'collaborators': CollaboratorList,
 };
 
@@ -24,15 +24,19 @@ class Repo extends React.Component {
   render() {
     let {repo, slideDecks} = this.props;
     let CurrentTab = tabMapping[this.state.currentTab];
-    let availableTabs = ['slides', 'collaborators'];
+    let availableTabs = [ 'slides', 'collaborators' ];
 
     return (
       <div className="container repo">
         <div className="row">
           <div className="col-xs-12">
-            <div className="info">
-              <div className="repo-name">
-                {repo.getFullName()}
+            <div className="info-container">
+              <div className="info">
+                <div className="repo-name pull-sm-left">
+                  <a href={pathFor('repo', {repoName: repo.name, ownerName: repo.owner.name})}>
+                    {repo.getFullName()}
+                  </a>
+                </div>
               </div>
             </div>
 
