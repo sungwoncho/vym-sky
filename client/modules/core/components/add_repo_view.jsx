@@ -1,27 +1,55 @@
 import React from 'react';
 import classNames from 'classnames';
+import _ from 'lodash';
 
-const AddRepoView = ({isAddingRepo = false, repos, toggleActivatedStatus}) => {
-  let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
+class AddRepoView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddRepo = this.handleAddRepo.bind(this);
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    this.state = {searchTerm: ''};
+  }
 
-  function handleAddRepo(repo) {
+  handleAddRepo(repo) {
+    const {toggleActivatedStatus} = this.props;
     toggleActivatedStatus(repo._id);
   }
 
-  return (
-    <div className={klass}>
-      <ul className="add-repo-list list-unstyled">
-        {
-          repos && repos.map(repo => {
-            return <RepoItem repo={repo}
-              handleAddRepo={handleAddRepo}
-              key={repo._id} />;
-          })
-        }
-      </ul>
-    </div>
-  );
-};
+  updateSearchTerm() {
+    this.setState({searchTerm: this.refs.repoSearchTerm.value});
+  }
+
+  render() {
+    const {repos, isAddingRepo} = this.props;
+    let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
+
+    return (
+      <div className={klass}>
+        <div className="add-repo-actions">
+          <input type="text"
+            ref="repoSearchTerm"
+            className="form-control"
+            placeholder="Search by repo name or owner name"
+            onChange={this.updateSearchTerm} />
+        </div>
+
+        <ul className="add-repo-list list-unstyled">
+          {
+            repos.filter(repo => {
+              let searchRegex = new RegExp(_.escapeRegExp(this.state.searchTerm), 'i');
+              return searchRegex.test(repo.name) ||
+                     searchRegex.test(repo.owner.name);
+            }).map(repo => {
+              return <RepoItem repo={repo}
+                handleAddRepo={this.handleAddRepo}
+                key={repo._id} />;
+            })
+          }
+        </ul>
+      </div>
+    );
+  }
+}
 
 const RepoItem = ({repo, handleAddRepo}) => {
   function onAddRepo(e) {
