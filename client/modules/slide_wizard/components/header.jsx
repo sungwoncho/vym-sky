@@ -4,7 +4,7 @@ import {pathFor} from '/client/modules/core/libs/helpers';
 
 const Header = ({repo, slideDeck, currentSlideNumber}) => (
   <nav className="navbar navbar-full navbar-dark navbar-wizard">
-    <a className="navbar-brand" href={pathFor('home')}>
+    <a className="navbar-brand" href={pathFor('dashboard')}>
       vym
     </a>
 

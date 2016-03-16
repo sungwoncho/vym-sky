@@ -7,7 +7,7 @@ export default {
         return console.log(err);
       }
 
-      FlowRouter.go('home');
+      FlowRouter.go('dashboard');
     });
   },
 

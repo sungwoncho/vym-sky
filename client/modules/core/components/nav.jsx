@@ -2,28 +2,20 @@ import React from 'react';
 import classNames from 'classnames';
 import {humanize} from 'underscore.string';
 
-const Nav = ({tabNames, currentTab, handleChangeTab}) => {
+const Nav = ({tabs, currentTabName}) => {
   function getTabClass(tabName) {
-    return classNames('nav-link', {active: currentTab === tabName});
-  }
-
-  function onChangeTab(tabName, e) {
-    e.preventDefault();
-    if (handleChangeTab) {
-      handleChangeTab(tabName);
-    }
+    return classNames('nav-link', {active: currentTabName === tabName});
   }
 
   return (
     <div className="nav-center">
       <ul className="nav nav-tabs">
         {
-          tabNames.map(function (tabName, index) {
+          tabs.map(function (tab, index) {
             return (
               <li className="nav-item" key={index}>
-                <a className={getTabClass(tabName)}
-                  onClick={onChangeTab.bind(this, tabName)}
-                  href="#">{humanize(tabName)}</a>
+                <a className={getTabClass(tab.name)}
+                  href={tab.href}>{humanize(tab.name)}</a>
               </li>
             );
           })

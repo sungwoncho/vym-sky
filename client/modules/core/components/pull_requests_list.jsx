@@ -25,8 +25,8 @@ const PullRequestList = (
         }
       </ul>
       <small>
-        Can't find your pull request?
-        <a href="#" onClick={handleSyncPullRequests}>Sync with GitHub</a>
+        Can't find your pull request? <a href="#"
+         onClick={handleSyncPullRequests}>Sync with GitHub</a>.
       </small>
     </div>
   );

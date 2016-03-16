@@ -3,26 +3,16 @@ import {mount} from 'react-mounter';
 import {Meteor} from 'meteor/meteor';
 
 import MainLayout from './components/layout_main.jsx';
-import RepoLayout from './components/layout_repo.jsx';
 import Main from './containers/main';
-import Home from './containers/home';
+import Dashboard from './containers/dashboard';
 import Repo from './containers/repo';
-import NewDeck from './containers/new_deck';
 import Settings from './containers/settings';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
-  const RepoLayoutCtx = injectDeps(RepoLayout);
 
   FlowRouter.route('/', {
     name: 'main',
-    triggersEnter: [
-      function (ctx, redirect) {
-        if (Meteor.user()) {
-          redirect('home');
-        }
-      }
-    ],
     action() {
       mount(MainLayoutCtx, {
         content: () => (<Main />)
@@ -30,11 +20,11 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
-  FlowRouter.route('/home', {
-    name: 'home',
-    action() {
+  FlowRouter.route('/dashboard/:section?', {
+    name: 'dashboard',
+    action({section}) {
       mount(MainLayoutCtx, {
-        content: () => (<Home />)
+        content: () => (<Dashboard currentSection={section} />)
       });
     }
   });

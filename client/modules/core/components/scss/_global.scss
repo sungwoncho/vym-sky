@@ -1,3 +1,13 @@
 body {
   background-color: #fcfcfc;
 }
+
+.section-subheading {
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #efefef;
+
+  h4 {
+    display: inline-block;
+  }
+}

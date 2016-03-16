@@ -4,15 +4,9 @@ import {pathFor} from '/client/modules/core/libs/helpers';
 
 const RepoList = ({repos}) => (
   <div className="repo-list-container">
-    <div className="repo-list-header">
-      Repositories
-      <a href={pathFor('settings', {section: 'repos'})} className="pull-xs-right">
-        <i className="fa fa-cog"></i>
-      </a>
-    </div>
     <ul className="list-unstyled repo-list">
       {
-        repos.map(function(repo) {
+        repos.map(function (repo) {
           return <RepoItem repo={repo}
                     key={repo._id} />;
         })
@@ -26,7 +20,10 @@ const RepoItem = ({repo}) => (
     <a href={pathFor('repo', {ownerName: repo.owner.name, repoName: repo.name})}
       className="repo-item-link">
       <div>
-        {repo.owner.name} / {repo.name}
+        <i className="fa fa-book"></i>
+        <div className="repo-name">
+          {repo.owner.name} / {repo.name}
+        </div>
       </div>
     </a>
   </li>

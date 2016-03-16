@@ -1,8 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
 
 import SlidesTab from '../containers/repo_slides';
 import CollaboratorList from '../containers/collaborator_list';
+import Nav from './nav.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 let sectionMapping = {
@@ -11,6 +11,17 @@ let sectionMapping = {
 };
 
 const Repo = ({repo, currentSection = 'slides', sectionState}) => {
+  let repoTabs = [
+    {
+      name: 'slides',
+      href: pathFor('repo', {repoName: repo.name, ownerName: repo.owner.name})
+    },
+    {
+      name: 'collaborators',
+      href: pathFor('repo', {
+        repoName: repo.name, ownerName: repo.owner.name, section: 'collaborators'})
+    }
+  ];
   let CurrentSection = sectionMapping[currentSection];
 
   return (
@@ -27,36 +38,12 @@ const Repo = ({repo, currentSection = 'slides', sectionState}) => {
             </div>
           </div>
 
-          <RepoNav currentSection={currentSection}
-            repo={repo} />
+          <Nav tabs={repoTabs}
+            currentTabName={currentSection} />
           <CurrentSection sectionState={sectionState}
             repo={repo} />
         </div>
       </div>
-    </div>
-  );
-};
-
-const RepoNav = ({repo, currentSection}) => {
-  function getTabClass(tabName) {
-    return classNames('nav-link', {active: currentSection === tabName});
-  }
-
-  return (
-    <div className="nav-center">
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a className={getTabClass('slides')}
-            href={pathFor('repo', {repoName: repo.name, ownerName: repo.owner.name})}>
-            Slides</a>
-        </li>
-        <li className="nav-item">
-          <a className={getTabClass('collaborators')}
-            href={pathFor('repo', {
-              repoName: repo.name, ownerName: repo.owner.name, section: 'collaborators'})}>
-            Collaborators</a>
-        </li>
-      </ul>
     </div>
   );
 };

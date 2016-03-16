@@ -1,10 +1,12 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
 
-import Home from '../components/home.jsx';
+import Dashboard from '../components/dashboard.jsx';
 
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
 
+  // TODO: rather than getting ownedRepos, get all repos that user has an
+  // acces to
   if (Meteor.subscribe('ownedRepos').ready() &&
       Meteor.subscribe('currentUser').ready() &&
       Meteor.subscribe('slideDecksForUser', Meteor.userId()).ready()) {
@@ -27,4 +29,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Home);
+)(Dashboard);

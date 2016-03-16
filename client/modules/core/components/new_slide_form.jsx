@@ -46,7 +46,7 @@ class NewSlideForm extends React.Component {
       <div className="row">
         <div className="col-xs-12 col-md-12 col-lg-8 col-lg-offset-2">
           <div className="sd-form">
-            <div className="sd-form-subheading">
+            <div className="section-subheading">
               <h4>Create a new slide deck</h4>
               <small className="text-muted">
                 A slide deck is based on a pull request and can be organized in any way you want.
