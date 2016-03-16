@@ -12,7 +12,8 @@ export const composer = ({context, repo}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-  context: () => context
+  context: () => context,
+  syncPullRequests: actions.pull_requests.syncPullRequests
 });
 
 export default composeAll(

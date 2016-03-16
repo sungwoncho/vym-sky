@@ -1,30 +1,61 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const PullRequestList = ({pullRequests, onSelectPullRequest}) => (
-  <ul className="list-unstyled">
-    {
-      pullRequests.map((pr) => {
-        return (
-          <PullRequestItem pullRequest ={pr}
-            onSelectPullRequest={onSelectPullRequest}
-            key={pr._id} />
-        );
-      })
-    }
-  </ul>
-);
+const PullRequestList = (
+  {repo, pullRequests, onSelectPullRequest, syncPullRequests, selectedPr}) => {
+  function handleSyncPullRequests(e) {
+    e.preventDefault();
+    syncPullRequests(repo._id);
+  }
 
-const PullRequestItem = ({pullRequest, onSelectPullRequest}) => {
+  return (
+    <div>
+      <ul className="list-unstyled">
+        {
+          pullRequests.map((pr) => {
+            let isSelected = selectedPr ? pr.number === selectedPr.number : false;
+
+            return (
+              <PullRequestItem pullRequest ={pr}
+                onSelectPullRequest={onSelectPullRequest}
+                isSelected={isSelected}
+                key={pr._id} />
+            );
+          })
+        }
+      </ul>
+      <small>
+        Can't find your pull request?
+        <a href="#" onClick={handleSyncPullRequests}>Sync with GitHub</a>
+      </small>
+    </div>
+  );
+};
+
+const PullRequestItem = ({pullRequest, onSelectPullRequest, isSelected}) => {
   function handleSelect(pr, e) {
     e.preventDefault();
     onSelectPullRequest(pr);
   }
 
+  let itemClass = classNames('pr-item', 'row', {
+    active: isSelected
+  });
+
   return (
-    <li className="pr-item">
-      <a href="#" className="pr-item-link" onClick={handleSelect.bind(this, pullRequest)}>
-        {pullRequest.number} / {pullRequest.title}
-      </a>
+    <li className={itemClass}>
+      <div className="col-md-8 col-sm-7 col-xs-12">
+        #{pullRequest.number} - {pullRequest.title}
+      </div>
+      <div className="col-md-4 col-sm-5 col-xs-12">
+        <a href="#" className="btn btn-sm btn-secondary"
+          onClick={handleSelect.bind(this, pullRequest)}>
+          Choose
+        </a>
+        <a href={pullRequest.htmlUrl} target="_blank" className="btn btn-sm btn-secondary">
+          View on GitHub
+        </a>
+      </div>
     </li>
   );
 };

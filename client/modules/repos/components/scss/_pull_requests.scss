@@ -1,10 +1,24 @@
-.pr-item-link {
-  padding: 1em;
-  color: inherit;
-  display: block;
+// .pr-item-link {
+//   padding: 1em;
+//   color: inherit;
+//   display: block;
+//
+//   &:hover {
+//     text-decoration: none;
+//     background-color: #efefef;
+//   }
+// }
+
+.pr-item {
+  overflow-y: auto;
+  border-bottom: 1px solid #efefef;
+  padding: 5px;
 
   &:hover {
-    text-decoration: none;
-    background-color: #efefef;
+    background-color: #F5F5F5;
+  }
+
+  &.active {
+    background-color: #FEFEFF;
   }
 }

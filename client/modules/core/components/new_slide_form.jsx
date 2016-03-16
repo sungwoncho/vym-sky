@@ -34,20 +34,57 @@ class NewSlideForm extends React.Component {
   render() {
     let {repo} = this.props;
 
+    function getFullTitle(pr) {
+      if (pr) {
+        return pr.getFullTitle();
+      } else {
+        return 'Not selected';
+      }
+    }
+
     return (
       <div className="row">
         <div className="col-xs-12 col-md-12 col-lg-8 col-lg-offset-2">
-          <h2>New slide deck</h2>
+          <div className="sd-form">
+            <div className="sd-form-subheading">
+              <h4>Create a new slide deck</h4>
+              <small className="text-muted">
+                A slide deck is based on a pull request and can be organized in any way you want.
+              </small>
+            </div>
 
-          <label>
-            Slide deck title
-            <input type="text" ref="slideDeckTitle" placeholder="Title" />
-          </label>
+            <div className="sd-form-section">
+              <fieldset className="form-group">
+                <label htmlFor="sd-title">Slide Deck title</label>
+                <input type="text"
+                  className="form-control"
+                  id="sd-title"
+                  ref="slideDeckTitle" />
+                <small className="text-muted">
+                  This is what you will see in the slide list
+                </small>
+              </fieldset>
 
-          <PullRequestsList repo={repo}
-            onSelectPullRequest={this.handleSelectPullRequest} />
+              <fieldset className="form-group">
+                <label>Pull Request</label>
+                <input type="text"
+                  className="form-control"
+                  disabled
+                  value={getFullTitle(this.state.targetPullRequest)}/>
+                <small className="text-muted">
+                  Please choose a pull request from the list below
+                </small>
+              </fieldset>
 
-          <a href="#" className="btn btn-md btn-success" onClick={this.handleCreateDeck}>Create</a>
+              <PullRequestsList repo={repo}
+                onSelectPullRequest={this.handleSelectPullRequest}
+                selectedPr={this.state.targetPullRequest} />
+            </div>
+
+            <a href="#"
+              className="btn btn-md btn-success"
+              onClick={this.handleCreateDeck}>Create</a>
+          </div>
         </div>
       </div>
     );

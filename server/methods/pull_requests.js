@@ -4,6 +4,7 @@ import {PullRequests} from '/lib/collections';
 import {Repos} from '/lib/collections';
 import {check} from 'meteor/check';
 import {Mongo} from 'meteor/mongo';
+import {Meteor} from 'meteor/meteor';
 
 let github = new GithubAPI({version: '3.0.0'});
 
@@ -81,12 +82,13 @@ export default function() {
               createdAt: new Date(pr.created_at),
               updatedAt: new Date(pr.updated_at)
             },
-            repoId: repoId,
+            repoId,
             number: pr.number,
             title: pr.title,
             body: pr.body,
             head: pr.head,
-            base: pr.base
+            base: pr.base,
+            htmlUrl: pr.html_url
           };
 
           PullRequests.upsert({'meta.id': pr.id}, {$set: prDoc});
@@ -111,8 +113,8 @@ export default function() {
       });
 
       github.pullRequests.get({
-        headers: {'Accept': 'application/vnd.github.VERSION.diff'},
-        user:  repo.owner.name,
+        headers: {Accept: 'application/vnd.github.VERSION.diff'},
+        user: repo.owner.name,
         repo: repo.name,
         number: pr.number
       }, Meteor.bindEnvironment(function (err, rawDiff) {
@@ -125,5 +127,5 @@ export default function() {
         PullRequests.update(prId, {$set: {files: changedFiles}});
       }));
     }
-  });  
+  });
 }
