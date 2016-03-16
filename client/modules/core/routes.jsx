@@ -3,6 +3,7 @@ import {mount} from 'react-mounter';
 import {Meteor} from 'meteor/meteor';
 
 import MainLayout from './components/layout_main.jsx';
+import RepoLayout from './components/layout_repo.jsx';
 import Main from './containers/main';
 import Home from './containers/home';
 import Repo from './containers/repo';
@@ -11,6 +12,7 @@ import Settings from './containers/settings';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
+  const RepoLayoutCtx = injectDeps(RepoLayout);
 
   FlowRouter.route('/', {
     name: 'main',
@@ -46,20 +48,14 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
-  FlowRouter.route('/r/:ownerName/:repoName', {
+  FlowRouter.route('/r/:ownerName/:repoName/:section?/:sectionState?', {
     name: 'repo',
-    action({ownerName, repoName}) {
+    action({ownerName, repoName, section, sectionState}) {
       mount(MainLayoutCtx, {
-        content: () => (<Repo ownerName={ownerName} repoName={repoName} />)
-      });
-    }
-  });
-
-  FlowRouter.route('/r/:ownerName/:repoName/new', {
-    name: 'slide_deck.new',
-    action({ownerName, repoName}) {
-      mount(MainLayoutCtx, {
-        content: () => (<NewDeck ownerName={ownerName} repoName={repoName} />)
+        content: () => (<Repo ownerName={ownerName}
+          repoName={repoName}
+          currentSection={section}
+          sectionState={sectionState} />)
       });
     }
   });

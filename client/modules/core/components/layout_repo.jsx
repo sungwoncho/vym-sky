@@ -7,7 +7,7 @@ const LayoutRepo = ({content = () => null, repo}) => (
   <div>
     <Header />
     <main className="main-container">
-      {content()}
+      {content(repo)}
     </main>
     <Footer />
   </div>

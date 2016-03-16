@@ -14,7 +14,7 @@ export const composer = ({context}, onData) => {
       'owner._id': Meteor.userId(),
       activated: true
     }).fetch();
-    let slideDecks = Collections.SlideDecks.find().fetch();
+    let slideDecks = Collections.SlideDecks.find({}, {sort: {createdAt: -1}}).fetch();
 
     onData(null, {currentUser, repos, slideDecks});
   }

@@ -39,7 +39,7 @@ const SlideDeckItem = ({slideDeck}) => (
     <div className="sd-card">
       <div className="sd-card-body">
         <div className="info">
-          <div className="sd-name">{slideDeck.uid}</div>
+          <div className="sd-name">{slideDeck.title}</div>
           <div className="sd-repo-name">
             <a href={pathFor('repo', {ownerName: slideDeck.repo.ownerName, repoName: slideDeck.repo.name})}>
               {slideDeck.getFullRepoName()}

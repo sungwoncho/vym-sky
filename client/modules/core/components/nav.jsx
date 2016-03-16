@@ -1,20 +1,20 @@
 import React from 'react';
-import _ from 'lodash';
 import classNames from 'classnames';
 import {humanize} from 'underscore.string';
 
 const Nav = ({tabNames, currentTab, handleChangeTab}) => {
   function getTabClass(tabName) {
-    return classNames('nav-link', {'active': currentTab === tabName});
+    return classNames('nav-link', {active: currentTab === tabName});
   }
-
 
   function onChangeTab(tabName, e) {
     e.preventDefault();
-    handleChangeTab(tabName);
+    if (handleChangeTab) {
+      handleChangeTab(tabName);
+    }
   }
 
-  return  (
+  return (
     <div className="nav-center">
       <ul className="nav nav-tabs">
         {

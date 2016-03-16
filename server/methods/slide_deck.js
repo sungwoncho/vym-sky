@@ -36,11 +36,6 @@ export default function () {
     'slideDecks.create'(sdDoc) {
       check(sdDoc, Object);
 
-      let possibleDup = SlideDecks.findOne(sdDoc);
-      if (possibleDup) {
-        return possibleDup.uid;
-      }
-
       // Set uid for slideDeck
       let uid = randtoken.uid(10);
       sdDoc.uid = uid;
@@ -147,7 +142,7 @@ export default function () {
       check(slideDeckId, String);
       check(slideNumber, Number);
       check(sectionDoc, Object);
-      check(position, Number); 
+      check(position, Number);
 
       // sectionDoc needs position
       sectionDoc.position = position;

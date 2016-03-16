@@ -8,11 +8,11 @@ export default function () {
   });
 
   Meteor.publish('slideDecks', function (repoId) {
-    return SlideDecks.find({repoId: repoId});
+    return SlideDecks.find({repoId});
   });
 
   Meteor.publish('slideDecksForUser', function (userId) {
-    if (! userId) {
+    if (!userId) {
       this.ready();
       return;
     }
