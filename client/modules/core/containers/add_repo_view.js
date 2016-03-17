@@ -5,6 +5,12 @@ import AddRepoView from '../components/add_repo_view.jsx';
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
 
+  function getOrgSettingUrl() {
+    let baseUrl = 'https://github.com/settings/connections/applications';
+    let githubClientId = Meteor.settings.public.githubClientId;
+    return `${baseUrl}/${githubClientId}`;
+  }
+
   if (Meteor.subscribe('ownedRepos').ready()) {
     let repos = Collections.Repos.find({
       'owner._id': Meteor.userId(),
@@ -12,7 +18,7 @@ export const composer = ({context}, onData) => {
     }).fetch();
     let currentUser = Meteor.user();
 
-    onData(null, {repos, currentUser});
+    onData(null, {repos, currentUser, orgSettingUrl: getOrgSettingUrl()});
   }
 };
 

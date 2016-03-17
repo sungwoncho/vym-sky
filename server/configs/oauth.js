@@ -3,10 +3,10 @@ import {ServiceConfiguration} from 'meteor/service-configuration';
 
 export function configureGithubOauth() {
   ServiceConfiguration.configurations.upsert(
-    { service: "github" },
+    { service: 'github' },
     {
       $set: {
-        clientId: Meteor.settings.githubClientID,
+        clientId: Meteor.settings.public.githubClientId,
         secret: Meteor.settings.githubClientSecret
       }
     }

@@ -21,7 +21,7 @@ class AddRepoView extends React.Component {
   }
 
   render() {
-    const {repos, isAddingRepo, githubAuth, currentUser, syncRepos} = this.props;
+    const {repos, isAddingRepo, githubAuth, currentUser, syncRepos, orgSettingUrl} = this.props;
     let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
 
     return (
@@ -35,6 +35,11 @@ class AddRepoView extends React.Component {
           <PrivateRepoToggleBtn githubAuth={githubAuth}
             currentScopes={currentUser.scopes} />
           <SyncRepoBtn syncRepos={syncRepos} />
+          <div>
+            Missing an org? Add it <a href={orgSettingUrl} target="_blank">
+              here
+            </a>
+          </div>
           <div>
             Last synced:
             {moment(currentUser.reposLastSyncedAt).fromNow()}
@@ -109,19 +114,44 @@ const PrivateRepoToggleBtn = ({githubAuth, currentScopes}) => {
   }
 };
 
-const SyncRepoBtn = ({syncRepos}) => {
-  function handleSyncRepos(e) {
-    e.preventDefault();
-    syncRepos();
+class SyncRepoBtn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSyncRepos = this.handleSyncRepos.bind(this);
+    this.state = {isSyncing: false};
   }
 
-  return (
-    <a href="#"
-      className="btn btn-sm btn-secondary"
-      onClick={handleSyncRepos}>
-      <i className="fa fa-refresh"></i> Sync
-    </a>
-  );
+  handleSyncRepos(e) {
+    e.preventDefault();
+    const {syncRepos} = this.props;
+    this.setState({isSyncing: true});
+    syncRepos((err, res) => {
+      console.log('result', res);
+      if (err) {
+        console.error(err);
+      }
+      this.setState({isSyncing: false});
+    });
+  }
+
+  render() {
+    if (this.state.isSyncing) {
+      return (
+        <a href="#"
+          className="btn btn-sm btn-secondary disabled">
+          <i className="fa fa-spinner fa-spin"></i>
+        </a>
+      );
+    } else {
+      return (
+        <a href="#"
+          className="btn btn-sm btn-secondary"
+          onClick={this.handleSyncRepos}>
+          <i className="fa fa-refresh"></i> Sync
+        </a>
+      );
+    }
+  }
 };
 
 export default AddRepoView;

@@ -24,7 +24,7 @@ export default {
       }
     });
   },
-  reorderSlide({Meteor}, slideDeckId, fromSlideNumber, toSlideNumber) {
+  reorderSlide({Meteor, FlowRouter}, slideDeckId, fromSlideNumber, toSlideNumber) {
     Meteor.call('slideDecks.reorderSlide', slideDeckId, fromSlideNumber, toSlideNumber, function () {
       FlowRouter.setQueryParams({slideNumber: toSlideNumber});
     });
