@@ -5,15 +5,15 @@ import Dashboard from '../components/dashboard.jsx';
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
 
-  // TODO: rather than getting ownedRepos, get all repos that user has an
+  // TODO: rather than getting collaboratingRepos, get all repos that user has an
   // acces to
-  if (Meteor.subscribe('ownedRepos').ready() &&
+  if (Meteor.subscribe('collaboratingRepos').ready() &&
       Meteor.subscribe('currentUser').ready() &&
       Meteor.subscribe('slideDecksForUser', Meteor.userId()).ready()) {
 
     let currentUser = Meteor.user();
     let repos = Collections.Repos.find({
-      'owner._id': Meteor.userId(),
+      collaboratorIds: Meteor.userId(),
       activated: true
     }).fetch();
     let slideDecks = Collections.SlideDecks.find({}, {sort: {createdAt: -1}}).fetch();

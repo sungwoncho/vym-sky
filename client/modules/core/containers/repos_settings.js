@@ -5,7 +5,7 @@ import RepoManagement from '../components/repos_settings.jsx';
 export const composer = ({context}, onData) => {
   const {Meteor, Collections} = context();
 
-  if (Meteor.subscribe('ownedRepos').ready()) {
+  if (Meteor.subscribe('collaboratingRepos').ready()) {
     let repos = Collections.Repos.find({
       'owner._id': Meteor.userId()
     }).fetch();

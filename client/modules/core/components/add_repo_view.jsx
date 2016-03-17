@@ -51,7 +51,7 @@ class AddRepoView extends React.Component {
             repos.filter(repo => {
               let searchRegex = new RegExp(_.escapeRegExp(this.state.searchTerm), 'i');
               return searchRegex.test(repo.name) ||
-                     searchRegex.test(repo.owner.name);
+                     searchRegex.test(repo.ownerName);
             }).map(repo => {
               return <RepoItem repo={repo}
                 handleAddRepo={this.handleAddRepo}
@@ -74,7 +74,7 @@ const RepoItem = ({repo, handleAddRepo}) => {
     <li className="add-repo-item">
       <a href="#" onClick={onAddRepo}>
         <div className="repo-name">
-          {repo.owner.name} / {repo.name}
+          {repo.ownerName} / {repo.name}
         </div>
         {
           repo.private ? <span className="label label-warning">private</span> :

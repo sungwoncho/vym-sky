@@ -6,7 +6,7 @@ export const composer = ({context, ownerName, repoName}, onData) => {
   const {Meteor, Collections} = context();
 
   if (Meteor.subscribe('repo', ownerName, repoName).ready()) {
-    let repo = Collections.Repos.findOne({name: repoName, 'owner.name': ownerName});
+    let repo = Collections.Repos.findOne({name: repoName, 'ownerName': ownerName});
 
     onData(null, {repo});
   }

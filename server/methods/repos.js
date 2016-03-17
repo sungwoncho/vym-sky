@@ -122,7 +122,7 @@ export default function () {
 
         let repos = Meteor.wrapAsync(github.repos.getAll)({type: 'owner', page});
 
-        repos.forEach(function (repo) {
+        repos.forEach(repo => {
           console.log(`Saving ${repo.name} for ${user.services.github.username}`);
 
           let repoDoc = {
@@ -131,16 +131,16 @@ export default function () {
             },
             name: repo.name,
             description: repo.description,
-            owner: {
-              _id: user._id,
-              type: 'user',
-              name: repo.owner.login
-            },
+            ownerName: repo.owner.login,
             private: repo.private,
             fork: repo.fork
           };
 
-          Repos.upsert({'meta.id': repo.id}, {$set: repoDoc});
+          if (Repos.find({'meta.id': repo.id}).count() === 1) {
+            Repos.update({'meta.id': repo.id}, {$addToSet: {collaboratorIds: user._id}});
+          } else {
+            Repos.insert(_.assign(repoDoc, {collaboratorIds: [ user._id ]}));
+          }
         });
 
         let nextPage = getNextPage(repos.meta.link);

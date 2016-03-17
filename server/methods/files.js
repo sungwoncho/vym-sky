@@ -20,7 +20,7 @@ export default function () {
       });
 
       let response = Meteor.wrapAsync(github.repos.compareCommits)({
-        user: repo.owner.name,
+        user: repo.ownerName,
         repo: repo.name,
         base: pr.base.sha,
         head: pr.head.sha

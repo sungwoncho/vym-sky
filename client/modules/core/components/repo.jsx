@@ -14,12 +14,12 @@ const Repo = ({repo, currentSection = 'slides', sectionState}) => {
   let repoTabs = [
     {
       name: 'slides',
-      href: pathFor('repo', {repoName: repo.name, ownerName: repo.owner.name})
+      href: pathFor('repo', {repoName: repo.name, ownerName: repo.ownerName})
     },
     {
       name: 'collaborators',
       href: pathFor('repo', {
-        repoName: repo.name, ownerName: repo.owner.name, section: 'collaborators'})
+        repoName: repo.name, ownerName: repo.ownerName, section: 'collaborators'})
     }
   ];
   let CurrentSection = sectionMapping[currentSection];
@@ -31,7 +31,7 @@ const Repo = ({repo, currentSection = 'slides', sectionState}) => {
           <div className="info-container">
             <div className="info">
               <div className="repo-name pull-sm-left">
-                <a href={pathFor('repo', {repoName: repo.name, ownerName: repo.owner.name})}>
+                <a href={pathFor('repo', {repoName: repo.name, ownerName: repo.ownerName})}>
                   {repo.getFullName()}
                 </a>
               </div>

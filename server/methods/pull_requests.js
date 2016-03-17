@@ -26,7 +26,7 @@ export default function() {
       });
 
       let options = {
-        user: repo.owner.name,
+        user: repo.ownerName,
         repo: repo.name,
         number: prNumber
       };
@@ -67,7 +67,7 @@ export default function() {
       });
 
       github.pullRequests.getAll({
-        user: repo.owner.name,
+        user: repo.ownerName,
         repo: repo.name,
         state: 'all'
       }, Meteor.bindEnvironment(function (err, prs) {
@@ -114,7 +114,7 @@ export default function() {
 
       github.pullRequests.get({
         headers: {Accept: 'application/vnd.github.VERSION.diff'},
-        user: repo.owner.name,
+        user: repo.ownerName,
         repo: repo.name,
         number: pr.number
       }, Meteor.bindEnvironment(function (err, rawDiff) {

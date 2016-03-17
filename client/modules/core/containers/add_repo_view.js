@@ -11,9 +11,9 @@ export const composer = ({context}, onData) => {
     return `${baseUrl}/${githubClientId}`;
   }
 
-  if (Meteor.subscribe('ownedRepos').ready()) {
+  if (Meteor.subscribe('collaboratingRepos').ready()) {
     let repos = Collections.Repos.find({
-      'owner._id': Meteor.userId(),
+      collaboratorIds: Meteor.userId(),
       activated: false
     }).fetch();
     let currentUser = Meteor.user();

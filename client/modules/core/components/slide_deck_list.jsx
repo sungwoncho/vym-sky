@@ -18,7 +18,7 @@ const SlideDeckList = ({slideDecks, repo}) => (
 const NewSlideDeckBtn = ({repo, onShowSlideDeckForm}) => {
   function handleShowSlideDeckForm() {
     if (repo) {
-      onShowSlideDeckForm(repo.owner.name, repo.name);
+      onShowSlideDeckForm(repo.ownerName, repo.name);
     } else {
       onShowSlideDeckForm();
     }

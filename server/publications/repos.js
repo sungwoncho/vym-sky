@@ -3,16 +3,19 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function () {
-  Meteor.publish('ownedRepos', function () {
+  Meteor.publish('collaboratingRepos', function () {
     if (!this.userId) {
       this.ready();
       return;
     }
 
-    return Repos.find({'owner._id': this.userId});
+    return Repos.find({collaboratorIds: this.userId});
   });
 
   Meteor.publish('repo', function (ownerName, repoName) {
-    return Repos.find({'owner.name': ownerName, name: repoName});
+    check(ownerName, String);
+    check(repoName, String);
+
+    return Repos.find({ownerName, name: repoName});
   });
 }

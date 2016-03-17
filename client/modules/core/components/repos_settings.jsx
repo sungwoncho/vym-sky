@@ -43,7 +43,7 @@ const RepoItem = ({repo, toggleActivatedStatus}) => {
     <li className="repo-item row">
       <div className="col-sm-10">
         <span>
-          {repo.owner.name} / {repo.name}
+          {repo.ownerName} / {repo.name}
         </span>
         <p className="repo-item-description">
           {repo.description}

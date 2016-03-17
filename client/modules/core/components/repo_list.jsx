@@ -17,12 +17,12 @@ const RepoList = ({repos}) => (
 
 const RepoItem = ({repo}) => (
   <li className="repo-item">
-    <a href={pathFor('repo', {ownerName: repo.owner.name, repoName: repo.name})}
+    <a href={pathFor('repo', {ownerName: repo.ownerName, repoName: repo.name})}
       className="repo-item-link">
       <div>
         <i className="fa fa-book"></i>
         <div className="repo-name">
-          {repo.owner.name} / {repo.name}
+          {repo.ownerName} / {repo.name}
         </div>
       </div>
     </a>

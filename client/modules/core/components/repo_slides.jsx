@@ -17,7 +17,7 @@ const RepoSlides = ({sectionState, slideDecks, repo}) => (
                 href={
                   pathFor('repo', {
                     repoName: repo.name,
-                    ownerName: repo.owner.name,
+                    ownerName: repo.ownerName,
                     section: 'slides',
                     sectionState: 'new'})
                   }>
