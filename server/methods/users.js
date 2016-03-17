@@ -12,6 +12,12 @@ export default function () {
       check(scopes, Array);
 
       Meteor.users.update(userId, {$set: {scopes}});
+    },
+
+    'users.getCurrentScopes'() {
+      let currentUser = Meteor.user();
+
+      return currentUser.scopes;
     }
   });
 }

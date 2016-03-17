@@ -1,18 +1,32 @@
+import {githubAuth} from '../libs/auth';
+import _ from 'lodash';
+
 export default {
   githubAuth({Meteor, FlowRouter}, {scopes, redirectPath}) {
-    Meteor.loginWithGithub({
-      requestPermissions: scopes
-    }, function (err) {
+    githubAuth({Meteor, FlowRouter}, {scopes, redirectPath});
+  },
+
+  addScope({Meteor, FlowRouter}, {scopeToAdd, redirectPath}) {
+    Meteor.call('users.getCurrentScopes', function (err, oldScopes) {
       if (err) {
-        return console.log(err);
+        return console.log('Error occurred while getting the current scope', err);
       }
 
-      let userId = Meteor.userId();
-      Meteor.call('users.setScopes', userId, scopes);
+      let newScopes = oldScopes;
+      newScopes.push(scopeToAdd);
+      newScopes = _.uniq(newScopes);
+      githubAuth({Meteor, FlowRouter}, {scopes: newScopes, redirectPath});
+    });
+  },
 
-      if (redirectPath) {
-        FlowRouter.go(redirectPath);
+  removeScope({Meteor, FlowRouter}, {scopeToRemove, redirectPath}) {
+    Meteor.call('users.getCurrentScopes', function (err, oldScopes) {
+      if (err) {
+        return console.log('Error occurred while getting the current scope', err);
       }
+
+      let newScopes = _.without(oldScopes, scopeToRemove);
+      githubAuth({Meteor, FlowRouter}, {scopes: newScopes, redirectPath});
     });
   },
 

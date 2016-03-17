@@ -120,7 +120,7 @@ export default function () {
           token: user.services.github.accessToken
         });
 
-        let repos = Meteor.wrapAsync(github.repos.getAll)({type: 'owner', page});
+        let repos = Meteor.wrapAsync(github.repos.getAll)({page, per_page: 50});
 
         repos.forEach(repo => {
           console.log(`Saving ${repo.name} for ${user.services.github.username}`);

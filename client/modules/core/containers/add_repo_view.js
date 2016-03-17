@@ -25,7 +25,8 @@ export const composer = ({context}, onData) => {
 export const depsMapper = (context, actions) => ({
   context: () => context,
   toggleActivatedStatus: actions.repos.toggleActivatedStatus,
-  githubAuth: actions.users.githubAuth,
+  addScope: actions.users.addScope,
+  removeScope: actions.users.removeScope,
   syncRepos: actions.repos.syncRepos
 });
 

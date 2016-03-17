@@ -21,7 +21,7 @@ class AddRepoView extends React.Component {
   }
 
   render() {
-    const {repos, isAddingRepo, githubAuth, currentUser, syncRepos, orgSettingUrl} = this.props;
+    const {repos, isAddingRepo, addScope, removeScope, currentUser, syncRepos, orgSettingUrl} = this.props;
     let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
 
     return (
@@ -32,7 +32,8 @@ class AddRepoView extends React.Component {
             className="form-control"
             placeholder="Search by repo name or owner name"
             onChange={this.updateSearchTerm} />
-          <PrivateRepoToggleBtn githubAuth={githubAuth}
+          <PrivateRepoToggleBtn addScope={addScope}
+            removeScope={removeScope}
             currentScopes={currentUser.scopes} />
           <SyncRepoBtn syncRepos={syncRepos} />
           <div>
@@ -89,17 +90,22 @@ const RepoItem = ({repo, handleAddRepo}) => {
   );
 };
 
-const PrivateRepoToggleBtn = ({githubAuth, currentScopes}) => {
-  function updateAuthScope(scopes, e) {
+const PrivateRepoToggleBtn = ({addScope, removeScope, currentScopes}) => {
+  function handleAddScope(scopeToAdd, e) {
     e.preventDefault();
-    githubAuth({scopes});
+    addScope({scopeToAdd});
+  }
+
+  function handleRemoveScope(scopeToRemove, e) {
+    e.preventDefault();
+    removeScope({scopeToRemove});
   }
 
   if (_.includes(currentScopes, 'repo')) {
     return (
       <a href="#"
         className="btn btn-sm btn-secondary"
-        onClick={updateAuthScope.bind(this, [ 'public_repo' ])}>
+        onClick={handleRemoveScope.bind(this, 'repo')}>
         <i className="fa fa-lock"></i> Exclude private repos
       </a>
     );
@@ -107,7 +113,7 @@ const PrivateRepoToggleBtn = ({githubAuth, currentScopes}) => {
     return (
       <a href="#"
         className="btn btn-sm btn-secondary"
-        onClick={updateAuthScope.bind(this, [ 'repo' ])}>
+        onClick={handleAddScope.bind(this, 'repo')}>
         <i className="fa fa-lock"></i> Include private repos
       </a>
     );
@@ -152,6 +158,6 @@ class SyncRepoBtn extends React.Component {
       );
     }
   }
-};
+}
 
 export default AddRepoView;
