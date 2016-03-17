@@ -9,7 +9,9 @@ export default function () {
 
     let options = {
       fields: {
-        'services.github.username': 1
+        'services.github.username': 1,
+        reposLastSyncedAt: 1,
+        scopes: 1
       }
     };
 

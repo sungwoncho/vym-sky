@@ -7,16 +7,20 @@ export const composer = ({context}, onData) => {
 
   if (Meteor.subscribe('ownedRepos').ready()) {
     let repos = Collections.Repos.find({
-      'owner._id': Meteor.userId()
+      'owner._id': Meteor.userId(),
+      activated: false
     }).fetch();
+    let currentUser = Meteor.user();
 
-    onData(null, {repos});
+    onData(null, {repos, currentUser});
   }
 };
 
 export const depsMapper = (context, actions) => ({
   context: () => context,
-  toggleActivatedStatus: actions.repos.toggleActivatedStatus
+  toggleActivatedStatus: actions.repos.toggleActivatedStatus,
+  githubAuth: actions.users.githubAuth,
+  syncRepos: actions.repos.syncRepos
 });
 
 export default composeAll(

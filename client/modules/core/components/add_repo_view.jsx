@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
+import moment from 'moment';
 
 class AddRepoView extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class AddRepoView extends React.Component {
   }
 
   render() {
-    const {repos, isAddingRepo} = this.props;
+    const {repos, isAddingRepo, githubAuth, currentUser, syncRepos} = this.props;
     let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
 
     return (
@@ -31,6 +32,13 @@ class AddRepoView extends React.Component {
             className="form-control"
             placeholder="Search by repo name or owner name"
             onChange={this.updateSearchTerm} />
+          <PrivateRepoToggleBtn githubAuth={githubAuth}
+            currentScopes={currentUser.scopes} />
+          <SyncRepoBtn syncRepos={syncRepos} />
+          <div>
+            Last synced:
+            {moment(currentUser.reposLastSyncedAt).fromNow()}
+          </div>
         </div>
 
         <ul className="add-repo-list list-unstyled">
@@ -73,6 +81,46 @@ const RepoItem = ({repo, handleAddRepo}) => {
         }
       </a>
     </li>
+  );
+};
+
+const PrivateRepoToggleBtn = ({githubAuth, currentScopes}) => {
+  function updateAuthScope(scopes, e) {
+    e.preventDefault();
+    githubAuth({scopes});
+  }
+
+  if (_.includes(currentScopes, 'repo')) {
+    return (
+      <a href="#"
+        className="btn btn-sm btn-secondary"
+        onClick={updateAuthScope.bind(this, [ 'public_repo' ])}>
+        <i className="fa fa-lock"></i> Exclude private repos
+      </a>
+    );
+  } else {
+    return (
+      <a href="#"
+        className="btn btn-sm btn-secondary"
+        onClick={updateAuthScope.bind(this, [ 'repo' ])}>
+        <i className="fa fa-lock"></i> Include private repos
+      </a>
+    );
+  }
+};
+
+const SyncRepoBtn = ({syncRepos}) => {
+  function handleSyncRepos(e) {
+    e.preventDefault();
+    syncRepos();
+  }
+
+  return (
+    <a href="#"
+      className="btn btn-sm btn-secondary"
+      onClick={handleSyncRepos}>
+      <i className="fa fa-refresh"></i> Sync
+    </a>
   );
 };
 

@@ -8,7 +8,7 @@ export const composer = ({context}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-  login: actions.users.login,
+  githubAuth: actions.users.githubAuth,
   context: () => context
 });
 

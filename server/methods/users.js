@@ -1,6 +1,7 @@
 import GithubAPI from 'github';
 import {check} from 'meteor/check';
 import {Repos} from '/lib/collections';
+import {Meteor} from 'meteor/meteor';
 
 let github = new GithubAPI({version: '3.0.0'});
 
@@ -16,8 +17,8 @@ export default function () {
 
       github.repos.getAll({
         type: 'owner',
-        page: page
-      }, Meteor.bindEnvironment(function (err, repos) {
+        page
+      }, Meteor.bindEnvironment((err, repos) => {
         if (err) {
           return console.log(err);
         }
@@ -56,8 +57,19 @@ export default function () {
         let nextPage = getNextPage(repos.meta.link);
         if (nextPage) {
           Meteor.call('users.syncRepos', nextPage);
+        } else {
+          // Update the timestamp for syncing repo
+          console.log('Updating reposLastSyncedAt for', this.userId);
+          Meteor.users.update(this.userId, {$set: {reposLastSyncedAt: new Date()}});
         }
       }));
+    },
+
+    'users.setScopes'(userId, scopes) {
+      check(userId, String);
+      check(scopes, Array);
+
+      Meteor.users.update(userId, {$set: {scopes}});
     }
   });
 }

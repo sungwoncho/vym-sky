@@ -1,13 +1,18 @@
 export default {
-  login({Meteor, FlowRouter}) {
+  githubAuth({Meteor, FlowRouter}, {scopes, redirectPath}) {
     Meteor.loginWithGithub({
-      requestPermissions: ['public_repo']
+      requestPermissions: scopes
     }, function (err) {
       if (err) {
         return console.log(err);
       }
 
-      FlowRouter.go('dashboard');
+      let userId = Meteor.userId();
+      Meteor.call('users.setScopes', userId, scopes);
+
+      if (redirectPath) {
+        FlowRouter.go(redirectPath);
+      }
     });
   },
 
