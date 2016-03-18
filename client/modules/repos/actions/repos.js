@@ -9,7 +9,7 @@ export default {
   getReposToAdd({Meteor, Collections}, page = 1, done) {
     Meteor.call('repos.getAll', page, function (err, res) {
       res.repos.forEach(function (repo) {
-        Collections.ReposToAdd.insert(repo);
+        Collections.ReposToAdd.upsert({'meta.id': repo.meta.id}, repo);
       });
 
       if (done) {

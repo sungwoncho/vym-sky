@@ -1,6 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
+import Promise from 'bluebird';
+
+Promise.config({cancellation: true});
 
 class AddRepoView extends React.Component {
   constructor(props) {
@@ -13,9 +16,22 @@ class AddRepoView extends React.Component {
 
   componentDidMount() {
     const {getReposToAdd} = this.props;
-    getReposToAdd(1, (err, nextPage) => {
+    this.fetchInitialRepos = new Promise(function (resolve, reject) {
+      getReposToAdd(1, (err, nextPage) => {
+        if (err) {
+          return reject(err);
+        }
+
+        resolve(nextPage);
+      });
+    })
+    .then((nextPage) => {
       this.setState({nextPage});
     });
+  }
+
+  componentWillUnmount() {
+    this.fetchInitialRepos.cancel();
   }
 
   handleAddRepo(repo) {
