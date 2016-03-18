@@ -2,11 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const PullRequestList = (
-  {repo, pullRequests, onSelectPullRequest, syncPullRequests, selectedPr}) => {
-  function handleSyncPullRequests(e) {
-    e.preventDefault();
-    syncPullRequests(repo._id);
-  }
+  {pullRequests, onSelectPullRequest, selectedPr}) => {
 
   return (
     <div>
@@ -24,10 +20,6 @@ const PullRequestList = (
           })
         }
       </ul>
-      <small>
-        Can't find your pull request? <a href="#"
-         onClick={handleSyncPullRequests}>Sync with GitHub</a>.
-      </small>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import React from 'react';
+import Promise from 'bluebird';
 
 import PullRequestsList from '../containers/pull_requests_list';
+
+Promise.config({cancellation: true});
 
 class NewSlideForm extends React.Component {
   constructor(props) {
@@ -8,6 +11,26 @@ class NewSlideForm extends React.Component {
     this.state = {targetPullRequest: null};
     this.handleSelectPullRequest = this.handleSelectPullRequest.bind(this);
     this.handleCreateDeck = this.handleCreateDeck.bind(this);
+  }
+
+  componentDidMount() {
+    const {repo, getPullRequests} = this.props;
+    this.fetchInitialPrs = new Promise(function (resolve, reject) {
+      getPullRequests(repo.ownerName, repo.name, 1, (err, nextPage) => {
+        if (err) {
+          return reject(err);
+        }
+
+        resolve(nextPage);
+      });
+    })
+    .then((nextPage) => {
+      this.setState({nextPage});
+    });
+  }
+
+  componentWillUnmount() {
+    this.fetchInitialPrs.cancel();
   }
 
   handleSelectPullRequest(pr) {
@@ -32,7 +55,7 @@ class NewSlideForm extends React.Component {
   }
 
   render() {
-    let {repo} = this.props;
+    let {pullRequests} = this.props;
 
     function getFullTitle(pr) {
       if (pr) {
@@ -76,7 +99,7 @@ class NewSlideForm extends React.Component {
                 </small>
               </fieldset>
 
-              <PullRequestsList repo={repo}
+              <PullRequestsList pullRequests={pullRequests}
                 onSelectPullRequest={this.handleSelectPullRequest}
                 selectedPr={this.state.targetPullRequest} />
             </div>
