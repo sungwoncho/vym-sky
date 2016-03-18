@@ -18,6 +18,10 @@ export default {
     });
   },
 
+  clearReposToAdd({Collections}) {
+    Collections.ReposToAdd.remove({});
+  },
+
   addRepo({Meteor, Collections}, repo) {
     Meteor.call('repos.add', repo);
     Collections.ReposToAdd.update({'meta.id': repo.meta.id}, {$set: {added: true}});

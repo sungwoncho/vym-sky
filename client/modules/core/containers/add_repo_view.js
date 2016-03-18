@@ -29,7 +29,8 @@ export const depsMapper = (context, actions) => ({
   addScope: actions.users.addScope,
   removeScope: actions.users.removeScope,
   syncRepos: actions.repos.syncRepos,
-  getReposToAdd: actions.repos.getReposToAdd
+  getReposToAdd: actions.repos.getReposToAdd,
+  clearReposToAdd: actions.repos.clearReposToAdd
 });
 
 export default composeAll(

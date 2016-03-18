@@ -31,7 +31,9 @@ class AddRepoView extends React.Component {
   }
 
   componentWillUnmount() {
+    const {clearReposToAdd} = this.props;
     this.fetchInitialRepos.cancel();
+    clearReposToAdd();
   }
 
   handleAddRepo(repo) {
