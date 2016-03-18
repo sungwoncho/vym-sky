@@ -1,27 +1,47 @@
 import React from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
-import moment from 'moment';
 
 class AddRepoView extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddRepo = this.handleAddRepo.bind(this);
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    this.updateNextPage = this.updateNextPage.bind(this);
     this.state = {searchTerm: ''};
   }
 
+  componentDidMount() {
+    const {getReposToAdd} = this.props;
+    getReposToAdd(1, (err, nextPage) => {
+      this.setState({nextPage});
+    });
+  }
+
   handleAddRepo(repo) {
-    const {toggleActivatedStatus} = this.props;
-    toggleActivatedStatus(repo._id);
+    const {addRepo} = this.props;
+    addRepo(repo);
   }
 
   updateSearchTerm() {
     this.setState({searchTerm: this.refs.repoSearchTerm.value});
   }
 
+  updateNextPage(nextPage) {
+    this.setState({nextPage});
+  }
+
   render() {
-    const {repos, isAddingRepo, addScope, removeScope, currentUser, syncRepos, orgSettingUrl} = this.props;
+    const {
+      reposToAdd,
+      isAddingRepo,
+      addScope,
+      removeScope,
+      currentUser,
+      getReposToAdd,
+      orgSettingUrl
+    } = this.props;
+
     let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
 
     return (
@@ -35,21 +55,23 @@ class AddRepoView extends React.Component {
           <PrivateRepoToggleBtn addScope={addScope}
             removeScope={removeScope}
             currentScopes={currentUser.scopes} />
-          <SyncRepoBtn syncRepos={syncRepos} />
+          {
+            this.state.nextPage ?
+            <LoadMoreButton getReposToAdd={getReposToAdd}
+              nextPage={this.state.nextPage}
+              updateNextPage={this.updateNextPage} /> :
+            <span></span>
+          }
           <div>
             Missing an org? Add it <a href={orgSettingUrl} target="_blank">
               here
             </a>
           </div>
-          <div>
-            Last synced:
-            {moment(currentUser.reposLastSyncedAt).fromNow()}
-          </div>
         </div>
 
         <ul className="add-repo-list list-unstyled">
           {
-            repos.filter(repo => {
+            reposToAdd.filter(repo => {
               let searchRegex = new RegExp(_.escapeRegExp(this.state.searchTerm), 'i');
               return searchRegex.test(repo.name) ||
                      searchRegex.test(repo.ownerName);
@@ -120,32 +142,30 @@ const PrivateRepoToggleBtn = ({addScope, removeScope, currentScopes}) => {
   }
 };
 
-class SyncRepoBtn extends React.Component {
+class LoadMoreButton extends React.Component {
   constructor(props) {
     super(props);
     this.handleSyncRepos = this.handleSyncRepos.bind(this);
-    this.state = {isSyncing: false};
+    this.state = {isLoading: false};
   }
 
   handleSyncRepos(e) {
     e.preventDefault();
-    const {syncRepos} = this.props;
-    this.setState({isSyncing: true});
-    syncRepos((err, res) => {
-      console.log('result', res);
-      if (err) {
-        console.error(err);
-      }
-      this.setState({isSyncing: false});
+    const {getReposToAdd, nextPage, updateNextPage} = this.props;
+    this.setState({isLoading: true});
+    getReposToAdd(nextPage, (err, newNextPage) => {
+      this.setState({isLoading: false});
+
+      updateNextPage(newNextPage);
     });
   }
 
   render() {
-    if (this.state.isSyncing) {
+    if (this.state.isLoading) {
       return (
         <a href="#"
           className="btn btn-sm btn-secondary disabled">
-          <i className="fa fa-spinner fa-spin"></i>
+          <i className="fa fa-spinner fa-spin"></i> Loading...
         </a>
       );
     } else {
@@ -153,7 +173,7 @@ class SyncRepoBtn extends React.Component {
         <a href="#"
           className="btn btn-sm btn-secondary"
           onClick={this.handleSyncRepos}>
-          <i className="fa fa-refresh"></i> Sync
+          <i className="fa fa-refresh"></i> Load more
         </a>
       );
     }

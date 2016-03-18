@@ -11,23 +11,25 @@ export const composer = ({context}, onData) => {
     return `${baseUrl}/${githubClientId}`;
   }
 
-  if (Meteor.subscribe('collaboratingRepos').ready()) {
-    let repos = Collections.Repos.find({
-      collaboratorIds: Meteor.userId(),
-      activated: false
-    }).fetch();
-    let currentUser = Meteor.user();
+  let currentUser = Meteor.user();
+  let reposToAdd = Collections.ReposToAdd.find({added: false}).fetch();
 
-    onData(null, {repos, currentUser, orgSettingUrl: getOrgSettingUrl()});
-  }
+  onData(null, {
+    currentUser,
+    reposToAdd,
+    orgSettingUrl: getOrgSettingUrl()
+  });
+
 };
 
 export const depsMapper = (context, actions) => ({
   context: () => context,
   toggleActivatedStatus: actions.repos.toggleActivatedStatus,
+  addRepo: actions.repos.addRepo,
   addScope: actions.users.addScope,
   removeScope: actions.users.removeScope,
-  syncRepos: actions.repos.syncRepos
+  syncRepos: actions.repos.syncRepos,
+  getReposToAdd: actions.repos.getReposToAdd
 });
 
 export default composeAll(

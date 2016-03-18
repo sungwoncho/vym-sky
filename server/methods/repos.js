@@ -21,6 +21,20 @@ export default function () {
       Repos.update(repoId, {$set: {activated: !repo.activated}});
     },
 
+    /**
+     * @param {Object} repo - repo object originally created by 'repos.getAll'
+     */
+    'repos.add'(repo) {
+      check(repo, Object);
+
+      if (Repos.find({'meta.id': repo.meta.id}).count() === 0) {
+        let repoDoc = _.assign(repo, {collaboratorIds: [ this.userId ]});
+        Repos.insert(repoDoc);
+      } else {
+        Repos.update({'meta.id': repo.meta.id}, {$addToSet: {collaboratorIds: this.userId }});
+      }
+    },
+
     'repos.createWebhook'(repoId) {
       check(repoId, String);
 
@@ -109,51 +123,39 @@ export default function () {
     },
 
     /**
-     * @return {Boolean} - returns true if successfully synced all repos
+     * @return {Object} repoInfo
+     * @return {Object[]} repoInfo.repos
+     * @return {Number} repoInfo.nextPage
      */
-    'repos.syncForUser'() {
+    'repos.getAll'(page = 1) {
       let user = Meteor.users.findOne(this.userId);
 
-      function fetchAndSaveUserRepo({page = 1}) {
-        github.authenticate({
-          type: 'oauth',
-          token: user.services.github.accessToken
-        });
+      github.authenticate({
+        type: 'oauth',
+        token: user.services.github.accessToken
+      });
 
-        let repos = Meteor.wrapAsync(github.repos.getAll)({page, per_page: 50});
+      let repos = Meteor.wrapAsync(github.repos.getAll)({page, per_page: 50});
+      let link = repos.meta.link;
 
-        repos.forEach(repo => {
-          console.log(`Saving ${repo.name} for ${user.services.github.username}`);
-
-          let repoDoc = {
-            meta: {
-              id: repo.id,
-            },
-            name: repo.name,
-            description: repo.description,
-            ownerName: repo.owner.login,
-            private: repo.private,
-            fork: repo.fork
-          };
-
-          if (Repos.find({'meta.id': repo.id}).count() === 1) {
-            Repos.update({'meta.id': repo.id}, {$addToSet: {collaboratorIds: user._id}});
-          } else {
-            Repos.insert(_.assign(repoDoc, {collaboratorIds: [ user._id ]}));
-          }
-        });
-
-        let nextPage = getNextPage(repos.meta.link);
-        if (nextPage) {
-          fetchAndSaveUserRepo({page: nextPage});
+      repos = repos.map(repo => (
+        {
+          meta: {
+            id: repo.id,
+          },
+          name: repo.name,
+          description: repo.description,
+          ownerName: repo.owner.login,
+          private: repo.private,
+          fork: repo.fork,
+          added: Repos.find({'meta.id': repo.id}).count() !== 0
         }
-      }
+      ));
 
-      fetchAndSaveUserRepo({page: 1});
-
-      console.log('Updating reposLastSyncedAt for', this.userId);
-      Meteor.users.update(this.userId, {$set: {reposLastSyncedAt: new Date()}});
-      return true;
+      return {
+        repos,
+        nextPage: getNextPage(link)
+      };
     }
 
   });

@@ -3,7 +3,7 @@ import {useDeps, composeAll,compose,  composeWithTracker} from 'mantra-core';
 import Wizard from '../components/wizard.jsx';
 
 export const composer = ({context, slideDeckUid, currentSlideNumber}, onData) => {
-  const {Meteor, Collections, FlowRouter} = context();
+  const {Meteor, Collections} = context();
 
   if (Meteor.subscribe('slideDeck', slideDeckUid).ready()) {
     const slideDeck = Collections.SlideDecks.findOne({uid: slideDeckUid});
