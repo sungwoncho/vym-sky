@@ -1,11 +1,4 @@
 export default {
-  syncRepos({Meteor}, done) {
-    Meteor.call('repos.getAll', 1, (err, res) => {
-      console.log('this is res', res);
-      done(err, res);
-    });
-  },
-
   getReposToAdd({Meteor, Collections}, page = 1, done) {
     Meteor.call('repos.getAll', page, function (err, res) {
       res.repos.forEach(function (repo) {

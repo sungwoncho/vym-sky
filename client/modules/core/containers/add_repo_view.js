@@ -28,7 +28,6 @@ export const depsMapper = (context, actions) => ({
   addRepo: actions.repos.addRepo,
   addScope: actions.users.addScope,
   removeScope: actions.users.removeScope,
-  syncRepos: actions.repos.syncRepos,
   getReposToAdd: actions.repos.getReposToAdd,
   clearReposToAdd: actions.repos.clearReposToAdd
 });

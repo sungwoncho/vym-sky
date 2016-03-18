@@ -1,18 +1,16 @@
 import React from 'react';
 
-const RepoManagement = ({repos, toggleActivatedStatus, syncRepos}) => {
-  function handleSyncRepos(e) {
-    e.preventDefault();
-    syncRepos();
-  }
+const RepoManagement = ({repos, toggleActivatedStatus}) => {
+  // function handleSyncRepos(e) {
+  //   e.preventDefault();
+  //   syncRepos();
+  // }
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-sm-12">
-          <a href="#" onClick={handleSyncRepos}>Sync</a>
-          <RepoList repos={repos}
-            toggleActivatedStatus={toggleActivatedStatus} />
+
         </div>
       </div>
     </div>

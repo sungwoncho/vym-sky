@@ -163,11 +163,11 @@ const PrivateRepoToggleBtn = ({addScope, removeScope, currentScopes}) => {
 class LoadMoreButton extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSyncRepos = this.handleSyncRepos.bind(this);
+    this.loadMoreRepos = this.loadMoreRepos.bind(this);
     this.state = {isLoading: false};
   }
 
-  handleSyncRepos(e) {
+  loadMoreRepos(e) {
     e.preventDefault();
     const {getReposToAdd, nextPage, updateNextPage} = this.props;
     this.setState({isLoading: true});
@@ -190,7 +190,7 @@ class LoadMoreButton extends React.Component {
       return (
         <a href="#"
           className="btn btn-sm btn-secondary"
-          onClick={this.handleSyncRepos}>
+          onClick={this.loadMoreRepos}>
           <i className="fa fa-refresh"></i> Load more
         </a>
       );
