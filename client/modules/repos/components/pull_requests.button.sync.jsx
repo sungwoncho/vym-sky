@@ -14,6 +14,6 @@ export default React.createClass({
   handleLoad(e) {
     e.preventDefault();
 
-    this.props.syncPullRequests(this.props.repo._id);
+    // this.props.syncPullRequests(this.props.repo._id);
   }
 });

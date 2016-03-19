@@ -14,7 +14,6 @@ export default function () {
       check(ownerName, String);
       check(repoName, String);
       check(prNumber, Number);
-      console.log('getting pr');
       let user = Meteor.users.findOne(this.userId);
 
       github.authenticate({
@@ -29,47 +28,6 @@ export default function () {
       });
 
       return pullRequest;
-    },
-
-    'pullRequests.sync'(repoId) {
-      check(repoId, String);
-
-      let user = Meteor.users.findOne(this.userId);
-      let repo = Repos.findOne(repoId);
-
-      github.authenticate({
-        type: 'oauth',
-        token: user.services.github.accessToken
-      });
-
-      github.pullRequests.getAll({
-        user: repo.ownerName,
-        repo: repo.name,
-        state: 'all'
-      }, Meteor.bindEnvironment(function (err, prs) {
-        if (err) {
-          return console.log('Error while syncing pull requests', err);
-        }
-
-        prs.forEach(function (pr) {
-          let prDoc = {
-            meta: {
-              id: pr.id,
-              createdAt: new Date(pr.created_at),
-              updatedAt: new Date(pr.updated_at)
-            },
-            repoId,
-            number: pr.number,
-            title: pr.title,
-            body: pr.body,
-            head: pr.head,
-            base: pr.base,
-            htmlUrl: pr.html_url
-          };
-
-          PullRequests.upsert({'meta.id': pr.id}, {$set: prDoc});
-        });
-      }));
     },
 
     'pullRequests.getDiff'(prId) {
@@ -134,7 +92,7 @@ export default function () {
           head: pr.head,
           base: pr.base,
           htmlUrl: pr.html_url
-        }
+        };
       });
 
       return {
