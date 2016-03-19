@@ -51,7 +51,7 @@ class NewSlideForm extends React.Component {
       return console.error('Please select pull request');
     }
 
-    createDeck(repo._id, targetPullRequest._id, title);
+    createDeck(repo._id, targetPullRequest.number, title);
   }
 
   render() {

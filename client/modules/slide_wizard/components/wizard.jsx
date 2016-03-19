@@ -9,8 +9,7 @@ import SlideSettings from './slide_settings.jsx';
 export default React.createClass({
   componentDidMount() {
     const {slideDeck, getFiles} = this.props;
-
-    getFiles(slideDeck.prId);
+    getFiles(slideDeck.repo.ownerName, slideDeck.repo.name, slideDeck.prNumber);
   },
 
   getInitialState() {

@@ -10,6 +10,6 @@ export default function () {
     FlowRouter,
     Collections,
     LocalState: new ReactiveDict(),
-    Tracker
+    Tracker,
   };
 }

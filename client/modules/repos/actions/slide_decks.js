@@ -1,7 +1,7 @@
 export default {
-  createSlideDeck({Meteor, FlowRouter}, repoId, prId, title) {
+  createSlideDeck({Meteor, FlowRouter}, repoId, prNumber, title) {
     let sdDoc = {
-      prId,
+      prNumber,
       repoId,
       title,
       ownerId: Meteor.userId()
@@ -12,7 +12,7 @@ export default {
         return console.log('error while creating slideDeck', err);
       }
 
-      FlowRouter.go('slide_deck.wizard', {slideDeckUid: slideDeckUid});
+      FlowRouter.go('slide_deck.wizard', {slideDeckUid});
     });
   }
 };

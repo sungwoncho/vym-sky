@@ -1,4 +1,5 @@
 import {FlowRouter} from 'meteor/kadira:flow-router';
+import {Meteor} from 'meteor/meteor';
 
 export function pathFor (pathName, params) {
   let query = params && params.query ? FlowRouter._qs.parse( params.query ) : {};

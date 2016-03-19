@@ -8,16 +8,13 @@ import {getNextPage} from '../libs/repo_utils';
 
 let github = new GithubAPI({version: '3.0.0'});
 
-export default function() {
+export default function () {
   Meteor.methods({
-    'pullRequests.getOne'(repoId, prNumber) {
-      check(repoId, String);
+    'pullRequests.getOne'(ownerName, repoName, prNumber) {
+      check(ownerName, String);
+      check(repoName, String);
       check(prNumber, Number);
-
-      let repo = Repos.findOne(repoId);
-      if (!repo) {
-        return console.log('Invalid repo');
-      }
+      console.log('getting pr');
       let user = Meteor.users.findOne(this.userId);
 
       github.authenticate({
@@ -25,34 +22,13 @@ export default function() {
         token: user.services.github.accessToken
       });
 
-      let options = {
-        user: repo.ownerName,
-        repo: repo.name,
+      let pullRequest = Meteor.wrapAsync(github.pullRequests.get)({
+        user: ownerName,
+        repo: repoName,
         number: prNumber
-      };
+      });
 
-      github.pullRequests.get(options, Meteor.bindEnvironment(function (err, pr) {
-        if (err) {
-          console.log(`Error while getting pull requests for ${repo.name}`);
-          return console.log(err);
-        }
-
-        let prDoc = {
-          meta: {
-            id: pr.id,
-            createdAt: new Date(pr.created_at),
-            updatedAt: pr.updated_at ? new Date(pr.updated_at) : null
-          },
-          repoId: repo._id,
-          number: pr.number,
-          title: pr.title,
-          body: pr.body,
-          head: pr.head,
-          base: pr.base
-        };
-
-        PullRequests.upsert({'meta.id': pr.id}, {$set: prDoc});
-      }));
+      return pullRequest;
     },
 
     'pullRequests.sync'(repoId) {

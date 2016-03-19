@@ -9,9 +9,7 @@ let github = new GithubAPI({version: '3.0.0'});
 
 export default function () {
   Meteor.methods({
-    'files.getAll'(pullRequestId) {
-      let pr = PullRequests.findOne(pullRequestId);
-      let repo = Repos.findOne(pr.repoId);
+    'files.getAll'(ownerName, repoName, prNumber) {
       let user = Meteor.users.findOne(this.userId);
 
       github.authenticate({
@@ -19,11 +17,17 @@ export default function () {
         token: user.services.github.accessToken
       });
 
+      let pullRequest = Meteor.wrapAsync(github.pullRequests.get)({
+        user: ownerName,
+        repo: repoName,
+        number: prNumber
+      });
+
       let response = Meteor.wrapAsync(github.repos.compareCommits)({
-        user: repo.ownerName,
-        repo: repo.name,
-        base: pr.base.sha,
-        head: pr.head.sha
+        user: ownerName,
+        repo: repoName,
+        base: pullRequest.base.sha,
+        head: pullRequest.head.sha
       });
 
       let files = response.files;
@@ -31,7 +35,6 @@ export default function () {
         if (file.patch) {
           file.patch = parseDiff(file.patch);
         }
-        file.prId = pullRequestId;
       });
 
       return files;

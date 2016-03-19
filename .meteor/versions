@@ -20,7 +20,6 @@ caching-compiler@1.0.1-beta.11
 caching-html-compiler@1.0.3-beta.11
 callback-hook@1.0.5-beta.11
 check@1.1.1-beta.11
-vym:bootstrap@0.0.1
 coffeescript@1.0.12-beta.11
 cosmos:browserify@0.9.3
 dburles:collection-helpers@1.0.4
@@ -90,5 +89,6 @@ tracker@1.0.10-beta.11
 ui@1.0.8
 underscore@1.0.5-beta.11
 url@1.0.6-beta.11
+vym:bootstrap@0.0.1
 webapp@1.2.5-beta.11
 webapp-hashing@1.0.6-beta.11

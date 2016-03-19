@@ -6,8 +6,8 @@ export const composer = ({context, slideDeckUid, currentSlideNumber}, onData) =>
   const {Meteor, Collections} = context();
 
   if (Meteor.subscribe('slideDeck', slideDeckUid).ready()) {
-    const slideDeck = Collections.SlideDecks.findOne({uid: slideDeckUid});
-    const files = Collections.Files.find({prId: slideDeck.prId}).fetch();
+    let slideDeck = Collections.SlideDecks.findOne({uid: slideDeckUid});
+    let files = Collections.Files.find().fetch();
 
     onData(null, {
       slideDeck,
