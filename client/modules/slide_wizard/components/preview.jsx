@@ -33,6 +33,7 @@ export default React.createClass({
 
       return (
         <li key={index}>
+          {slide.number}
           <Thumbnail width="200"
             height="200"
             pageWidth="900"

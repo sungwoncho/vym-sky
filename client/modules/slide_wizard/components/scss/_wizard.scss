@@ -1,0 +1,31 @@
+.wz-layout {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.wz-topbar {
+  flex: 0 1 auto;
+
+  a {
+    color: inherit;
+
+     &:hover {
+       text-decoration: none;
+     }
+  }
+}
+
+.wz-content {
+  flex: 1 1 auto;
+  display: flex;
+
+  .wz-content-container {
+    flex: 1 1 auto;
+    display: flex;
+
+    .wz-content-box {
+      flex: 1 0;
+    }
+  }
+}

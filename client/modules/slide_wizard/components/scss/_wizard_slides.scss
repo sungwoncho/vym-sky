@@ -1,5 +1,6 @@
 .slide-container {
   max-height: calc(100vh - #{$navbar-height});
+  background-color: $wz-toolbar-color;
 }
 
 .slide-menu-bar {

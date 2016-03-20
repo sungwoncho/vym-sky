@@ -1,11 +1,9 @@
 import React from 'react';
 
 import Preview from './preview.jsx';
-import SlideMenu from './slide_menu.jsx';
 import Slide from '/client/modules/slide_engine/components/slide.jsx';
-import SlideAction from './slide_action.jsx';
-import SlideSettings from './slide_settings.jsx';
 import Header from './header.jsx';
+import Toolbar from '../containers/toolbar';
 
 export default React.createClass({
   componentDidMount() {
@@ -25,53 +23,27 @@ export default React.createClass({
     const currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
     return (
-      <div>
-        <Header slideDeck={slideDeck} />
-        <div className="wizard container-fluid">
-          <div className="row">
-            <div className="col-sm-2 preview-section">
-              <div className="row">
-                <div className="col-sm-12 action-bar">
-                  <SlideAction addSlide={addSlide}
-                    removeSlide={removeSlide}
-                    slideDeck={slideDeck}
-                    currentSlideNumber={currentSlideNumber} />
-                </div>
+      <div className="wz-layout">
+        <div className="wz-topbar">
+          <Header slideDeck={slideDeck} />
+          <Toolbar />
+        </div>
+        <div className="wz-content">
+          <div className="container-fluid wz-content-container">
+            <div className="row wz-content-box">
+              <div className="col-sm-2 preview-section">
+                <Preview slides={slideDeck.slides}
+                  showSlide={showSlide}
+                  onThumbnailMove={this.onThumbnailMove}
+                  currentSlideNumber={currentSlideNumber}
+                  ctx={this.props.context} />
               </div>
-              <div className="row">
-                <div className="col-sm-12 preview-container">
-                  <Preview slides={slideDeck.slides}
-                    showSlide={showSlide}
-                    onThumbnailMove={this.onThumbnailMove}
-                    currentSlideNumber={currentSlideNumber}
-                    ctx={this.props.context} />
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-10 slide-container">
-              <div className="row">
-                <div className="col-sm-12 slide-menu-bar">
-                  <SlideMenu currentSlide={currentSlide}
-                    currentSlideNumber={currentSlideNumber}
-                    handleToggleSetting={this.handleToggleSetting} />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-12 slide-settings-container">
-                  <SlideSettings slide={currentSlide}
-                    showing={this.state.showSlideSettings}
-                    updateSlide={updateSlide}
-                    slideDeckId={slideDeck._id} />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-12">
-                  <Slide editMode={true}
-                    slide={currentSlide}
-                    scale={1.2}
-                    files={files}
-                    slideDeckId={slideDeck._id}/>
-                </div>
+              <div className="col-sm-10 slide-container">
+                <Slide editMode={true}
+                  slide={currentSlide}
+                  scale={1.2}
+                  files={files}
+                  slideDeckId={slideDeck._id}/>
               </div>
             </div>
           </div>

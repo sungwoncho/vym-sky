@@ -1,24 +1,11 @@
-.navbar-wizard {
-  padding: 0.4rem 1rem;
-  border-bottom: 0.5px solid #989898;
-  background-color: #334554;
-}
-
 .wz-header {
-  height: 60px;
-
-  a {
-    color: inherit;
-
-     &:hover {
-       text-decoration: none;
-     }
-  }
+  overflow: auto;
+  height: 65px;
 }
 
 .wz-branding-container {
   width: 40px;
-  height: 60px;
+  height: 100%;
   background-color: #FFF0B9;
   display: inline-block;
   float: left;
@@ -47,4 +34,27 @@
 
 .wz-actions {
   float: right;
+}
+
+.wz-toolbar {
+  background-color: $wz-toolbar-color;
+  border-bottom: 1px solid $wz-toolbar-border-color;
+}
+
+.wz-toolbar-action-list {
+  list-style: none;
+  margin-bottom: 0;
+
+  .wz-toolbar-action {
+    display: inline-block;
+    padding: 8px 15px;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
