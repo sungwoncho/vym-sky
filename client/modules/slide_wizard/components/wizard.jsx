@@ -5,18 +5,17 @@ import Slide from '/client/modules/slide_engine/components/slide.jsx';
 import Header from './header.jsx';
 import Toolbar from '../containers/toolbar';
 
-export default React.createClass({
+class Wizard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     const {slideDeck, getFiles} = this.props;
     getFiles(slideDeck.repo.ownerName, slideDeck.repo.name, slideDeck.prNumber);
     document.body.classList.add('no-overscroll');
-  },
-
-  getInitialState() {
-    return {
-      showSlideSettings: false
-    };
-  },
+    this.state = {showSlideSettings: false};
+  }
 
   render() {
     const {slideDeck, files, showSlide, currentSlideNumber, addSlide, removeSlide, reorderSlide, updateSlide} = this.props;
@@ -50,7 +49,7 @@ export default React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
   onThumbnailMove(fromSlideNumber, toSlideNumber) {
     if (fromSlideNumber === toSlideNumber) {
@@ -60,9 +59,11 @@ export default React.createClass({
     const {slideDeck, reorderSlide} = this.props;
 
     reorderSlide(slideDeck._id, fromSlideNumber, toSlideNumber);
-  },
+  }
 
   handleToggleSetting() {
     this.setState({showSlideSettings: !this.state.showSlideSettings});
   }
-});
+}
+
+export default Wizard;
