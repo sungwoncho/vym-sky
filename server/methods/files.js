@@ -10,6 +10,10 @@ let github = new GithubAPI({version: '3.0.0'});
 export default function () {
   Meteor.methods({
     'files.getAll'(ownerName, repoName, prNumber) {
+      check(ownerName, String);
+      check(repoName, String);
+      check(prNumber, Number);
+
       let user = Meteor.users.findOne(this.userId);
 
       github.authenticate({

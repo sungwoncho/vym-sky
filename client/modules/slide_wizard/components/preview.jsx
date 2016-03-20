@@ -32,10 +32,9 @@ export default React.createClass({
       let isActive = currentSlideNumber === slide.number;
 
       return (
-        <li key={index}>
+        <li key={index} className="thumbnail-item">
           {slide.number}
-          <Thumbnail width="200"
-            height="200"
+          <Thumbnail
             pageWidth="900"
             pageHeight="1440"
             showSlide={showSlide}

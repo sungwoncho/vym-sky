@@ -1,8 +1,8 @@
 {
-  "githubClientSecret": "2ffbac0340db21927a87cfda46e2b5f1baabf422",
+  "githubClientSecret": "85f0b83fc6674c9d5a1fc3cecdc02284905648ec",
   "githubWebhookSecret": "mockGithubWebhookSecret",
   "public": {
-    "githubClientId": "296b36c525caa0af73f8",
+    "githubClientId": "18e0532390c89ccea8e4",
     "githubWebhookPayloadUrl": "http://127.0.0.1:3000/webhook"
   }
 }

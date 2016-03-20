@@ -8,13 +8,14 @@ import Toolbar from '../containers/toolbar';
 class Wizard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {showSlideSettings: false};
+    this.onThumbnailMove = this.onThumbnailMove.bind(this);
   }
 
   componentDidMount() {
     const {slideDeck, getFiles} = this.props;
     getFiles(slideDeck.repo.ownerName, slideDeck.repo.name, slideDeck.prNumber);
     document.body.classList.add('no-overscroll');
-    this.state = {showSlideSettings: false};
   }
 
   render() {
@@ -38,11 +39,13 @@ class Wizard extends React.Component {
                   ctx={this.props.context} />
               </div>
               <div className="col-sm-10 slide-container">
-                <Slide editMode={true}
-                  slide={currentSlide}
-                  scale={1.2}
-                  files={files}
-                  slideDeckId={slideDeck._id}/>
+                <div className="wz-slide">
+                  <Slide editMode={true}
+                    slide={currentSlide}
+                    scale={1.5}
+                    files={files}
+                    slideDeckId={slideDeck._id}/>
+                </div>
               </div>
             </div>
           </div>

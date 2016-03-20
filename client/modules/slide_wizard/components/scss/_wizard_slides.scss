@@ -1,6 +1,12 @@
 .slide-container {
-  max-height: calc(100vh - #{$navbar-height});
   background-color: $wz-toolbar-color;
+  display: flex;
+  padding: 3em 4em;
+
+  .wz-slide {
+    flex: 1;
+    background-color: #fff;
+  }
 }
 
 .slide-menu-bar {
