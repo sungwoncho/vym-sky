@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import WizardLayout from './components/layouts.wizard.jsx';
+import WizardLayout from './components/wizard_layout.jsx';
 import Wizard from './containers/wizard';
 
 export default function (injectDeps, {FlowRouter}) {
