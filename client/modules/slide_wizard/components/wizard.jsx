@@ -19,14 +19,14 @@ class Wizard extends React.Component {
   }
 
   render() {
-    const {slideDeck, files, showSlide, currentSlideNumber, addSlide, removeSlide, reorderSlide, updateSlide} = this.props;
+    const {slideDeck, files, showSlide, currentSlideNumber} = this.props;
     const currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
     return (
       <div className="wz-layout">
         <div className="wz-topbar">
           <Header slideDeck={slideDeck} />
-          <Toolbar />
+          <Toolbar slideDeck={slideDeck} currentSlideNumber={currentSlideNumber} />
         </div>
         <div className="wz-content">
           <div className="container-fluid wz-content-container">

@@ -7,7 +7,9 @@ export const composer = ({context}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-  context: () => context
+  context: () => context,
+  addSlide: actions.slideDecks.addSlide,
+  removeSlide: actions.slideDecks.removeSlide,
 });
 
 export default composeAll(

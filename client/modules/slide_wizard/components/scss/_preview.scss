@@ -3,12 +3,8 @@
   background-color: $wz-toolbar-color;
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-.preview-container {
-  margin-top: 65px;
-  height: calc(100vh - #{$navbar-height} - 65px);
   overflow-y: scroll;
+
 }
 
 .action-bar {
