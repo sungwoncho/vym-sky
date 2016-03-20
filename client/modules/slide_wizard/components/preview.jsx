@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Slide from '/client/modules/slide_engine/components/slide.jsx';
-import Thumbnail from './preview.thumbnail.jsx';
+import Thumbnail from './thumbnail.jsx';
 import SortableMixin from 'sortablejs/react-sortable-mixin';
 
 export default React.createClass({

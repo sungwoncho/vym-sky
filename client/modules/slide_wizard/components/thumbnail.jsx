@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
 import classNames from 'classnames';
 import _ from 'lodash';
 
-export default React.createClass({
-  propTypes: {
-    children: React.PropTypes.object.isRequired // Nested component
-  },
+class Thumbnail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.navigateToSlide = this.navigateToSlide.bind(this);
+  }
 
   componentWillMount() {
     // Keep track of children props to compare with new children props later
@@ -18,25 +18,25 @@ export default React.createClass({
     // Rendering iframe content within this.render() with 'srcDoc' attribute
     // Causes errors because we are injecting dependencies in Mantra
     this.setState({childrenProps: this.props.children.props});
-  },
+  }
 
   componentDidMount() {
     this.renderIframeContent();
-  },
+  }
 
   shouldComponentUpdate(nextProps) {
-    if (! _.isEqual(nextProps.children.props.slide, this.props.children.props.slide)) {
+    if (!_.isEqual(nextProps.children.props.slide, this.props.children.props.slide)) {
       this.renderIframeContent(nextProps);
     }
     return true;
-  },
+  }
 
   render() {
-    const {children, isActive, slideNumber} = this.props;
+    const {isActive, slideNumber} = this.props;
 
     let thumbnailClass = classNames({
       'thumbnail-wrapper': true,
-      'active': isActive,
+      active: isActive,
       [`thumbnail-slide-${slideNumber}`]: true
     });
 
@@ -45,7 +45,7 @@ export default React.createClass({
         <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );
-  },
+  }
 
   /**
    * @params [newProps] - if passed, the method will look for children in newProps
@@ -69,14 +69,14 @@ export default React.createClass({
 
     // Render the slide preview
     ReactDOM.unstable_renderSubtreeIntoContainer(this, content, doc.body.children[0]);
-  },
+  }
 
   navigateToSlide(e) {
     e.preventDefault();
 
     const {showSlide, slideNumber} = this.props;
     showSlide(slideNumber);
-  },
+  }
 
   renderStylesheets() {
     // Convert an HTML collection into an array
@@ -84,7 +84,19 @@ export default React.createClass({
     let parentStylesheetsArray = Array.prototype.slice.call(parentStylesheets);
 
     return parentStylesheetsArray.map(function (stylesheet, index) {
-      return <link rel="stylesheet" type="text/css" className={stylesheet.class} href={stylesheet.href} key={index} />;
+      return (
+        <link rel="stylesheet"
+        type="text/css"
+        className={stylesheet.class}
+        href={stylesheet.href}
+        key={index} />
+      );
     });
-  },
-});
+  }
+}
+
+Thumbnail.propTypes = {
+  children: React.PropTypes.object.isRequired // Nested component
+};
+
+export default Thumbnail;
