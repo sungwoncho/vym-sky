@@ -13,19 +13,20 @@ class Wizard extends React.Component {
   }
 
   componentDidMount() {
-    const {slideDeck, getFiles} = this.props;
+    const {slideDeck, getFiles, getSinglePullRequest} = this.props;
     getFiles(slideDeck.repo.ownerName, slideDeck.repo.name, slideDeck.prNumber);
+    getSinglePullRequest(slideDeck.repo.ownerName, slideDeck.repo.name, slideDeck.prNumber);
     document.body.classList.add('no-overscroll');
   }
 
   render() {
-    const {slideDeck, files, showSlide, currentSlideNumber} = this.props;
+    const {slideDeck, files, showSlide, currentSlideNumber, pullRequest} = this.props;
     const currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
     return (
       <div className="wz-layout">
         <div className="wz-topbar">
-          <Header slideDeck={slideDeck} />
+          <Header slideDeck={slideDeck} pullRequest={pullRequest} />
           <Toolbar slideDeck={slideDeck} currentSlideNumber={currentSlideNumber} />
         </div>
         <div className="wz-content">

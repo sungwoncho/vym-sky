@@ -7,6 +7,10 @@
 .wz-topbar {
   flex: 0 1 auto;
 
+  .wz-last-saved-at {
+    margin-left: 40px;
+  }
+
   .wz-type-selector {
     .dropdown-item.active {
       background-color: #FFF0B9;

@@ -30,38 +30,6 @@ export default function () {
       return pullRequest;
     },
 
-    'pullRequests.getDiff'(prId) {
-      check(prId, String);
-
-      let pr = PullRequests.findOne(prId);
-      if (!pr) {
-        return console.log('pull request not found');
-      }
-
-      let repo = Repos.findOne(pr.repoId);
-      let owner = Meteor.users.findOne(this.userId);
-
-      github.authenticate({
-        type: 'oauth',
-        token: owner.services.github.accessToken
-      });
-
-      github.pullRequests.get({
-        headers: {Accept: 'application/vnd.github.VERSION.diff'},
-        user: repo.ownerName,
-        repo: repo.name,
-        number: pr.number
-      }, Meteor.bindEnvironment(function (err, rawDiff) {
-        if (err) {
-          return console.log(err);
-        }
-
-        let changedFiles = parseDiff(rawDiff);
-
-        PullRequests.update(prId, {$set: {files: changedFiles}});
-      }));
-    },
-
     'pullRequests.getAll'(ownerName, repoName, page = 1) {
       let user = Meteor.users.findOne(this.userId);
 
