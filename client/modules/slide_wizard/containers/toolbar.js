@@ -10,6 +10,7 @@ export const depsMapper = (context, actions) => ({
   context: () => context,
   addSlide: actions.slideDecks.addSlide,
   removeSlide: actions.slideDecks.removeSlide,
+  updateSlide: actions.slideDecks.updateSlide
 });
 
 export default composeAll(

@@ -33,7 +33,7 @@ class SlideAction extends React.Component {
   }
 
   canRemoveSlide() {
-    return !!this.props.currentSlideNumber;
+    return Boolean(this.props.currentSlideNumber);
   }
 
   handleAddSlide(e) {

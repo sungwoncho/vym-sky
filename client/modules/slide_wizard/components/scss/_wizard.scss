@@ -7,6 +7,12 @@
 .wz-topbar {
   flex: 0 1 auto;
 
+  .wz-type-selector {
+    .dropdown-item.active {
+      background-color: #FFF0B9;
+    }
+  }
+
   a {
     color: inherit;
 
