@@ -23,7 +23,7 @@ const ToolbarTypeSelector = ({slideDeck, currentSlide, updateSlide}) => {
         </button>
         <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
           <button className={
-              classNames('dropdown-item', {active: currentSlide.type === 'single'})
+              classNames('dropdown-item', {active: currentSlide && currentSlide.type === 'single'})
             }
             type="button"
             onClick={onSlideEdit.bind(this, {type: 'single'})}>
@@ -31,7 +31,7 @@ const ToolbarTypeSelector = ({slideDeck, currentSlide, updateSlide}) => {
           </button>
           <button className={
               classNames('dropdown-item', {
-                active: (currentSlide.type === 'double') &&
+                active: (currentSlide && currentSlide.type === 'double') &&
                         (currentSlide.options && currentSlide.options.display === 'vertical')
               })
             }
@@ -43,7 +43,7 @@ const ToolbarTypeSelector = ({slideDeck, currentSlide, updateSlide}) => {
           </button>
           <button className={
               classNames('dropdown-item', {
-                active: (currentSlide.type === 'double') &&
+                active: (currentSlide && currentSlide.type === 'double') &&
                         (currentSlide.options && currentSlide.options.display === 'horizontal')
               })
             }

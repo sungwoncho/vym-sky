@@ -4,7 +4,6 @@ import TypeSelector from '../containers/toolbar_type_selector';
 
 
 const Toolbar = ({addSlide, removeSlide, updateSlide, slideDeck, currentSlideNumber}) => {
-
   let currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
   function scrollPreviewToActiveSlide() {
