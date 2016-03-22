@@ -20,7 +20,7 @@ class SlideEngine extends React.Component {
   }
 
   render() {
-    const {slideDeck, nextSlide, prevSlide} = this.props;
+    const {slideDeck} = this.props;
     let index = slideDeck.currentSlide - 1;
     let currentSlide = slideDeck.slides[index];
 

@@ -5,6 +5,24 @@
 
   .se-slide-container {
     flex: auto;
+    display: flex;
+
+    .slide {
+      flex: auto;
+      flex-direction: column;
+      padding: 2em 3em;
+      display: flex;
+
+      .horizontal-double, .vertical-double {
+        display: flex;
+        flex-direction: column;
+
+        .section-container {
+          flex: auto;
+          overflow: auto;
+        }
+      }
+    }
   }
 
   .se-status-bar {
@@ -24,8 +42,7 @@
 }
 
 .slide {
-  // padding: 2em 3em;
-  // height: 100vh;
+
 }
 
 .add-file-box {

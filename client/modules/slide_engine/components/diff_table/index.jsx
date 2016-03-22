@@ -14,20 +14,18 @@ const DiffTable = ({section, onRemoveFile, editMode, height='auto', width='auto'
 
   let file = section.data;
 
-  if (! file) {
+  if (!file) {
     return <div>No file</div>;
   } else {
     return (
-      <div className="dt-container" style={{height: height, width: width}}>
+      <div className="dt-container">
         <div className="file-header">
           {file.filename}
           {
             editMode ?
-              <a href="#" className="pull-xs-right" onClick={removeFile}>remove file</a>
-            :
+              <a href="#" className="pull-xs-right" onClick={removeFile}>remove file</a> :
               <span></span>
           }
-
         </div>
         <Table file={file} />
       </div>

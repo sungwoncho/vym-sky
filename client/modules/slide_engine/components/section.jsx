@@ -13,20 +13,19 @@ const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection
   }
 
   return (
-    <div className="slide-section" style={{height: height, width: width}}>
+    <div className="slide-section">
       {
-        !section ?
-          <EmptySection editMode={editMode}
-            sectionPosition={sectionPosition}
-            onSetSection={onSetSection} />
-        :
+        section ?
           <SectionComponent editMode={editMode}
             section={section}
             onSetSection={onSetSection}
             onRemoveSection={onRemoveSection}
-            files={files} 
-            height={height} 
-            width={width} />
+            files={files}
+            height={height}
+            width={width} /> :
+          <EmptySection editMode={editMode}
+            sectionPosition={sectionPosition}
+            onSetSection={onSetSection} />
       }
     </div>
   );
@@ -64,7 +63,7 @@ const FileSection = ({files, section, onRemoveSection, onSetSection, editMode, h
         editMode ?
           <EditFileSection files={files}
             section={section}
-            onSetSection={onSetSection} 
+            onSetSection={onSetSection}
             onRemoveSection={onRemoveSection}
             height={height} />
         :
@@ -110,8 +109,8 @@ const TextSection = ({section, onSetSection, onRemoveSection, editMode}) => {
             <a href="#" onClick={removeSection.bind(this, section.position)}>
               Remove section
             </a>
-            <EditTextBox section={section} 
-              onSetSection={onSetSection} 
+            <EditTextBox section={section}
+              onSetSection={onSetSection}
               onRemoveSection={onRemoveSection} />
           </div>
          :

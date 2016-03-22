@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import Section from '../../section.jsx';
 
@@ -6,23 +7,20 @@ export default React.createClass({
   render() {
     const {files, slide, editMode} = this.props;
     return (
-      <div className="single slide">
-        <div className="container-fluid">
+      <div className="slide container-fluid">
           {
-            slide.options.display && slide.options.display === 'horizontal'?
+            slide.options.display && slide.options.display === 'horizontal' ?
               <Horizontal files={files}
                 slide={slide}
                 handleSetSection={this.handleSetSection}
                 handleRemoveSection={this.handleRemoveSection}
-                editMode={editMode} />
-            :
+                editMode={editMode} /> :
               <Vertical files={files}
                 slide={slide}
                 handleSetSection={this.handleSetSection}
                 handleRemoveSection={this.handleRemoveSection}
                 editMode={editMode} />
           }
-        </div>
       </div>
     );
   },
@@ -66,24 +64,26 @@ const Horizontal = ({files, slide, handleRemoveSection, handleSetSection, editMo
 );
 
 const Vertical = ({files, slide, handleRemoveSection, handleSetSection, editMode}) => (
-  <div className="row vertical-double">
-    <div className="col-xs-6 section-container">
-      <Section files={files}
-        section={_.find(slide.sections, {position: 1})}
-        sectionPosition={1}
-        onSetSection={handleSetSection}
-        onRemoveSection={handleRemoveSection}
-        editMode={editMode}
-        height="750px" />
-    </div>
-    <div className="col-xs-6 section-container">
-       <Section files={files}
-        section={_.find(slide.sections, {position: 2})}
-        sectionPosition={2}
-        onSetSection={handleSetSection}
-        onRemoveSection={handleRemoveSection}
-        editMode={editMode}
-        height="750px"/>
+  <div className="vertical-double">
+    <div className="row">
+      <div className="col-xs-6 section-container">
+        <Section files={files}
+          section={_.find(slide.sections, {position: 1})}
+          sectionPosition={1}
+          onSetSection={handleSetSection}
+          onRemoveSection={handleRemoveSection}
+          editMode={editMode}
+          height="750px" />
+      </div>
+      <div className="col-xs-6 section-container">
+         <Section files={files}
+          section={_.find(slide.sections, {position: 2})}
+          sectionPosition={2}
+          onSetSection={handleSetSection}
+          onRemoveSection={handleRemoveSection}
+          editMode={editMode}
+          height="750px"/>
+      </div>
     </div>
   </div>
 );
