@@ -19,6 +19,10 @@ class Wizard extends React.Component {
     document.body.classList.add('no-overscroll');
   }
 
+  componentWillUnmount() {
+    document.body.classList.remove('no-overscroll');
+  }
+
   render() {
     const {slideDeck, files, showSlide, currentSlideNumber, pullRequest} = this.props;
     const currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);

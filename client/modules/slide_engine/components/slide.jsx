@@ -3,12 +3,22 @@ import React from 'react';
 import SingleSlide from '../containers/slides/single';
 import DoubleSlide from '../containers/slides/double';
 import ParagraphSlide from '../containers/slides/paragraph';
+import InvalidSlide from './slides/errors/invalid.jsx';
+import SlideNotFound from './slides/errors/not_found.jsx';
 
-let ComponentMappings = {
-  single: SingleSlide,
-  double: DoubleSlide,
-  paragraph: ParagraphSlide
-};
+function getSlideComponent(slide) {
+  let ComponentMappings = {
+    single: SingleSlide,
+    double: DoubleSlide,
+    paragraph: ParagraphSlide
+  };
+
+  if (!slide) {
+    return SlideNotFound;
+  }
+
+  return ComponentMappings[slide.type] || InvalidSlide;
+}
 
 function getContainerStyle(scale) {
   if (!scale) {
@@ -25,19 +35,11 @@ function getContainerStyle(scale) {
 
 // files, slideDeckId are only needed if editMode
 const Slide = ({slide, scale, editMode, files, slideDeckId}) => {
-  if (! slide) {
-    return <div>No slide, jose</div>;
-  }
-
-  let ModuleName = ComponentMappings[slide.type];
+  let ModuleName = getSlideComponent(slide);
   let containerStyle = getContainerStyle(scale);
 
-  if (! ModuleName) {
-    return <div>Invalid slide type {slide.type}</div>;
-  }
-
   return (
-    <div style={containerStyle}>
+    <div className="se-slide-container" style={containerStyle}>
       <ModuleName slide={slide}
         editMode={editMode}
         slideDeckId={slideDeckId}

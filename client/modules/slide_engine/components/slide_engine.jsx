@@ -1,38 +1,38 @@
 import React from 'react';
-import _ from 'lodash';
 
-import SlideProgress from './slide_progress.jsx';
+import StatusBar from '../containers/status_bar';
 import Slide from './slide.jsx';
 
-const SlideEngine = React.createClass({
+class SlideEngine extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
   componentWillMount() {
+    document.body.classList.add('no-overscroll');
     document.addEventListener('keydown', this.handleKeyDown, false);
-  },
+  }
 
   componentWillUnmount() {
+    document.body.classList.remove('no-overscroll');
     document.removeEventListener('keydown', this.handleKeyDown, false);
-  },
+  }
 
   render() {
-    const {slideDeck} = this.props;
-
-    return (
-      <div>
-        {this.renderCurrentSlide()}
-        <SlideProgress totalSlidesCount={slideDeck.slides.length}
-                       currentSlideNumber={slideDeck.currentSlide} />
-      </div>
-    );
-  },
-
-  renderCurrentSlide() {
-    const {slideDeck} = this.props;
-
+    const {slideDeck, nextSlide, prevSlide} = this.props;
     let index = slideDeck.currentSlide - 1;
     let currentSlide = slideDeck.slides[index];
 
-    return <Slide slide={currentSlide} />;
-  },
+    return (
+      <div className="slide-engine">
+        <Slide slide={currentSlide} />
+        <StatusBar totalSlidesCount={slideDeck.slides.length}
+                   currentSlideNumber={slideDeck.currentSlide}
+                   slideDeck={slideDeck} />
+      </div>
+    );
+  }
 
   handleKeyDown(e) {
     const LEFT_ARROW = 37;
@@ -45,6 +45,6 @@ const SlideEngine = React.createClass({
       nextSlide(slideDeck._id);
     }
   }
-});
+}
 
 export default SlideEngine;

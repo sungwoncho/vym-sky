@@ -1,6 +1,31 @@
-.slide {
-  padding: 2em 3em;
+.slide-engine {
+  display: flex;
+  flex-flow: column;
   height: 100vh;
+
+  .se-slide-container {
+    flex: auto;
+  }
+
+  .se-status-bar {
+    height: 30px;
+    background-color: #424242;
+    color: white;
+    padding: 0 2em;
+
+    .current-progress {
+      display: inline-block;
+    }
+
+    .actions {
+      display: inline-block;
+    }
+  }
+}
+
+.slide {
+  // padding: 2em 3em;
+  // height: 100vh;
 }
 
 .add-file-box {
