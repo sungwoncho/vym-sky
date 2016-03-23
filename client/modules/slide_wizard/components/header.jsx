@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
+import ShareBtn from './share_btn.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 const Header = ({repo, slideDeck, pullRequest}) => {
@@ -37,8 +38,9 @@ const Header = ({repo, slideDeck, pullRequest}) => {
         </div>
       </div>
       <div className="wz-actions">
-        <a href="#" className="btn btn-sm btn-secondary">Share</a>
-        <a href="#" className="btn btn-sm btn-secondary">
+        <ShareBtn slideDeckUid={slideDeck.uid} />
+        <a href={pathFor('slide_deck', {slideDeckUid: slideDeck.uid})}
+          className="btn btn-sm btn-secondary">
           <i className="fa fa-play"></i>
           Present
         </a>
