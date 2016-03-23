@@ -7,17 +7,16 @@ export default function () {
     return SlideDecks.find({uid: slideDeckUid});
   });
 
-  Meteor.publish('slideDecks', function (repoId) {
+  Meteor.publish('slideDecksForRepo', function (repoId) {
     return SlideDecks.find({repoId});
   });
 
-  Meteor.publish('slideDecksForUser', function (userId) {
-    if (!userId) {
+  Meteor.publish('slideDecksForCurrentUser', function () {
+    if (!this.userId) {
       this.ready();
       return;
     }
 
-    let user = Meteor.users.findOne(userId);
-    return SlideDecks.find();
+    return SlideDecks.find({collaboratorIds: this.userId});
   });
 }

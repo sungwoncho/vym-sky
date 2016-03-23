@@ -1,10 +1,12 @@
 export default {
   createSlideDeck({Meteor, FlowRouter}, repoId, prNumber, title) {
+    let userId = Meteor.userId();
     let sdDoc = {
       prNumber,
       repoId,
       title,
-      ownerId: Meteor.userId()
+      ownerId: userId,
+      collaboratorIds: [ userId ]
     };
 
     Meteor.call('slideDecks.create', sdDoc, function (err, slideDeckUid) {

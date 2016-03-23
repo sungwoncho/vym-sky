@@ -7,7 +7,7 @@ export const composer = ({context}, onData) => {
 
   if (Meteor.subscribe('collaboratingRepos').ready() &&
       Meteor.subscribe('currentUser').ready() &&
-      Meteor.subscribe('slideDecksForUser', Meteor.userId()).ready()) {
+      Meteor.subscribe('slideDecksForCurrentUser').ready()) {
 
     let currentUser = Meteor.user();
     let repos = Collections.Repos.find({
