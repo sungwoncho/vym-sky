@@ -6,7 +6,6 @@ import {urlFor} from '/client/modules/core/libs/helpers';
 class ShareBtn extends React.Component {
   constructor(props) {
     super(props);
-    this.showTooltip = this.showTooltip.bind(this);
   }
 
   componentDidMount() {
@@ -35,10 +34,6 @@ class ShareBtn extends React.Component {
   componentWillUnmount() {
     this.clipboard.destroy();
     $('.share-url-btn').tooltip('dispose');
-  }
-
-  showTooltip() {
-
   }
 
   render() {
