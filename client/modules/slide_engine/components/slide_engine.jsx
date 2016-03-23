@@ -25,7 +25,7 @@ class SlideEngine extends React.Component {
     let currentSlide = slideDeck.slides[index];
 
     return (
-      <div className="slide-engine">
+      <div className="presentation">
         <Slide slide={currentSlide} />
         <StatusBar totalSlidesCount={slideDeck.slides.length}
                    currentSlideNumber={slideDeck.currentSlide}

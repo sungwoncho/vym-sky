@@ -55,7 +55,7 @@ class Thumbnail extends React.Component {
     let doc = this.refs.frame.contentDocument;
     let {children} = newProps || this.props;
     let content = (
-      <div>
+      <div className="thumbnail-content">
         {this.renderStylesheets()}
         {children}
       </div>

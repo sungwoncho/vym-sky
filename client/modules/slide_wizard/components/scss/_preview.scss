@@ -10,9 +10,14 @@
   overflow: auto;
 }
 
+.thumbnail-content {
+  height: 900px;
+  display: flex;
+}
+
 .thumbnail-wrapper {
   width: 205px;
-  height: 156px;
+  height: 130px;
   margin-bottom: 20px;
   padding: 0;
   overflow: hidden;
@@ -25,7 +30,7 @@
 
   .thumbnail-iframe {
     width: 1480px;
-    height: 1086px;
+    height: 900px;
     border: 1px solid black;
     -moz-transform: scale(0.14);
     -moz-transform-origin: 0 0;
