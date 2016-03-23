@@ -44,7 +44,8 @@ export default function () {
       let repo = Repos.findOne(sdDoc.repoId);
       sdDoc.repo = {
         name: repo.name,
-        ownerName: repo.ownerName
+        ownerName: repo.ownerName,
+        id: repo.id
       };
 
       SlideDecks.insert(sdDoc);

@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base';
-import {Repos} from '/lib/collections';
+import {Repos, SlideDecks} from '/lib/collections';
 import _ from 'lodash';
 
 export function setupUserHook() {
@@ -24,6 +24,9 @@ export function setupUserHook() {
         Repos.update({'meta.id': {$in: repoIds}}, {
           $addToSet: {collaboratorIds: user._id}
         }, {multi: true});
+        SlideDecks.update({'repo.id': {$in: repoIds}}, {
+          $addToSet: {collaboratorIds: user._id}
+        }, {multi: true});
 
         if (res.nextPage) {
           syncRepoAccess(res.nextPage);
@@ -35,6 +38,9 @@ export function setupUserHook() {
 
     // Deny access to all repos that the user no longer has access to
     Repos.update({collaboratorIds: user._id, 'meta.id': {$nin: allRepoIds}}, {
+      $pull: {collaboratorIds: user._id}}, {multi: true}
+    );
+    SlideDecks.update({collaboratorIds: user._id, 'repo.id': {$nin: allRepoIds}}, {
       $pull: {collaboratorIds: user._id}}, {multi: true}
     );
   });
