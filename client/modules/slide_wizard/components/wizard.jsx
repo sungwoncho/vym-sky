@@ -36,14 +36,14 @@ class Wizard extends React.Component {
         <div className="wz-content">
           <div className="container-fluid wz-content-container">
             <div className="row wz-content-box">
-              <div className="col-sm-2 preview-section">
+              <div className="col-md-2 col-sm-3 col-xs-12 preview-section">
                 <Preview slides={slideDeck.slides}
                   showSlide={showSlide}
                   onThumbnailMove={this.onThumbnailMove}
                   currentSlideNumber={currentSlideNumber}
                   ctx={this.props.context} />
               </div>
-              <div className="col-sm-10 slide-frame">
+              <div className="col-md-10 col-sm-9 col-xs-12 slide-frame">
                 <Slide editMode={true}
                   slide={currentSlide}
                   files={files}
