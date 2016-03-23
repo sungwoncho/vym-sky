@@ -45,7 +45,9 @@ export default function () {
       sdDoc.repo = {
         name: repo.name,
         ownerName: repo.ownerName,
-        id: repo.id
+        meta: {
+          id: repo.meta.id
+        }
       };
 
       SlideDecks.insert(sdDoc);
