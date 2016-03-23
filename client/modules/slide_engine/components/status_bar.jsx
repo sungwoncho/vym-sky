@@ -1,6 +1,17 @@
 import React from 'react';
 
-const StatusBar = ({currentSlideNumber, totalSlidesCount, slideDeck, nextSlide, prevSlide}) => {
+const StatusBar = ({
+  currentSlideNumber,
+  totalSlidesCount,
+  slideDeck,
+  currentUser,
+  nextSlide,
+  prevSlide
+}) => {
+  function canNavigate() {
+    return currentUser._id === slideDeck.ownerId;
+  }
+
   function toNextSlide(e) {
     e.preventDefault();
     nextSlide(slideDeck._id);
@@ -14,15 +25,23 @@ const StatusBar = ({currentSlideNumber, totalSlidesCount, slideDeck, nextSlide, 
   return (
     <div className="pres-status-bar">
       <div className="navgiation">
-        <button onClick={toPrevSlide} className="btn btn-sm btn-secondary">
-          <i className="fa fa-caret-left"></i>
-        </button>
+        {
+          canNavigate() ?
+          <button onClick={toPrevSlide} className="btn btn-sm btn-secondary">
+            <i className="fa fa-caret-left"></i>
+          </button> :
+          <span></span>
+        }
         <div className="current-progress">
           {currentSlideNumber} / {totalSlidesCount}
         </div>
-        <button onClick={toNextSlide} className="btn btn-sm btn-secondary">
-          <i className="fa fa-caret-right"></i>
-        </button>
+        {
+          canNavigate() ?
+          <button onClick={toNextSlide} className="btn btn-sm btn-secondary">
+            <i className="fa fa-caret-right"></i>
+          </button> :
+          <span></span>
+        }
       </div>
     </div>
   );

@@ -3,11 +3,12 @@ import {useDeps, composeAll, composeWithTracker} from 'mantra-core';
 import SlideEngine from '../components/slide_engine.jsx';
 
 export const composer = ({context, slideDeckUid}, onData) => {
-  const {Meteor, Collections, Tracker} = context();
+  const {Meteor, Collections} = context();
 
   if (Meteor.subscribe('slideDeck', slideDeckUid).ready()) {
-    const slideDeck = Collections.SlideDecks.findOne({uid: slideDeckUid});
-    onData(null, {slideDeck});
+    let slideDeck = Collections.SlideDecks.findOne({uid: slideDeckUid});
+    let currentUser = Meteor.user();
+    onData(null, {slideDeck, currentUser});
   }
 };
 

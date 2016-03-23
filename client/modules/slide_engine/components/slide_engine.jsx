@@ -20,7 +20,7 @@ class SlideEngine extends React.Component {
   }
 
   render() {
-    const {slideDeck} = this.props;
+    const {slideDeck, currentUser} = this.props;
     let index = slideDeck.currentSlide - 1;
     let currentSlide = slideDeck.slides[index];
 
@@ -29,7 +29,8 @@ class SlideEngine extends React.Component {
         <Slide slide={currentSlide} />
         <StatusBar totalSlidesCount={slideDeck.slides.length}
                    currentSlideNumber={slideDeck.currentSlide}
-                   slideDeck={slideDeck} />
+                   slideDeck={slideDeck}
+                   currentUser={currentUser} />
       </div>
     );
   }
