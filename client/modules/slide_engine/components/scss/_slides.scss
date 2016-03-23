@@ -2,26 +2,28 @@
   display: flex;
   flex-flow: column;
   height: 100vh;
+
+
+  .pres-status-bar {
+    height: 30px;
+    background-color: #424242;
+    color: white;
+    padding: 0 2em;
+
+    .current-progress {
+      display: inline-block;
+      padding: 0 2em;
+    }
+
+    .navgiation {
+      display: inline-block;
+    }
+  }
 }
 
 .se-slide-container {
   flex: auto;
   display: flex;
-}
-
-.se-status-bar {
-  height: 30px;
-  background-color: #424242;
-  color: white;
-  padding: 0 2em;
-
-  .current-progress {
-    display: inline-block;
-  }
-
-  .actions {
-    display: inline-block;
-  }
 }
 
 .slide {
@@ -40,10 +42,6 @@
       overflow: auto;
     }
   }
-}
-
-.slide {
-  // background-color: white;
 }
 
 .add-file-box {

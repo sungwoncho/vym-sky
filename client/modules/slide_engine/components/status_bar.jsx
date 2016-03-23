@@ -12,13 +12,17 @@ const StatusBar = ({currentSlideNumber, totalSlidesCount, slideDeck, nextSlide, 
   }
 
   return (
-    <div className="se-status-bar">
-      <div className="current-progress">
-        {currentSlideNumber} / {totalSlidesCount}
-      </div>
-      <div className="actions">
-        <button onClick={toNextSlide}>next</button>
-        <button onClick={toPrevSlide}>prev</button>
+    <div className="pres-status-bar">
+      <div className="navgiation">
+        <button onClick={toPrevSlide} className="btn btn-sm btn-secondary">
+          <i className="fa fa-caret-left"></i>
+        </button>
+        <div className="current-progress">
+          {currentSlideNumber} / {totalSlidesCount}
+        </div>
+        <button onClick={toNextSlide} className="btn btn-sm btn-secondary">
+          <i className="fa fa-caret-right"></i>
+        </button>
       </div>
     </div>
   );
