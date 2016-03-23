@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SlideDeckList from './slide_deck_list.jsx';
+import SlideDeckList from '../containers/slide_deck_list';
 import NewSlideForm from '../containers/new_slide_form';
 import {pathFor} from '/client/modules/core/libs/helpers';
 

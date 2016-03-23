@@ -4,58 +4,51 @@ import moment from 'moment';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 
-const SlideDeckList = ({slideDecks, repo}) => (
+const SlideDeckList = ({slideDecks, currentUser}) => (
   <ul className="list-unstyled row">
     {
       slideDecks.map(function (sd) {
         return <SlideDeckItem slideDeck={sd}
+          currentUser={currentUser}
           key={sd.uid} />;
       })
     }
   </ul>
 );
 
-const NewSlideDeckBtn = ({repo, onShowSlideDeckForm}) => {
-  function handleShowSlideDeckForm() {
-    if (repo) {
-      onShowSlideDeckForm(repo.ownerName, repo.name);
-    } else {
-      onShowSlideDeckForm();
-    }
-  }
+const SlideDeckItem = ({slideDeck, currentUser}) => {
+  let canEdit = currentUser._id === slideDeck.ownerId;
 
   return (
     <li className="col-lg-4 col-md-6 col-xs-12 sd-card-container">
-      <button href="#" className="sd-card new-sd-btn" onClick={handleShowSlideDeckForm}>
-        <i className="fa fa-plus fa-2x"></i>
-      </button>
-    </li>
-  );
-}
-
-
-const SlideDeckItem = ({slideDeck}) => (
-  <li className="col-lg-4 col-md-6 col-xs-12 sd-card-container">
-    <div className="sd-card">
-      <div className="sd-card-body">
-        <div className="info">
-          <div className="sd-name">{slideDeck.title}</div>
-          <div className="sd-repo-name">
-            <a href={pathFor('repo', {ownerName: slideDeck.repo.ownerName, repoName: slideDeck.repo.name})}>
-              {slideDeck.getFullRepoName()}
-            </a>
+      <div className="sd-card">
+        <div className="sd-card-body">
+          <div className="info">
+            <div className="sd-name">{slideDeck.title}</div>
+            <div className="sd-repo-name">
+              <a href={pathFor('repo', {
+                ownerName: slideDeck.repo.ownerName, repoName: slideDeck.repo.name})}>
+                {slideDeck.getFullRepoName()}
+              </a>
+            </div>
+            <div className="sd-timestamp">
+              <small>created: {moment(slideDeck.createdAt).format('MMMM Do YY')}</small>
+            </div>
           </div>
-          <div className="sd-timestamp">
-            <small>created: {moment(slideDeck.createdAt).format('MMMM Do YY')}</small>
+          <div className="actions">
+            <a className="btn btn-sm btn-secondary"
+              href={pathFor('slide_deck', {slideDeckUid: slideDeck.uid})}>View</a>
+            {
+              canEdit ?
+                <a className="btn btn-sm btn-secondary"
+                  href={pathFor('slide_deck.wizard', {slideDeckUid: slideDeck.uid})}>Edit</a> :
+              <span></span>
+            }
           </div>
-        </div>
-        <div className="actions">
-          <a className="btn btn-sm btn-secondary" href={pathFor('slide_deck', {slideDeckUid: slideDeck.uid})}>View</a>
-          <a className="btn btn-sm btn-secondary" href={pathFor('slide_deck.wizard', {slideDeckUid: slideDeck.uid})}>Edit</a>
         </div>
       </div>
-    </div>
-  </li>
-);
+    </li>
+  );
+};
 
 export default SlideDeckList;

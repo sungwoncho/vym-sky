@@ -5,7 +5,7 @@ import SlideDeckList from './slide_deck_list.jsx';
 import RepoTab from './dashboard_repo_tab.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
-const Dashboard = ({currentSection = 'slides', slideDecks, repos}) => {
+const Dashboard = ({currentSection = 'slides', slideDecks, repos, currentUser}) => {
   let dashboardTabs = [
     {
       name: 'slides',
@@ -24,7 +24,8 @@ const Dashboard = ({currentSection = 'slides', slideDecks, repos}) => {
           <Nav tabs={dashboardTabs}
             currentTabName={currentSection} />
           {
-            currentSection === 'slides' ? <SlideDeckList slideDecks={slideDecks} /> :
+            currentSection === 'slides' ?
+              <SlideDeckList slideDecks={slideDecks} currentUser={currentUser} /> :
             currentSection === 'repos' ? <RepoTab repos={repos} /> :
             <span>No such tab, Jose.</span>
           }
