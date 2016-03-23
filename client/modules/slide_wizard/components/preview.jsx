@@ -23,7 +23,7 @@ export default React.createClass({
 
   renderThumbnails() {
     const {slides, showSlide, currentSlideNumber} = this.props;
-    if (! slides) {
+    if (!slides) {
       console.log('no slide');
       return;
     }
@@ -35,8 +35,6 @@ export default React.createClass({
         <li key={index} className="thumbnail-item">
           {slide.number}
           <Thumbnail
-            pageWidth="900"
-            pageHeight="1440"
             showSlide={showSlide}
             isActive={isActive}
             slideId={slide.uid}

@@ -45,8 +45,7 @@ const Horizontal = ({files, slide, handleRemoveSection, handleSetSection, editMo
           sectionPosition={1}
           onSetSection={handleSetSection}
           onRemoveSection={handleRemoveSection}
-          editMode={editMode}
-          height="340px"/>
+          editMode={editMode} />
       </div>
     </div>
     <div className="row section-container">
@@ -56,8 +55,7 @@ const Horizontal = ({files, slide, handleRemoveSection, handleSetSection, editMo
           sectionPosition={2}
           onSetSection={handleSetSection}
           onRemoveSection={handleRemoveSection}
-          editMode={editMode}
-          height="340px"/>
+          editMode={editMode} />
       </div>
     </div>
   </div>
@@ -72,8 +70,7 @@ const Vertical = ({files, slide, handleRemoveSection, handleSetSection, editMode
           sectionPosition={1}
           onSetSection={handleSetSection}
           onRemoveSection={handleRemoveSection}
-          editMode={editMode}
-          height="750px" />
+          editMode={editMode} />
       </div>
       <div className="col-xs-6 section-container">
          <Section files={files}
@@ -81,8 +78,7 @@ const Vertical = ({files, slide, handleRemoveSection, handleSetSection, editMode
           sectionPosition={2}
           onSetSection={handleSetSection}
           onRemoveSection={handleRemoveSection}
-          editMode={editMode}
-          height="750px"/>
+          editMode={editMode}/>
       </div>
     </div>
   </div>

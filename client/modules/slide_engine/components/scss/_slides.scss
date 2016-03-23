@@ -2,47 +2,48 @@
   display: flex;
   flex-flow: column;
   height: 100vh;
+}
 
-  .se-slide-container {
-    flex: auto;
-    display: flex;
+.se-slide-container {
+  flex: auto;
+  display: flex;
+}
 
-    .slide {
-      flex: auto;
-      flex-direction: column;
-      padding: 2em 3em;
-      display: flex;
+.se-status-bar {
+  height: 30px;
+  background-color: #424242;
+  color: white;
+  padding: 0 2em;
 
-      .horizontal-double, .vertical-double {
-        display: flex;
-        flex-direction: column;
-
-        .section-container {
-          flex: auto;
-          overflow: auto;
-        }
-      }
-    }
+  .current-progress {
+    display: inline-block;
   }
 
-  .se-status-bar {
-    height: 30px;
-    background-color: #424242;
-    color: white;
-    padding: 0 2em;
+  .actions {
+    display: inline-block;
+  }
+}
 
-    .current-progress {
-      display: inline-block;
-    }
+.slide {
+  flex: auto;
+  flex-direction: column;
+  padding: 2em 3em;
+  display: flex;
+  background-color: white; // TODO: make this customizable
 
-    .actions {
-      display: inline-block;
+  .horizontal-double, .vertical-double {
+    display: flex;
+    flex-direction: column;
+
+    .section-container {
+      flex: auto;
+      overflow: auto;
     }
   }
 }
 
 .slide {
-
+  // background-color: white;
 }
 
 .add-file-box {

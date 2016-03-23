@@ -4,34 +4,6 @@
   padding-top: 20px;
   padding-bottom: 20px;
   overflow-y: scroll;
-
-}
-
-.action-bar {
-  background-color: #222C35;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #fff;
-  margin-bottom: 15px;
-  max-height: 50px;
-  position: fixed;
-}
-
-.slide-actions {
-
-  li {
-    margin-right: 10px;
-    display: inline-block;
-  }
-
-  a {
-    color: #fff;
-
-    &.disabled {
-      color: #818a91;
-      cursor: not-allowed;
-    }
-  }
 }
 
 .thumbnail-item  {

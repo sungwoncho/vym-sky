@@ -20,26 +20,13 @@ function getSlideComponent(slide) {
   return ComponentMappings[slide.type] || InvalidSlide;
 }
 
-function getContainerStyle(scale) {
-  if (!scale) {
-    return {};
-  }
-
-  return {
-    width: `${100 * scale}%`,
-    height: `${30 * scale}px`,
-    transform: `scale(${1 / scale})`,
-    transformOrigin: '0 0 0'
-  };
-}
 
 // files, slideDeckId are only needed if editMode
-const Slide = ({slide, scale, editMode, files, slideDeckId}) => {
+const Slide = ({slide, editMode, files, slideDeckId}) => {
   let ModuleName = getSlideComponent(slide);
-  let containerStyle = getContainerStyle(scale);
 
   return (
-    <div className="se-slide-container" style={containerStyle}>
+    <div className="se-slide-container">
       <ModuleName slide={slide}
         editMode={editMode}
         slideDeckId={slideDeckId}

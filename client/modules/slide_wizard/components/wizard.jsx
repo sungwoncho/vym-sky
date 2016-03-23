@@ -43,14 +43,11 @@ class Wizard extends React.Component {
                   currentSlideNumber={currentSlideNumber}
                   ctx={this.props.context} />
               </div>
-              <div className="col-sm-10 slide-container">
-                <div className="wz-slide">
-                  <Slide editMode={true}
-                    slide={currentSlide}
-                    scale={1.5}
-                    files={files}
-                    slideDeckId={slideDeck._id}/>
-                </div>
+              <div className="col-sm-10 slide-frame">
+                <Slide editMode={true}
+                  slide={currentSlide}
+                  files={files}
+                  slideDeckId={slideDeck._id}/>
               </div>
             </div>
           </div>
