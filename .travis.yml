@@ -3,7 +3,7 @@ language: node_js
 node_js:
 - '0.12'
 before_install:
-- npm install -g mupx
+- npm install -g mupx@1.5.1
 script:
 - echo 'no test jose'
 after_success:
