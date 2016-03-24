@@ -1,7 +1,8 @@
 deployment:
-  pre:
-    - openssl aes-256-cbc -a -d -pass env:CRYPT -in mup.json.enc -out mup.json
-    - openssl aes-256-cbc -a -d -pass env:CRYPT -in settings.json.enc -out settings.json
-    - openssl aes-256-cbc -a -d -pass env:CRYPT -in digital_ocean.pem.enc -out digital_ocean.pem
-  override:
-    - mupx deploy
+  production:
+    branch: prod
+    commands:
+      - openssl aes-256-cbc -a -d -pass env:CRYPT -in mup.json.enc -out mup.json
+      - openssl aes-256-cbc -a -d -pass env:CRYPT -in settings.json.enc -out settings.json
+      - openssl aes-256-cbc -a -d -pass env:CRYPT -in digital_ocean.pem.enc -out digital_ocean.pem
+      - mupx deploy
