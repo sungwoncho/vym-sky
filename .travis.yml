@@ -1,0 +1,13 @@
+sudo: required
+language: node_js
+node_js:
+- '0.12'
+before_install:
+- npm install -g mupx
+script:
+- echo 'no test jose'
+after_success:
+- openssl aes-256-cbc -K $encrypted_a5c5c513d28d_key -iv $encrypted_a5c5c513d28d_iv
+  -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar -C .
+- ./deploy.sh
