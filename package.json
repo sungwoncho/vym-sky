@@ -4,7 +4,7 @@
   "description": "code review made easy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\""
   },
   "homepage": "https://bitbucket.org/sungwoncho/vym/overview",
   "repository": "https://bitbucket.org/sungwoncho/vym",
