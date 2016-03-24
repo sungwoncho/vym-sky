@@ -17,30 +17,30 @@ class ShareBtn extends React.Component {
       }
     });
 
-    $('.share-url-btn').tooltip({
-      placement: 'bottom',
-      trigger: 'click',
-      title: 'Slide deck link copied!'
-    });
-
-    // Auto-dismiss tooltip when shown
-    $('.share-url-btn').on('shown.bs.tooltip', function (e) {
-      setTimeout(function () {
-        $(e.target).tooltip('hide');
-      }, 900);
-    });
+    // $('.share-url-btn').tooltip({
+    //   placement: 'bottom',
+    //   trigger: 'click',
+    //   title: 'Slide deck link copied!'
+    // });
+    //
+    // // Auto-dismiss tooltip when shown
+    // $('.share-url-btn').on('shown.bs.tooltip', function (e) {
+    //   setTimeout(function () {
+    //     $(e.target).tooltip('hide');
+    //   }, 900);
+    // });
   }
 
   componentWillUnmount() {
     this.clipboard.destroy();
-    $('.share-url-btn').tooltip('dispose');
+    // $('.share-url-btn').tooltip('dispose');
   }
 
   render() {
     return (
       <button href="#"
         className="btn btn-sm btn-secondary share-url-btn">
-        Share
+        Copy Link
       </button>
     );
   }

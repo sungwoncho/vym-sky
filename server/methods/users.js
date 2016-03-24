@@ -1,4 +1,4 @@
-import GithubAPI from 'github';
+import GithubAPI from 'github4';
 import {check} from 'meteor/check';
 import {Repos} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';

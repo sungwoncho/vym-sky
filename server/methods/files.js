@@ -1,4 +1,4 @@
-import GithubAPI from 'github';
+import GithubAPI from 'github4';
 import parseDiff from 'parse-diff';
 import {PullRequests} from '/lib/collections';
 import {Repos} from '/lib/collections';
