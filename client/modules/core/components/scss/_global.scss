@@ -18,3 +18,19 @@ body {
     // display: inline-block;
   }
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.overflow-auto {
+  overflow: auto;
+}

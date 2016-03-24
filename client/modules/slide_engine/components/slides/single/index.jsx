@@ -8,8 +8,8 @@ export default React.createClass({
     const {files, slide, editMode} = this.props;
     return (
       <div className="single slide container-fluid">
-        <div className="row">
-          <div className="col-xs-12">
+        <div className="row flex flex-auto">
+          <div className="col-xs-12 flex flex-column overflow-auto">
             <Section files={files}
               section={_.find(slide.sections, {position: 1})}
               sectionPosition={1}

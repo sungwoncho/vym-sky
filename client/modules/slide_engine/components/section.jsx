@@ -65,8 +65,7 @@ const FileSection = ({files, section, onRemoveSection, onSetSection, editMode, h
             section={section}
             onSetSection={onSetSection}
             onRemoveSection={onRemoveSection}
-            height={height} />
-        :
+            height={height} /> :
           <DiffTable section={section}
             onRemoveFile={onRemoveSection}
             height={height} />
@@ -112,8 +111,7 @@ const TextSection = ({section, onSetSection, onRemoveSection, editMode}) => {
             <EditTextBox section={section}
               onSetSection={onSetSection}
               onRemoveSection={onRemoveSection} />
-          </div>
-         :
+          </div> :
            <div>
              <TextBox text={section.data} />
            </div>
@@ -124,8 +122,8 @@ const TextSection = ({section, onSetSection, onRemoveSection, editMode}) => {
 
 // Maps section types to corresponding components
 const SectionMapping = {
-  'file': FileSection,
-  'text': TextSection
+  file: FileSection,
+  text: TextSection
 };
 
 export default Section;
