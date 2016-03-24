@@ -16,7 +16,8 @@ export const composer = ({context, slideDeckUid}, onData) => {
     onData(null, {
       slideDeck,
       pullRequest,
-      files
+      files,
+      currentUser: Meteor.user()
     });
   }
 };

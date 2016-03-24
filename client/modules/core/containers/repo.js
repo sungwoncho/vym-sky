@@ -8,7 +8,10 @@ export const composer = ({context, ownerName, repoName}, onData) => {
   if (Meteor.subscribe('repo', ownerName, repoName).ready()) {
     let repo = Collections.Repos.findOne({name: repoName, 'ownerName': ownerName});
 
-    onData(null, {repo});
+    onData(null, {
+      repo,
+      currentUser: Meteor.user()
+    });
   }
 };
 

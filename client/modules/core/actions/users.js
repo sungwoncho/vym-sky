@@ -6,6 +6,12 @@ export default {
     githubAuth({Meteor, FlowRouter}, {scopes, redirectPath});
   },
 
+  ensureLoggedin({Meteor, FlowRouter}) {
+    if (!Meteor.userId()) {
+      FlowRouter.go('home');
+    }
+  },
+
   addScope({Meteor, FlowRouter}, {scopeToAdd, redirectPath}) {
     Meteor.call('users.getCurrentScopes', function (err, oldScopes) {
       if (err) {
@@ -36,7 +42,7 @@ export default {
         return console.log(err);
       }
 
-      FlowRouter.go('main');
+      FlowRouter.go('home');
     });
   }
 };

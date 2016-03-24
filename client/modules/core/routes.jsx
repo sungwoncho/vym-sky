@@ -12,7 +12,7 @@ export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
 
   FlowRouter.route('/', {
-    name: 'main',
+    name: 'home',
     action() {
       mount(MainLayoutCtx, {
         content: () => (<Main />)
