@@ -1,5 +1,7 @@
 import React from 'react';
 
+import FullscreenBtn from './fullscreen_btn.jsx';
+
 const StatusBar = ({
   currentSlideNumber,
   totalSlidesCount,
@@ -42,6 +44,10 @@ const StatusBar = ({
           </button> :
           <span></span>
         }
+        <FullscreenBtn />
+      </div>
+      <div className="pres-meta">
+        {slideDeck.title} - For PR #{slideDeck.prNumber}
       </div>
     </div>
   );
