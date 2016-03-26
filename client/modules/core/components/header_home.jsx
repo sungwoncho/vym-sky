@@ -18,9 +18,11 @@ const HomeHeader = ({currentRouteName}) => {
         <li className={itemClassFor('features')}>
           <a className="nav-link" href={pathFor('features')}>Features</a>
         </li>
-        <li className={itemClassFor('pricing')}>
-          <a className="nav-link" href="#">Pricing</a>
-        </li>
+        {
+          // <li className={itemClassFor('pricing')}>
+          //   <a className="nav-link" href="#">Pricing</a>
+          // </li>
+        }
         <li className="nav-item">
           <a className="nav-link" href="http://blog.vym.io" target="_blank">Blog</a>
         </li>
