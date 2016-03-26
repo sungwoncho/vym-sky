@@ -13,7 +13,10 @@ export const composer = ({context}, onData) => {
     let repos = Collections.Repos.find({
       collaboratorIds: Meteor.userId()
     }).fetch();
-    let slideDecks = Collections.SlideDecks.find({}, {sort: {createdAt: -1}}).fetch();
+    let slideDecks = Collections.SlideDecks.find(
+      {collaboratorIds: currentUser._id},
+      {sort: {createdAt: -1}}
+    ).fetch();
 
     onData(null, {currentUser, repos, slideDecks});
   }
