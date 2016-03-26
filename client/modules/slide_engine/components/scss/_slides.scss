@@ -3,23 +3,6 @@
   flex-flow: column;
   height: 100vh;
 
-
-  .pres-status-bar {
-    height: 30px;
-    background-color: #424242;
-    color: white;
-    padding: 0 2em;
-
-    .current-progress {
-      display: inline-block;
-      padding: 0 2em;
-    }
-
-    .navgiation {
-      display: inline-block;
-    }
-  }
-
   .pres-meta {
     margin-left: 20px;
     display: inline-block;

@@ -5,7 +5,7 @@ import SlideEngine from '../components/slide_engine.jsx';
 export const composer = ({context, slideDeckUid}, onData) => {
   const {Meteor, Collections} = context();
 
-  if (Meteor.subscribe('slideDeck', slideDeckUid).ready()) {
+  if (Meteor.subscribe('slideDeck', slideDeckUid, {live: true}).ready()) {
     let slideDeck = Collections.SlideDecks.findOne({uid: slideDeckUid});
     let currentUser = Meteor.user();
     onData(null, {slideDeck, currentUser});

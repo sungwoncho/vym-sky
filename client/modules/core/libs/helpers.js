@@ -19,3 +19,9 @@ export function ensureLoggedIn(context, redirect) {
     redirect('/');
   }
 }
+
+export function getAvatarUrl({githubHandle, size = 300}) {
+  const baseUrl = 'https://avatars.githubusercontent.com';
+
+  return `${baseUrl}/${githubHandle}?s=${size}`;
+}

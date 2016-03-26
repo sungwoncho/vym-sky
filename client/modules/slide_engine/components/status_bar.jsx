@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FullscreenBtn from './fullscreen_btn.jsx';
+import UserList from './user_list.jsx';
 
 const StatusBar = ({
   currentSlideNumber,
@@ -11,7 +12,7 @@ const StatusBar = ({
   prevSlide
 }) => {
   function canNavigate() {
-    return currentUser._id === slideDeck.ownerId;
+    return currentUser && currentUser._id === slideDeck.ownerId;
   }
 
   function toNextSlide(e) {
@@ -49,6 +50,7 @@ const StatusBar = ({
       <div className="pres-meta">
         {slideDeck.title} - For PR #{slideDeck.prNumber}
       </div>
+      <UserList users={slideDeck.connectedUsers} />
     </div>
   );
 };
