@@ -8,6 +8,7 @@ export function githubAuth({Meteor, FlowRouter}, {scopes, redirectPath}) {
 
     let userId = Meteor.userId();
     Meteor.call('users.setScopes', userId, scopes);
+    Meteor.call('users.syncAccessWithGithub');
 
     if (redirectPath) {
       FlowRouter.go(redirectPath);
