@@ -3,6 +3,9 @@
   "githubWebhookSecret": "mockGithubWebhookSecret",
   "public": {
     "githubClientId": "18e0532390c89ccea8e4",
-    "githubWebhookPayloadUrl": "http://127.0.0.1:3000/webhook"
+    "githubWebhookPayloadUrl": "http://127.0.0.1:3000/webhook",
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "dummyTrackingId"}
+    }
   }
 }

@@ -65,6 +65,7 @@ npm-mongo@1.4.41-rc.9
 oauth@1.1.8-rc.9
 oauth2@1.1.7-rc.9
 observe-sequence@1.0.9-rc.9
+okgrow:analytics@1.0.5
 ordered-dict@1.0.5-rc.9
 promise@0.6.4-rc.9
 raix:eventemitter@0.1.3
