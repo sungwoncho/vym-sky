@@ -3,6 +3,8 @@ import React from 'react';
 import LoginButton from '../containers/login_button';
 import Footer from '../containers/footer';
 
+import {pathFor} from '/client/modules/core/libs/helpers';
+
 const Home = ({}) => (
   <div>
     <div className="main-hero">
@@ -24,6 +26,7 @@ const Home = ({}) => (
         <li>Explain yourself in the slide</li>
         <li>Share a link and present in real time</li>
       </ul>
+      <a href={pathFor('features')} className="btn btn-md btn-success-outline">Learn more</a>
     </div>
     <Footer />
   </div>
