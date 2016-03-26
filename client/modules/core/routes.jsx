@@ -1,21 +1,32 @@
 import React from 'react';
 import {mount} from 'react-mounter';
-import {Meteor} from 'meteor/meteor';
 
 import MainLayout from './components/layout_main.jsx';
-import Main from './containers/main';
+import HomeLayout from './components/layout_home.jsx';
+import Home from './containers/home';
+import Features from './components/features.jsx';
 import Dashboard from './containers/dashboard';
 import Repo from './containers/repo';
 import Settings from './containers/settings';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
+  const HomeLayoutCtx = injectDeps(HomeLayout);
 
   FlowRouter.route('/', {
     name: 'home',
     action() {
-      mount(MainLayoutCtx, {
-        content: () => (<Main />)
+      mount(HomeLayoutCtx, {
+        content: () => (<Home />)
+      });
+    }
+  });
+
+  FlowRouter.route('/features', {
+    name: 'features',
+    action() {
+      mount(HomeLayoutCtx, {
+        content: () => (<Features />)
       });
     }
   });

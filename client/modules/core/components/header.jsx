@@ -3,14 +3,6 @@ import React from 'react';
 import {pathFor} from '/client/modules/core/libs/helpers.js';
 
 const Header = ({currentUser, logout}) => {
-  function getRootPath() {
-    if (currentUser) {
-      return '/dashboard';
-    } else {
-      return '/';
-    }
-  }
-
   function onLogout(e) {
     e.preventDefault();
     logout();
@@ -23,28 +15,24 @@ const Header = ({currentUser, logout}) => {
   }
 
   return (
-    <nav className="navbar">
-      <a className="navbar-brand" href={getRootPath()}>
+    <nav className="navbar navbar-slim">
+      <a className="navbar-brand" href={pathFor('dashboard')}>
         vym
       </a>
 
-      {
-        currentUser ?
-        <div className="nav-item dropdown pull-xs-right">
-          <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
-            <img src={getAvatarUrl()} alt="avatar" className="avatar" />
+      <div className="nav-item dropdown pull-xs-right">
+        <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img src={getAvatarUrl()} alt="avatar" className="avatar" />
+        </a>
+        <div className="dropdown-menu dropdown-menu-right">
+          <a className="dropdown-item" href={pathFor('settings')}>
+            Settings
           </a>
-          <div className="dropdown-menu dropdown-menu-right">
-            <a className="dropdown-item" href={pathFor('settings')}>
-              Settings
-            </a>
-            <a className="dropdown-item" href="#" onClick={onLogout}>
-              Logout
-            </a>
-          </div>
-        </div> :
-        <span></span>
-      }
+          <a className="dropdown-item" href="#" onClick={onLogout}>
+            Logout
+          </a>
+        </div>
+      </div>
     </nav>
   );
 };
