@@ -9,7 +9,7 @@
 }
 
 .wz-topbar {
-  flex: 0 1 auto;
+  flex: auto;
 
   .wz-last-saved-at {
     margin-left: 40px;
@@ -31,7 +31,7 @@
 }
 
 .wz-content {
-  flex: 1 1 auto;
+  flex: auto;
   display: flex;
 
   .wz-content-container {

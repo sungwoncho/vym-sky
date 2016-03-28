@@ -26,12 +26,10 @@ const Slide = ({slide, editMode, files, slideDeckId}) => {
   let ModuleName = getSlideComponent(slide);
 
   return (
-    <div className="se-slide-container">
-      <ModuleName slide={slide}
-        editMode={editMode}
-        slideDeckId={slideDeckId}
-        files={files} />
-    </div>
+    <ModuleName slide={slide}
+      editMode={editMode}
+      slideDeckId={slideDeckId}
+      files={files} />
   );
 };
 

@@ -16,17 +16,20 @@
 
 .slide {
   flex: auto;
-  flex-direction: column;
+  // flex-direction: column;
   padding: 2em 3em;
   display: flex;
   background-color: white; // TODO: make this customizable
+  width: 100%;
 
   .horizontal-double, .vertical-double {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .section-container {
-      flex: auto;
+      flex: 1 1 500px;
+      // flex: auto;
       overflow: auto;
     }
   }
