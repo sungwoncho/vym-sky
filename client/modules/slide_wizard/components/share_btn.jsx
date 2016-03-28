@@ -40,6 +40,7 @@ class ShareBtn extends React.Component {
     return (
       <button href="#"
         className="btn btn-sm btn-secondary share-url-btn">
+        <span className="octicon octicon-clippy"></span>
         Copy Link
       </button>
     );
