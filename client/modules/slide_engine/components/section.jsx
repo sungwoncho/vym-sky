@@ -5,7 +5,7 @@ import FileList from '/client/modules/slide_engine/components/file_list.jsx';
 import EditTextBox from '/client/modules/slide_engine/components/edit_text_box.jsx';
 import TextBox from '/client/modules/slide_engine/components/text_box.jsx';
 
-const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection, editMode, height = 'auto', width = 'auto'}) => {
+const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection, editMode}) => {
   let SectionComponent;
 
   if (section) {
@@ -20,9 +20,7 @@ const Section = ({files, section, sectionPosition, onSetSection, onRemoveSection
             section={section}
             onSetSection={onSetSection}
             onRemoveSection={onRemoveSection}
-            files={files}
-            height={height}
-            width={width} /> :
+            files={files} /> :
           <EmptySection editMode={editMode}
             sectionPosition={sectionPosition}
             onSetSection={onSetSection} />
@@ -35,28 +33,37 @@ const EmptySection = ({sectionPosition, onSetSection, editMode}) => {
   function setSection(type, e) {
     e.preventDefault();
     let sectionDoc = {
-      type: type
+      type
     };
 
     onSetSection(sectionDoc, sectionPosition);
   }
 
   return (
-    <div>
+    <div className="empty-section">
       {
         editMode ?
-          <div>
-            <a href="#" onClick={setSection.bind(this, 'file')}>Add file</a><br/>
-            <a href="#" onClick={setSection.bind(this, 'text')}>Add text</a>
-          </div>
-        :
+          <div className="add-section-tool">
+            <a href="#"
+              className="btn btn-md btn-secondary"
+              onClick={setSection.bind(this, 'file')}>
+              <i className="fa fa-file-code-o"></i>
+              Add file
+            </a>
+            <a href="#"
+              className="btn btn-md btn-secondary add-text-btn"
+              onClick={setSection.bind(this, 'text')}>
+              <i className="fa fa-file-text-o"></i>
+              Add text
+            </a>
+          </div> :
           <h1>Empty section</h1>
       }
     </div>
   );
 };
 
-const FileSection = ({files, section, onRemoveSection, onSetSection, editMode, height, width}) => {
+const FileSection = ({files, section, onRemoveSection, onSetSection, editMode}) => {
   return (
     <div>
       {
@@ -64,32 +71,28 @@ const FileSection = ({files, section, onRemoveSection, onSetSection, editMode, h
           <EditFileSection files={files}
             section={section}
             onSetSection={onSetSection}
-            onRemoveSection={onRemoveSection}
-            height={height} /> :
+            onRemoveSection={onRemoveSection} /> :
           <DiffTable section={section}
-            onRemoveFile={onRemoveSection}
-            height={height} />
+            onRemoveFile={onRemoveSection} />
       }
     </div>
   );
 };
 
-const EditFileSection = ({files, section, onSetSection, onRemoveSection, height}) => {
+const EditFileSection = ({files, section, onSetSection, onRemoveSection}) => {
   let file = section.data;
 
   if (file) {
     return (
       <DiffTable section={section}
         onRemoveFile={onRemoveSection}
-        height={height}
         editMode={true} />
     );
   } else {
     return (
       <FileList files={files}
         sectionPosition={section.position}
-        onSetSection={onSetSection}
-        height={height} />
+        onSetSection={onSetSection} />
     );
   }
 };
