@@ -54,6 +54,13 @@
   }
 }
 
+.single {
+  .slide-section {
+    flex: auto;
+    display: flex;
+  }
+}
+
 .add-file-box {
   text-align: center;
   font-size: 35px;
