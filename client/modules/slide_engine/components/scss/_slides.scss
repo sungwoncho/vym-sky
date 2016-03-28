@@ -31,8 +31,6 @@
   .vertical-double {
     .slide-section {
       width: 100%;
-      display: flex;
-      flex-direction: column;
     }
 
     .section-container {
@@ -43,13 +41,10 @@
   .horizontal-double {
     .slide-section {
       flex: auto;
-      display: flex;
-      flex-direction: column;
     }
 
     .section-container {
       display: flex;
-      flex-direction: column;
     }
   }
 }
@@ -68,10 +63,8 @@
 }
 
 .slide-section {
-
-  // .section-file {
-  //   height: 100%;
-  // }
+  flex-direction: column;
+  display: flex;
 
   .empty-section {
     flex: auto;

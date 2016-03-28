@@ -47,6 +47,14 @@
     border: 1px solid #DADADA;
     border-radius: 2px;
   }
+
+  .text-section {
+    flex: auto;
+  }
+
+  .file-section {
+    flex: auto;
+  }
 }
 
 .file-list-container {
@@ -68,3 +76,20 @@
     }
   }
 }
+
+// Edit text box
+.text-editer {
+  width: 100%;
+  height: 200px;
+  border-radius: 1.5px;
+  border: 1px solid #DEDEDE;
+}
+
+.edit-text-action {
+  margin-bottom: 10px;
+
+  .btn {
+    margin-right: 4px;
+  }
+}
+// Edit text box ends

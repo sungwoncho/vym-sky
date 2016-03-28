@@ -65,7 +65,7 @@ const EmptySection = ({sectionPosition, onSetSection, editMode}) => {
 
 const FileSection = ({files, section, onRemoveSection, onSetSection, editMode}) => {
   return (
-    <div>
+    <div className="file-section">
       {
         editMode ?
           <EditFileSection files={files}
@@ -99,26 +99,14 @@ const EditFileSection = ({files, section, onSetSection, onRemoveSection}) => {
 };
 
 const TextSection = ({section, onSetSection, onRemoveSection, editMode}) => {
-  function removeSection(position, e) {
-    e.preventDefault();
-    onRemoveSection(position);
-  }
-
   return (
-    <div>
+    <div className="text-section">
       {
         editMode ?
-          <div>
-            <a href="#" onClick={removeSection.bind(this, section.position)}>
-              Remove section
-            </a>
-            <EditTextBox section={section}
-              onSetSection={onSetSection}
-              onRemoveSection={onRemoveSection} />
-          </div> :
-           <div>
-             <TextBox text={section.data} />
-           </div>
+          <EditTextBox section={section}
+            onSetSection={onSetSection}
+            onRemoveSection={onRemoveSection} /> :
+         <TextBox text={section.data} />
       }
     </div>
   );
