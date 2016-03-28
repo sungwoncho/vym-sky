@@ -4,7 +4,7 @@ import {mount} from 'react-mounter';
 import MainLayout from './components/layout_main.jsx';
 import HomeLayout from './components/layout_home.jsx';
 import Home from './containers/home';
-import Features from './components/features.jsx';
+import Features from './containers/features';
 import Dashboard from './containers/dashboard';
 import Repo from './containers/repo';
 import Settings from './containers/settings';
