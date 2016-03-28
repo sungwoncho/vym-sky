@@ -92,7 +92,8 @@ const EditFileSection = ({files, section, onSetSection, onRemoveSection}) => {
     return (
       <FileList files={files}
         sectionPosition={section.position}
-        onSetSection={onSetSection} />
+        onSetSection={onSetSection}
+        onRemoveSection={onRemoveSection} />
     );
   }
 };

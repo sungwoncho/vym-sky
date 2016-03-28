@@ -1,47 +1,91 @@
 import React from 'react';
+import _ from 'lodash';
 
-import FileTable from './file_table.jsx';
+class FileList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.removeSection = this.removeSection.bind(this);
+    this.state = {searchTerm: ''};
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
+  }
 
-export default React.createClass({
-  getInitialState() {
-    return {
-      showingFiles: false,
-    };
-  },
+  removeSection(e) {
+    e.preventDefault();
 
-  getDefaultProps() {
-    return {
-      sectionPosition: 1,
-      height: 'auto'
-    };
-  },
+    let {sectionPosition, onRemoveSection} = this.props;
+    onRemoveSection(sectionPosition);
+  }
+
+  updateSearchTerm() {
+    this.setState({searchTerm: this.refs.fileSearchTerm.value});
+  }
 
   render() {
-    const {files, height} = this.props;
+    const {files, sectionPosition, onSetSection} = this.props;
 
     return (
-      <div className="section-file" style={{lineHeight: height}}>
-        {
-          this.state.showingFiles ?
-            <FileTable files={files}
-              onSetSection={this.props.onSetSection}
-              sectionPosition={this.props.sectionPosition}
-              toggleShowFiles={this.toggleShowFiles}
-              height={height} />
-          :
-            <a href="#" onClick={this.toggleShowFiles}>
-              <div className="add-file-box">
-                click here to add file
-              </div>
+      <div className="file-list-container">
+        <div className="row file-list-action">
+          <div className="col-xs-11">
+            <input type="text"
+              className="form-control"
+              placeholder="Find in pull request"
+              ref="fileSearchTerm"
+              onChange={this.updateSearchTerm} />
+          </div>
+          <div className="col-xs-1">
+            <a href="#"
+              onClick={this.removeSection}
+              className="pull-xs-right remove-section-btn">
+              <i className="fa fa-close"></i>
             </a>
-        }
-
+          </div>
+        </div>
+        <table className="tree-browser table table-hover">
+          <tbody>
+            {
+              files.filter(file => {
+                let searchRegex = new RegExp(_.escapeRegExp(this.state.searchTerm), 'i');
+                return searchRegex.test(file.filename);
+              })
+              .map(function (file) {
+                return <FileRow file={file}
+                  sectionPosition={sectionPosition}
+                  onSetSection={onSetSection}
+                  key={file._id} />;
+              })
+            }
+          </tbody>
+        </table>
       </div>
     );
-  },
-
-  toggleShowFiles(e) {
-    e.preventDefault();
-    this.setState({showingFiles: !this.state.showingFiles});
   }
-});
+}
+
+FileList.defaultProps = {sectionPosition: 1};
+
+const FileRow = ({file, sectionPosition, onSetSection}) => {
+  function setSection(e) {
+    e.preventDefault();
+
+    let sectionDoc = {
+      position: sectionPosition,
+      type: 'file',
+      data: file
+    };
+
+    onSetSection(sectionDoc, sectionPosition);
+  }
+
+  return (
+    <tr key={file._id}
+      onClick={setSection}
+      className="file-row">
+      <td>
+        {file.filename}
+      </td>
+    </tr>
+  );
+};
+
+export default FileList;

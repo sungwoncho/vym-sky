@@ -48,3 +48,23 @@
     border-radius: 2px;
   }
 }
+
+.file-list-container {
+  .file-list-action {
+    margin-bottom: 10px;
+
+    .remove-section-btn {
+        font-size: 20px;
+    }
+  }
+
+  .tree-browser {
+    width: 100%;
+    background-color: #F1F1F1;
+    font-size: 13px;
+
+    .file-row {
+      cursor: pointer;
+    }
+  }
+}
