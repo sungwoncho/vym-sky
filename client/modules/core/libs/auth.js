@@ -19,10 +19,12 @@ export function githubAuth({Meteor, FlowRouter}, {scopes, redirectPath}) {
 /**
  * Redirects users to the dashboard if logged in.
  */
-export function ensureGuestUser({context}) {
+export function ensureGuestUser({context}, onData) {
   const {Meteor, FlowRouter} = context();
 
-  if (!Meteor.user()) {
+  if (Meteor.user()) {
     FlowRouter.go('dashboard');
   }
+
+  onData(null, {});
 }
