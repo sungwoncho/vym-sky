@@ -1,6 +1,7 @@
 .wz-header {
   overflow: auto;
   height: 70px;
+  background-color: #ffffff;
 }
 
 .wz-branding-container {
@@ -26,6 +27,8 @@
 .wz-meta {
   display: inline-block;
   margin-left: 20px;
+  height: 100%;
+  padding-top: 5px;
 
   .wz-slide-title {
     font-size: 21px;
@@ -43,6 +46,13 @@
 
 .wz-actions {
   float: right;
+  height: 100%;
+  padding-top: 10px;
+  padding-right: 17px;
+
+  .btn {
+    margin-right: 6px;
+  }
 }
 
 .wz-toolbar {
