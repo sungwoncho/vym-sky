@@ -16,8 +16,14 @@
   }
 
   .wz-type-selector {
+
     .dropdown-item.active {
       background-color: #FFF0B9;
+    }
+
+    .dropdown-toggle {
+      background-color: inherit;
+      border: none;
     }
   }
 

@@ -48,22 +48,24 @@
 .wz-toolbar {
   background-color: $wz-toolbar-color;
   border-bottom: 1px solid $wz-toolbar-border-color;
+  padding: 3px 0px;
+
+  .separator {
+    border-left: 1px solid #ccc;
+    height: 100%;
+    margin: 0 2px;
+    display: inline-block;
+  }
 }
 
-.wz-toolbar-action-list {
-  list-style: none;
-  margin-bottom: 0;
+.wz-toolbar-action {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 1px;
+  cursor: pointer;
+  border: 1px solid $wz-toolbar-color;
 
-  .wz-toolbar-action {
-    display: inline-block;
-    padding: 8px 15px;
-
-    a {
-      color: inherit;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
+  &:hover {
+    border: 1px solid #c6c6c6;
   }
 }

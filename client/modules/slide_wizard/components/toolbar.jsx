@@ -2,7 +2,6 @@ import React from 'react';
 
 import TypeSelector from '../containers/toolbar_type_selector';
 
-
 const Toolbar = ({addSlide, removeSlide, updateSlide, slideDeck, currentSlideNumber}) => {
   let currentSlide = slideDeck.getSlideByNumber(currentSlideNumber);
 
@@ -41,22 +40,14 @@ const Toolbar = ({addSlide, removeSlide, updateSlide, slideDeck, currentSlideNum
     <div className="wz-toolbar">
       <div className="row">
         <div className="col-lg-10 col-lg-offset-1 col-xs-12">
-          <ul className="wz-toolbar-action-list">
-            <li className="wz-toolbar-action">
-              <a href="#" onClick={handleAddSlide}>
-                 <i className="fa fa-plus"></i>
-              </a>
-            </li>
-            <li className="wz-toolbar-action">
-              <a href="#" onClick={handleRemoveSlide}>
-                 <i className="fa fa-minus"></i>
-              </a>
-            </li>
-            <li className="wz-toolbar-action">
-              <TypeSelector slideDeck={slideDeck}
-                currentSlide={currentSlide} />
-            </li>
-          </ul>
+          <div className="wz-toolbar-action" onClick={handleAddSlide}>
+            <i className="fa fa-plus"></i>
+          </div>
+          <div className="wz-toolbar-action" onClick={handleRemoveSlide}>
+            <i className="fa fa-minus"></i>
+          </div>
+          <TypeSelector slideDeck={slideDeck}
+            currentSlide={currentSlide} />
         </div>
       </div>
     </div>
