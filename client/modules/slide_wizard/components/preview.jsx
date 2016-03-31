@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+
 
 import Slide from '/client/modules/slide_engine/components/slide.jsx';
 import Thumbnail from './thumbnail.jsx';
@@ -30,10 +32,15 @@ export default React.createClass({
 
     return slides.map(function (slide, index) {
       let isActive = currentSlideNumber === slide.number;
+      let itemClass = classNames('thumbnail-item', {
+        active: isActive
+      });
 
       return (
-        <li key={index} className="thumbnail-item">
-          {slide.number}
+        <li key={index} className={itemClass}>
+          <div className="slide-number">
+            {slide.number}
+          </div>
           <Thumbnail
             showSlide={showSlide}
             isActive={isActive}

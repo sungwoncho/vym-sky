@@ -1,12 +1,30 @@
 .preview-section {
   border-right: 1px solid #A5AAA9;
   background-color: $wz-toolbar-color;
-  padding-top: 20px;
+  padding-top: 1px;
   padding-bottom: 20px;
+  padding-left: 0;
+  padding-right: 0;
   overflow-y: auto;
 }
 
 .thumbnail-item  {
+  overflow-y: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 45px;
+
+  &.active {
+    background-color: #DADADA;
+  }
+
+  .slide-number {
+    float: left;
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #696969;
+  }
 }
 
 .thumbnail-content {
@@ -15,27 +33,21 @@
 }
 
 .thumbnail-wrapper {
-  width: 205px;
-  height: 130px;
-  margin-bottom: 20px;
+  width: 148px;
+  height: 90px;
   padding: 0;
   overflow: hidden;
-  float: left;
   cursor: pointer;
-
-  &.active {
-    border: 2.5px solid #7EC3CE;
-  }
 
   .thumbnail-iframe {
     width: 1480px;
     height: 900px;
     border: 1px solid black;
-    -moz-transform: scale(0.14);
+    -moz-transform: scale(0.1);
     -moz-transform-origin: 0 0;
-    -o-transform: scale(0.14);
+    -o-transform: scale(0.1);
     -o-transform-origin: 0 0;
-    -webkit-transform: scale(0.14);
+    -webkit-transform: scale(0.1);
     -webkit-transform-origin: 0 0;
 
     pointer-events: none;

@@ -36,7 +36,6 @@ class Thumbnail extends React.Component {
 
     let thumbnailClass = classNames({
       'thumbnail-wrapper': true,
-      active: isActive,
       [`thumbnail-slide-${slideNumber}`]: true
     });
 
