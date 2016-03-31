@@ -63,7 +63,8 @@ export default function () {
         number: slideNumber,
         uid: shortid.generate(),
         sections: [],
-        options: {}
+        options: {},
+        type: 'single'
       };
 
       slides = _s(slides).bumpNumbers(slideNumber, slides.length, 1)
@@ -71,7 +72,7 @@ export default function () {
                 .sort()
                 .getVal();
 
-      SlideDecks.update(slideDeckId, {$set: {slides: slides}});
+      SlideDecks.update(slideDeckId, {$set: {slides}});
 
       return newSlide;
     },
