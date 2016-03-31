@@ -6,7 +6,6 @@ import _ from 'lodash';
 class Thumbnail extends React.Component {
   constructor(props) {
     super(props);
-    this.navigateToSlide = this.navigateToSlide.bind(this);
   }
 
   componentWillMount() {
@@ -41,7 +40,7 @@ class Thumbnail extends React.Component {
     });
 
     return (
-      <div className={thumbnailClass} onClick={this.navigateToSlide}>
+      <div className={thumbnailClass}>
         <iframe className="thumbnail-iframe" ref="frame"></iframe>
       </div>
     );
@@ -69,13 +68,6 @@ class Thumbnail extends React.Component {
 
     // Render the slide preview
     ReactDOM.unstable_renderSubtreeIntoContainer(this, content, doc.body.children[0]);
-  }
-
-  navigateToSlide(e) {
-    e.preventDefault();
-
-    const {showSlide, slideNumber} = this.props;
-    showSlide(slideNumber);
   }
 
   renderStylesheets() {

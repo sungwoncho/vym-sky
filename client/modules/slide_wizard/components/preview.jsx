@@ -24,31 +24,20 @@ export default React.createClass({
   },
 
   renderThumbnails() {
-    const {slides, showSlide, currentSlideNumber} = this.props;
+    const {slides, showSlide, currentSlideNumber, slideNumber} = this.props;
+
     if (!slides) {
       console.log('no slide');
       return;
     }
 
-    return slides.map(function (slide, index) {
+    return slides.map((slide, index) => {
       let isActive = currentSlideNumber === slide.number;
-      let itemClass = classNames('thumbnail-item', {
-        active: isActive
-      });
 
       return (
-        <li key={index} className={itemClass}>
-          <div className="slide-number">
-            {slide.number}
-          </div>
-          <Thumbnail
-            showSlide={showSlide}
-            isActive={isActive}
-            slideId={slide.uid}
-            slideNumber={slide.number}>
-            <Slide slide={slide} />
-          </Thumbnail>
-        </li>
+        <ThumbnailWrapper isActive={isActive}
+          showSlide={showSlide}
+          slide={slide} />
       );
     });
   },
@@ -62,3 +51,29 @@ export default React.createClass({
     onThumbnailMove(fromSlideNumber, toSlideNumber);
   }
 });
+
+const ThumbnailWrapper = ({isActive, showSlide, slide}) => {
+  let itemClass = classNames('thumbnail-item', {
+    active: isActive
+  });
+
+  function navigateToSlide(e) {
+    e.preventDefault();
+
+    showSlide(slide.number);
+  }
+
+  return (
+    <li className={itemClass} onClick={navigateToSlide}>
+      <div className="slide-number">
+        {slide.number}
+      </div>
+      <Thumbnail
+        isActive={isActive}
+        slideId={slide.uid}
+        slideNumber={slide.number}>
+        <Slide slide={slide} />
+      </Thumbnail>
+    </li>
+  );
+};
