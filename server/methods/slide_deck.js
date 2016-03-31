@@ -50,7 +50,8 @@ export default function () {
         }
       };
 
-      SlideDecks.insert(sdDoc);
+      let sdId = SlideDecks.insert(sdDoc);
+      Meteor.call('slideDecks.addSlideInDeck', sdId, 1); // Add initial slide
       return uid;
     },
     'slideDecks.addSlideInDeck'(slideDeckId, slideNumber) {
