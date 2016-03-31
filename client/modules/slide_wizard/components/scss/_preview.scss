@@ -39,7 +39,10 @@
   height: 90px;
   padding: 0;
   overflow: hidden;
-  cursor: pointer;
+
+  &.active {
+    border: 2.5px solid #A7A7FF;
+  }
 
   .thumbnail-iframe {
     width: 1480px;
