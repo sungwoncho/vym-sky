@@ -2,6 +2,8 @@ import GithubAPI from 'github4';
 import parseDiff from 'parse-diff';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
+import {highlightSyntax} from '../libs/highlighter';
+
 
 let github = new GithubAPI({version: '3.0.0'});
 
@@ -35,7 +37,7 @@ export default function () {
       let files = response.files;
       files.forEach(function (file) {
         if (file.patch) {
-          file.patch = parseDiff(file.patch);
+          file.patch = highlightSyntax(parseDiff(file.patch));
         }
       });
 

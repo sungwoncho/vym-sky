@@ -19,12 +19,12 @@ export function highlightSyntax(parsedDiff) {
     let line = chunk.content + '\n';
 
     if (chunk.type === 'normal') {
-      original = original.concat(line);
+      original = original.concat(escapeSpaces(line));
       patch = patch.concat(line);
     } else if (chunk.type === 'del') {
-      original = original.concat(escapeSpaces(line.replace(/^[\-]/g, '')));
+      original = original.concat(escapeSpaces(line.replace(/^[\-]/g, ' ')));
     } else if (chunk.type === 'add') {
-      patch = patch.concat(escapeSpaces(line.replace(/^[\+]/g, '')));
+      patch = patch.concat(escapeSpaces(line.replace(/^[\+]/g, ' ')));
     }
   });
 
@@ -60,6 +60,11 @@ function unescapeCode(string) {
   return unescaped;
 }
 
+/**
+ * Replaces all leading spaces into unicode for space so that the browsers
+ * can display spaces without ignoring
+ * @param Str {String} - the input from which the leading spaces should be escaped
+ */
 function escapeSpaces(str) {
   const nonBreakingSpace = '\u00a0';
 
