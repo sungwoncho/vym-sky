@@ -36,8 +36,14 @@ class CollaboratorList extends React.Component {
             })
           }
         </ul>
-        <input type="text" ref="collaboratorId" />
-        <a href="#" onClick={this.handleAddCollaborator} className="btn btn-default btn-sm">Add</a>
+        {
+          // <input type="text" ref="collaboratorId" />
+          // <a href="#" onClick={this.handleAddCollaborator} className="btn btn-default btn-sm">Add</a>
+        }
+        <small>
+          Collaborators are automatically synced with GitHub. When a collaborator
+          joins Vym, she will automatically added here.
+        </small>
       </div>
     );
   }
@@ -53,7 +59,9 @@ const CollaboratorItem = ({collaborator, onRemoveCollaborator}) => {
   return (
     <li>
       {collaborator.services.github.username}
-      <a href="#" onClick={handleRemoveCollaborator}>x</a>
+      {
+        // <a href="#" onClick={handleRemoveCollaborator}>x</a>
+      }
     </li>
   );
 };
