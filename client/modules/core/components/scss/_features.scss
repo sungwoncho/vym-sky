@@ -12,8 +12,12 @@
   }
 }
 
-.feature {
+.features {
   padding-top: 50px;
+
+  .feature.upcoming {
+    color: #B1B1B1;
+  }
 
   .octicon {
     font-size: 28px;
