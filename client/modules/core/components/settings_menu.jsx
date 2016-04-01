@@ -5,7 +5,7 @@ import _ from 'lodash';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 const SettingsMenu = ({currentSection}) => {
-  const sections = [ 'account', 'repos' ];
+  const sections = [ 'account', 'billing' ];
 
   return (
     <div className="list-group">

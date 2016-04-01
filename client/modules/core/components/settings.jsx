@@ -1,14 +1,13 @@
 import React from 'react';
 
 import SettingsMenu from './settings_menu.jsx';
-import AccountSettings from '../containers/account_settings';
-import ReposSettings from '../containers/repos_settings';
-
+import AccountSettings from '../containers/settings_account';
+import BillingSettings from '../containers/settings_billing';
 
 const Settings = ({currentSection = 'account'}) => {
   function getSectionComponent() {
     let component = SectionMap[currentSection];
-    if (! component) {
+    if (!component) {
       return <div>Invalid section</div>;
     }
     return component;
@@ -33,7 +32,7 @@ const Settings = ({currentSection = 'account'}) => {
 // Maps section names to corresponding containers
 const SectionMap = {
   account: AccountSettings,
-  repos: ReposSettings
+  billing: BillingSettings
 };
 
 export default Settings;

@@ -1,8 +1,10 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
 
-import AccountSettings from '../components/account_settings.jsx';
+import SettingsBilling from '../components/settings_billing.jsx';
 
 export const composer = ({context}, onData) => {
+  const {Meteor, Collections} = context();
+
   onData(null, {});
 };
 
@@ -13,4 +15,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(AccountSettings);
+)(SettingsBilling);
