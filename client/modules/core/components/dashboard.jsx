@@ -5,15 +5,15 @@ import SlideDeckList from './slide_deck_list.jsx';
 import RepoTab from './dashboard_repo_tab.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
-const Dashboard = ({currentSection = 'slides', slideDecks, repos, currentUser}) => {
+const Dashboard = ({currentSection = 'repos', slideDecks, repos, currentUser}) => {
   let dashboardTabs = [
-    {
-      name: 'slides',
-      href: pathFor('dashboard')
-    },
     {
       name: 'repos',
       href: pathFor('dashboard', {section: 'repos'})
+    },
+    {
+      name: 'slides',
+      href: pathFor('dashboard', {section: 'slides'})
     }
   ];
 
