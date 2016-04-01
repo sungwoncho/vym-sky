@@ -44,5 +44,13 @@ export default {
 
       FlowRouter.go('home');
     });
+  },
+
+  createOrUpdateSubscription({Meteor}, token, done) {
+    Meteor.call('users.createOrUpdateSubscription', token, function (err, res) {
+      if (done) {
+        done(err, res);
+      }
+    });
   }
 };

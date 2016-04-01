@@ -57,7 +57,9 @@ class AddRepoView extends React.Component {
       removeScope,
       currentUser,
       getReposToAdd,
-      orgSettingUrl
+      orgSettingUrl,
+      createOrUpdateSubscription,
+      stripePublicKey
     } = this.props;
 
     let klass = classNames('add-repo-container', {'hidden-xs-up': !isAddingRepo});
@@ -96,6 +98,8 @@ class AddRepoView extends React.Component {
             }).map(repo => {
               return <RepoItem repo={repo}
                 handleAddRepo={this.handleAddRepo}
+                createOrUpdateSubscription={createOrUpdateSubscription}
+                stripePublicKey={stripePublicKey}
                 key={repo._id} />;
             })
           }
@@ -105,10 +109,35 @@ class AddRepoView extends React.Component {
   }
 }
 
-const RepoItem = ({repo, handleAddRepo}) => {
+const RepoItem = ({repo, handleAddRepo, createOrUpdateSubscription, stripePublicKey}) => {
   function onAddRepo(e) {
     e.preventDefault();
-    handleAddRepo(repo);
+
+    if (repo.private) {
+      // StripeCheckout is available by external script. Check <head>.
+      let checkoutHandler = StripeCheckout.configure({
+        key: stripePublicKey,
+        localse: 'auto',
+        token(token) {
+          createOrUpdateSubscription(token, function (err) {
+            if (err) {
+              return console.log(err);
+            }
+
+            handleAddRepo(repo);
+          });
+        }
+      });
+
+      checkoutHandler.open({
+        name: 'Private repo',
+        amount: 1200,
+        currency: 'usd',
+        panelLabel: '{{amount}} per month'
+      });
+    } else {
+      handleAddRepo(repo);
+    }
   }
 
   return (

@@ -35,6 +35,7 @@
     "screenfull": "^3.0.0",
     "shortid": "^2.2.4",
     "sortablejs": "^1.4.2",
+    "stripe": "^4.5.0",
     "underscore.string": "^3.3.4"
   },
   "devDependencies": {

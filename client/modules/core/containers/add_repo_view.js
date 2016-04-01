@@ -13,11 +13,13 @@ export const composer = ({context}, onData) => {
 
   let currentUser = Meteor.user();
   let reposToAdd = Collections.ReposToAdd.find({added: false}).fetch();
+  let stripePublicKey = Meteor.settings.public.stripePublishableKey;
 
   onData(null, {
     currentUser,
     reposToAdd,
-    orgSettingUrl: getOrgSettingUrl()
+    orgSettingUrl: getOrgSettingUrl(),
+    stripePublicKey
   });
 
 };
@@ -29,7 +31,8 @@ export const depsMapper = (context, actions) => ({
   addScope: actions.users.addScope,
   removeScope: actions.users.removeScope,
   getReposToAdd: actions.repos.getReposToAdd,
-  clearReposToAdd: actions.repos.clearReposToAdd
+  clearReposToAdd: actions.repos.clearReposToAdd,
+  createOrUpdateSubscription: actions.users.createOrUpdateSubscription
 });
 
 export default composeAll(

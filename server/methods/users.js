@@ -1,4 +1,4 @@
-import GithubAPI from 'github4';
+import stripeAPI from 'stripe';
 import {check} from 'meteor/check';
 import {Repos, SlideDecks} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
@@ -53,6 +53,18 @@ export default function () {
       SlideDecks.update({collaboratorIds: userId, 'repo.meta.id': {$nin: allRepoIds}}, {
         $pull: {collaboratorIds: userId}}, {multi: true}
       );
+    },
+
+    'users.createOrUpdateSubscription'(token) {
+      let stripe = stripeAPI(Meteor.settings.stripeSecretKey);
+      let customer = Meteor.wrapAsync(stripe.customers.create, stripe.customers)({
+        source: token.id,
+        plan: 'pro',
+        email: token.email
+      });
+
+      return customer;
     }
+
   });
 }

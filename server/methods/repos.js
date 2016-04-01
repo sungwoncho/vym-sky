@@ -58,7 +58,7 @@ export default function () {
           content_type: 'json',
           secret: Meteor.settings.GitHubWebhookSecret
         },
-        events: ['pull_request']
+        events: [ 'pull_request' ]
       }, Meteor.bindEnvrionment(function (err) {
         if (err) {
           return console.log(err);
