@@ -28,6 +28,22 @@ const Home = ({}) => (
       </ul>
       <a href={pathFor('features')} className="btn btn-md btn-success-outline">Learn more</a>
     </div>
+    <div className="row pricing">
+      <div className="col-xs-12 col-sm-3 col-sm-offset-3 plan">
+        <h2>Open source</h2>
+        <div>
+          <div className="price">$0</div>
+          <div className="frequency">/ month</div>
+        </div>
+      </div>
+      <div className="col-xs-12 col-sm-3 plan">
+        <h2>Private repo</h2>
+        <div>
+          <div className="price">$12</div>
+          <div className="frequency">/ month</div>
+        </div>
+      </div>
+    </div>
     <Footer />
   </div>
 );

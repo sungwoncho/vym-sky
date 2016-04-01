@@ -27,3 +27,32 @@
     margin-bottom: 50px;
   }
 }
+
+.pricing {
+  padding-top: 4em;
+  padding-bottom: 4em;
+
+  .plan {
+    text-align: center;
+    border: 2px solid #ABABAB;
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    &:last-child {
+      margin-left: 10px;
+    }
+
+    .price, .frequency {
+      display: inline-block;
+    }
+
+    .price {
+      font-size: 4em;
+    }
+
+    .frequency {
+      margin-left: 11px;
+    }
+
+  }
+}
