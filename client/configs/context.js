@@ -3,6 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
+import {Counts} from 'meteor/tmeasday:publish-counts';
 
 export default function () {
   return {
@@ -11,5 +12,6 @@ export default function () {
     Collections,
     LocalState: new ReactiveDict(),
     Tracker,
+    Counts
   };
 }

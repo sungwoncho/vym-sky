@@ -7,6 +7,7 @@ import _ from 'lodash';
 import {getNextPage} from '../libs/repo_utils';
 
 let github = new GithubAPI({version: '3.0.0'});
+const litePlanMonthlySlideQuota = 10;
 
 function checkUserExists(userId) {
   return Meteor.users.find(userId, {fields: {_id: 1}}).count() === 1;
@@ -167,11 +168,21 @@ export default function () {
 
     'repos.checkMonthlyQuota'(repoId) {
       check(repoId, String);
-      const monthlyQuota = 10;
 
       let currentUsage = SlideDecks.find({repoId}).count();
 
-      return currentUsage <= monthlyQuota;
+      return currentUsage <= litePlanMonthlySlideQuota;
+    },
+
+    'repos.getQuotaInfo'(repoId) {
+      check(repoId, String);
+
+      let currentUsage = SlideDecks.find({repoId}).count();
+
+      return {
+        currentUsage,
+        monthlyQuota: litePlanMonthlySlideQuota
+      };
     },
 
     'repos.downgrade'(repoId) {
