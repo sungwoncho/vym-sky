@@ -27,18 +27,27 @@ export default function () {
 
       function syncRepoAccess(page = 1) {
         Meteor.call('repos.getAll', page, Meteor.bindEnvironment(function (err, res) {
-          let repoIds = _.map(res.repos, function (repo) {
-            return repo.meta.id;
+          let repos = res.repos;
+
+          repos.forEach(function (repo) {
+            allRepoIds = allRepoIds.concat(repo.meta.id);
+
+            let modifier = {
+              $addToSet: {collaboratorIds: userId}
+            };
+
+            if (repo.permissions.admin) {
+              modifier.$addToSet.adminIds = userId;
+            }
+
+            Repos.update({'meta.id': repo.meta.id}, modifier);
+            SlideDecks.update({'repo.meta.id': repo.meta.id}, {
+              $addToSet: {collaboratorIds: userId}
+            });
           });
-          allRepoIds = allRepoIds.concat(repoIds);
-          Repos.update({'meta.id': {$in: repoIds}}, {
-            $addToSet: {collaboratorIds: userId}
-          }, {multi: true});
-          SlideDecks.update({'repo.meta.id': {$in: repoIds}}, {
-            $addToSet: {collaboratorIds: userId}
-          }, {multi: true});
 
           if (res.nextPage) {
+            // Recurse if next page exists
             syncRepoAccess(res.nextPage);
           }
         }));
@@ -48,7 +57,7 @@ export default function () {
 
       // Deny access to all repos that the user no longer has access to
       Repos.update({collaboratorIds: userId, 'meta.id': {$nin: allRepoIds}}, {
-        $pull: {collaboratorIds: userId}}, {multi: true}
+        $pull: {collaboratorIds: userId, adminIds: userId}}, {multi: true}
       );
       SlideDecks.update({collaboratorIds: userId, 'repo.meta.id': {$nin: allRepoIds}}, {
         $pull: {collaboratorIds: userId}}, {multi: true}

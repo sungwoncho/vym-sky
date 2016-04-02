@@ -3,7 +3,7 @@ import React from 'react';
 const RepoSettings = ({repo,
   downgradePlan, stripePublicKey, createOrUpdateSubscription, currentUsage, monthlyQuota}) => {
 
-  function onUpgrade() {
+  function onUpgrade(e) {
     e.preventDefault();
 
     // StripeCheckout is available by external script. Check <head>.

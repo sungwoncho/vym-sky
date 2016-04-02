@@ -14,6 +14,15 @@ export default function () {
     return Repos.find({collaboratorIds: this.userId});
   });
 
+  Meteor.publish('adminRepos', function () {
+    if (!this.userId) {
+      this.ready();
+      return;
+    }
+
+    return Repos.find({adminIds: this.userId});
+  });
+
   Meteor.publish('repo', function (ownerName, repoName) {
     check(ownerName, String);
     check(repoName, String);

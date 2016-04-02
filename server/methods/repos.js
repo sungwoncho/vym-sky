@@ -32,6 +32,10 @@ export default function () {
       if (Repos.find({'meta.id': repo.meta.id}).count() === 0) {
         let repoDoc = _.assign(repo, {collaboratorIds: [ this.userId ]});
 
+        if (repo.permissions.admin) {
+          repoDoc.adminIds = [ this.userId ];
+        }
+
         // Choose lite plan by default
         if (repo.private) {
           repoDoc.plan = 'lite';
@@ -39,7 +43,13 @@ export default function () {
 
         Repos.insert(repoDoc);
       } else {
-        Repos.update({'meta.id': repo.meta.id}, {$addToSet: {collaboratorIds: this.userId }});
+        let modifier = {$addToSet: {collaboratorIds: this.userId }};
+
+        if (repo.permissions.admin) {
+          modifier.$addToSet.adminIds = this.userId;
+        }
+
+        Repos.update({'meta.id': repo.meta.id}, modifier);
       }
     },
 
@@ -156,7 +166,8 @@ export default function () {
           ownerName: repo.owner.login,
           private: repo.private,
           fork: repo.fork,
-          added: Repos.find({'meta.id': repo.id}).count() !== 0
+          added: Repos.find({'meta.id': repo.id}).count() !== 0,
+          permissions: repo.permissions
         }
       ));
 

@@ -37,6 +37,7 @@ export default function () {
     'slideDecks.create'(sdDoc) {
       check(sdDoc, Object);
 
+      let repo = Repos.findOne(sdDoc.repoId);
 
       // Check slideDeck limit
       if (repo.private && repo.plan === 'lite') {
@@ -53,7 +54,6 @@ export default function () {
       sdDoc.uid = uid;
 
       // Denormalize repo data
-      let repo = Repos.findOne(sdDoc.repoId);
       sdDoc.repo = {
         name: repo.name,
         ownerName: repo.ownerName,
