@@ -113,31 +113,7 @@ const RepoItem = ({repo, handleAddRepo, createOrUpdateSubscription, stripePublic
   function onAddRepo(e) {
     e.preventDefault();
 
-    if (repo.private) {
-      // StripeCheckout is available by external script. Check <head>.
-      let checkoutHandler = StripeCheckout.configure({
-        key: stripePublicKey,
-        localse: 'auto',
-        token(token) {
-          createOrUpdateSubscription(token, function (err) {
-            if (err) {
-              return console.log(err);
-            }
-
-            handleAddRepo(repo);
-          });
-        }
-      });
-
-      checkoutHandler.open({
-        name: 'Private repo',
-        amount: 1200,
-        currency: 'usd',
-        panelLabel: '{{amount}} per month'
-      });
-    } else {
-      handleAddRepo(repo);
-    }
+    handleAddRepo(repo);
   }
 
   return (

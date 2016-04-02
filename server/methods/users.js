@@ -55,7 +55,7 @@ export default function () {
       );
     },
 
-    'users.createOrUpdateSubscription'(token) {
+    'users.createOrUpdateSubscription'(token, repoId) {
       let stripe = stripeAPI(Meteor.settings.stripeSecretKey);
       let currentUser = Meteor.users.findOne(this.userId);
 
@@ -88,6 +88,8 @@ export default function () {
           }
         });
       }
+
+      Repos.update(repoId, {$set: {plan: 'pro'}});
 
     }
 

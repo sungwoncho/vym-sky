@@ -30,5 +30,9 @@ export default {
 
   removeCollaborator({Meteor}, repoId, userId) {
     Meteor.call('repos.removeCollaborator', repoId, userId);
+  },
+
+  downgradePlan({Meteor}, repoId) {
+    Meteor.call('repos.downgrade', repoId);
   }
 };

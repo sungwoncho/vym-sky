@@ -1,7 +1,8 @@
+import stripeAPI from 'stripe';
 import GithubAPI from 'github4';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
-import {Repos} from '/lib/collections';
+import {Repos, SlideDecks} from '/lib/collections';
 import _ from 'lodash';
 import {getNextPage} from '../libs/repo_utils';
 
@@ -29,6 +30,12 @@ export default function () {
 
       if (Repos.find({'meta.id': repo.meta.id}).count() === 0) {
         let repoDoc = _.assign(repo, {collaboratorIds: [ this.userId ]});
+
+        // Choose lite plan by default
+        if (repo.private) {
+          repoDoc.plan = 'lite';
+        }
+
         Repos.insert(repoDoc);
       } else {
         Repos.update({'meta.id': repo.meta.id}, {$addToSet: {collaboratorIds: this.userId }});
@@ -156,6 +163,36 @@ export default function () {
         repos,
         nextPage: getNextPage(link)
       };
+    },
+
+    'repos.checkMonthlyQuota'(repoId) {
+      check(repoId, String);
+      const monthlyQuota = 10;
+
+      let currentUsage = SlideDecks.find({repoId}).count();
+
+      return currentUsage <= monthlyQuota;
+    },
+
+    'repos.downgrade'(repoId) {
+      check(repoId, String);
+      let stripe = stripeAPI(Meteor.settings.stripeSecretKey);
+      let currentUser = Meteor.users.findOne(this.userId);
+
+      let sub = Meteor.wrapAsync(stripe.customers.retrieveSubscription, stripe.customers)(
+        currentUser.stripeCustomerId,
+        currentUser.stripeSubscriptionId
+      );
+
+      Meteor.wrapAsync(stripe.customers.updateSubscription, stripe.customers)(
+        currentUser.stripeCustomerId,
+        currentUser.stripeSubscriptionId,
+        {
+          quantity: sub.quantity - 1
+        }
+      );
+
+      Repos.update(repoId, {$set: {plan: 'lite'}});
     }
 
   });

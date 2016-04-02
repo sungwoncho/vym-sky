@@ -28,6 +28,7 @@ export default function () {
 
       SlideDecks.update(slideDeckId, {$set: {currentSlide: slideNumber}});
     },
+
     /**
      * Generates a uid for a given slideDeck document and inserts it into the
      * database
@@ -35,6 +36,17 @@ export default function () {
      */
     'slideDecks.create'(sdDoc) {
       check(sdDoc, Object);
+
+
+      // Check slideDeck limit
+      if (repo.private && repo.plan === 'lite') {
+        let withinQuota = Meteor.call('checkMonthlyQuota', sdDoc.repoId);
+
+        if (!withinQuota) {
+          throw new Meteor.Error('quota-exceeded',
+            'You have used monthly quota of 10 slide decks. Please upgrade your plan');
+        }
+      }
 
       // Set uid for slideDeck
       let uid = randtoken.uid(10);

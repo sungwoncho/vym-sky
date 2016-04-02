@@ -46,8 +46,8 @@ export default {
     });
   },
 
-  createOrUpdateSubscription({Meteor}, token, done) {
-    Meteor.call('users.createOrUpdateSubscription', token, function (err, res) {
+  createOrUpdateSubscription({Meteor}, token, repoId, done) {
+    Meteor.call('users.createOrUpdateSubscription', token, repoId, function (err, res) {
       if (done) {
         done(err, res);
       }

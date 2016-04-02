@@ -2,6 +2,7 @@ import React from 'react';
 
 import SlidesTab from '../containers/repo_slides';
 import CollaboratorList from '../containers/collaborator_list';
+import SettingsTab from '../containers/repo_settings';
 import Nav from './nav.jsx';
 import {pathFor} from '/client/modules/core/libs/helpers';
 import PermissionDenied from '/client/modules/core/components/permission_denied.jsx';
@@ -9,6 +10,7 @@ import PermissionDenied from '/client/modules/core/components/permission_denied.
 let sectionMapping = {
   slides: SlidesTab,
   collaborators: CollaboratorList,
+  settings: SettingsTab
 };
 
 const Repo = ({repo, currentSection = 'slides', sectionState, currentUser}) => {
@@ -21,6 +23,11 @@ const Repo = ({repo, currentSection = 'slides', sectionState, currentUser}) => {
       name: 'collaborators',
       href: pathFor('repo', {
         repoName: repo.name, ownerName: repo.ownerName, section: 'collaborators'})
+    },
+    {
+      name: 'settings',
+      href: pathFor('repo', {
+        repoName: repo.name, ownerName: repo.ownerName, section: 'settings'})
     }
   ];
   let CurrentSection = sectionMapping[currentSection];
