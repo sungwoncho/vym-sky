@@ -5,3 +5,8 @@ digital_ocean.pem
 secrets.tar
 *.sw*
 mup-sandbox.json
+
+# SSL
+bundle.crt
+fullchain.pem
+privkey.pem
