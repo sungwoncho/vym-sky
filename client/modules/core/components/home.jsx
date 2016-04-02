@@ -28,55 +28,57 @@ const Home = ({}) => (
       </ul>
       <a href={pathFor('features')} className="btn btn-md btn-success-outline">Learn more</a>
     </div>
-    <div className="row pricing">
-      <div className="col-xs-12 text-xs-center pricing-title">
-        <h2>Pricing</h2>
-      </div>
+    <div className="container-fluid">
+      <div className="row pricing">
+        <div className="col-xs-12 text-xs-center pricing-title">
+          <h2>Pricing</h2>
+        </div>
 
-      <div className="col-xs-12 col-sm-8 col-sm-offset-2">
-        <div className="row">
-          <div className="col-xs-12 col-sm-4">
-            <div className="plan">
-              <div className="plan-name">Open source</div>
-              <div className="price">Free</div>
-              <ul className="offer list-unstyled">
-                <li>
-                  <span className="quantity">Unlimited</span> slide decks
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-xs-12 col-sm-4">
-            <div className="plan">
-              <div className="plan-name">Private Repo - Lite</div>
-              <div className="price">Free</div>
-              <ul className="offer list-unstyled">
-                <li></li>
-                <span className="quantity">10</span> slide decks per month
-              </ul>
-            </div>
-          </div>
-          <div className="col-xs-12 col-sm-4">
-            <div className="plan">
-              <div className="plan-name">Private Repo - Pro</div>
-              <div>
-                <div className="price">$12</div>
-                <div className="frequency">/ month</div>
+        <div className="col-xs-12 col-sm-8 col-sm-offset-2">
+          <div className="row">
+            <div className="col-xs-12 col-sm-4">
+              <div className="plan">
+                <div className="plan-name">Open source</div>
+                <div className="price">Free</div>
+                <ul className="offer list-unstyled">
+                  <li>
+                    <span className="quantity">Unlimited</span> slide decks
+                  </li>
+                </ul>
               </div>
-              <ul className="offer list-unstyled">
-                <li></li>
-                <span className="quantity">Unlimited</span> slide decks
-              </ul>
+            </div>
+            <div className="col-xs-12 col-sm-4">
+              <div className="plan">
+                <div className="plan-name">Private Repo - Lite</div>
+                <div className="price">Free</div>
+                <ul className="offer list-unstyled">
+                  <li></li>
+                  <span className="quantity">10</span> slide decks per month
+                </ul>
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-4">
+              <div className="plan">
+                <div className="plan-name">Private Repo - Pro</div>
+                <div>
+                  <div className="price">$12</div>
+                  <div className="frequency">/ month</div>
+                </div>
+                <ul className="offer list-unstyled">
+                  <li></li>
+                  <span className="quantity">Unlimited</span> slide decks
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="col-xs-12 text-xs-center">
-        <p className="bulk-inquiry">
-          Email <a href="mailto:hey@vym.io">hey@vym.io</a> for bulk pricing for
-          your GitHub organization.
-        </p>
+        <div className="col-xs-12 text-xs-center">
+          <p className="bulk-inquiry">
+            Email <a href="mailto:hey@vym.io">hey@vym.io</a> for bulk pricing for
+            your GitHub organization.
+          </p>
+        </div>
       </div>
     </div>
     <Footer />
