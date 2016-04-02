@@ -1,7 +1,9 @@
 import React from 'react';
 
+import LoginButton from '../containers/login_button';
+
 const Features = () => (
-  <div>
+  <div className="features-container">
     <div className="hero">
       <h2 className="heading">Review code better</h2>
       <div className="sub-heading text-muted">Get across your idea fast and efficiently</div>
@@ -63,6 +65,9 @@ const Features = () => (
           </p>
         </div>
       </div>
+    </div>
+    <div className="text-xs-center login">
+      <LoginButton />
     </div>
   </div>
 );
