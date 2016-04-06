@@ -84,7 +84,7 @@ const Features = () => (
 
           <div className="row mt50">
             <div className="col-xs-12 col-sm-4">
-              <h4>We are built to procristinate</h4>
+              <h4>We all procristinate</h4>
               <p>
                 Behavioral economics shows that if left on our own, we are inclined
                 to procristinate and produce mediocre results. Code review in a group
