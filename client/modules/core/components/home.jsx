@@ -6,7 +6,7 @@ import Footer from '../containers/footer';
 import {pathFor} from '/client/modules/core/libs/helpers';
 
 const Home = ({}) => (
-  <div>
+  <div className="home">
     <div className="main-hero">
       <div className="diagram-summary">
         <span className="octicon octicon-git-pull-request"></span>
@@ -18,18 +18,62 @@ const Home = ({}) => (
       </h1>
       <LoginButton />
     </div>
-    <div className="demo">
-      <img src="/images/demo.png" alt="demo" />
-      <h2>Why?</h2>
-      <ul className="list-unstyled">
-        <li>Show changes in the order you want</li>
-        <li>Explain yourself in the slide</li>
-        <li>Share a link and present in real time</li>
-      </ul>
-      <a href={pathFor('features')} className="btn btn-md btn-success-outline">Learn more</a>
-    </div>
+
     <div className="container-fluid">
-      <div className="row pricing">
+      <div className="row workflow section">
+        <div className="col-sm-12">
+          <h2 className="workflow-title">The Vym workflow</h2>
+
+          <div className="workflow-item">
+            <div className="workflow-icon">
+              <i className="fa fa-code"></i>
+            </div>
+            <div className="workflow-name">
+              Code
+            </div>
+          </div>
+
+          <div className="workflow-item">
+            <div className="workflow-icon">
+              <span className="octicon octicon-git-pull-request"></span>
+            </div>
+            <div className="workflow-name">
+              Pull Request
+            </div>
+          </div>
+
+          <div className="workflow-item vym-specific">
+            <div className="workflow-icon">
+              <i className="fa fa-th-large"></i>
+            </div>
+            <div className="workflow-name">
+              Create slide deck
+            </div>
+          </div>
+
+          <div className="workflow-item vym-specific">
+            <div className="workflow-icon">
+              <span className="octicon octicon-browser"></span>
+            </div>
+            <div className="workflow-name">
+              Present real time
+            </div>
+          </div>
+
+          <div className="workflow-item">
+            <div className="workflow-icon">
+              <span className="octicon octicon-git-merge"></span>
+            </div>
+            <div className="workflow-name">
+              Merge
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="container-fluid">
+      <div className="row pricing section">
         <div className="col-xs-12 text-xs-center pricing-title">
           <h2>Pricing</h2>
         </div>

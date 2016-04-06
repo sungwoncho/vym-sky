@@ -1,6 +1,6 @@
 .main-hero {
   text-align: center;
-  padding: 150px 0;
+  padding: 150px 0 120px;
 
   h1 {
     margin-top: 20px;
@@ -18,20 +18,58 @@
   }
 }
 
-.demo {
-  text-align: center;
-  padding-bottom: 50px;
+.home {
+  .section {
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
+}
 
-  img {
-    width: 1000px;
+.workflow {
+  text-align: center;
+
+  .workflow-title {
     margin-bottom: 50px;
+  }
+
+  .workflow-item.vym-specific {
+    .workflow-icon {
+      background-color: #83CEBE;
+      color: white;
+      border: none;
+    }
+
+    .workflow-name {
+      color: #2D2D2D;
+    }
+  }
+
+  .workflow-item {
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    margin-bottom: 30px;
+
+    .workflow-icon {
+      border: 1px solid #B9B9B9;
+      border-radius: 3px;
+      padding: 2.8em 3.2em;
+
+      .octicon, .fa {
+        font-size: 55px;
+      }
+    }
+  }
+
+  .workflow-name {
+    margin-top: 10px;
+    color: gray;
+    font-weight: 500;
+    font-size: 18px;
   }
 }
 
 .pricing {
-  padding-top: 4em;
-  padding-bottom: 4em;
-
   .pricing-title {
     margin-bottom: 20px;
   }
