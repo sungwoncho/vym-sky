@@ -75,6 +75,15 @@
     width: 900px;
   }
 
+  .big-title {
+    margin-bottom: 20px;
+  }
+
+  .subheading {
+    margin-bottom: 40px;
+    color: #7F8A92;
+  }
+
   // Yosemite safari
   .window {
     // background: #fff;
@@ -161,7 +170,7 @@
 
     .url-address {
       width: 340px;
-      top: 9px;
+      margin-top: 8px;
       height: 20px;
       left: 50%;
       margin-left: -156px;

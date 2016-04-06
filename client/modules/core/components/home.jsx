@@ -2,6 +2,7 @@ import React from 'react';
 
 import LoginButton from '../containers/login_button';
 import Footer from '../containers/footer';
+import Safari from './safari.jsx';
 
 import {pathFor} from '/client/modules/core/libs/helpers';
 
@@ -75,25 +76,35 @@ const Home = ({}) => (
     <div className="container-fluid">
       <div className="row demo section">
         <div className="col-xs-12">
-          <h2>
-
+          <h2 className="big-title">
+            Create slide deck
           </h2>
 
-          <div className="window">
-            <div className="titlebar">
-              <div className="buttons">
-                <div className="close-btn">
-                </div>
-                <div className="minimize">
-                </div>
-                <div className="zoom">
-                </div>
-              </div>
-
-              <div className="url-address"></div>
-            </div>
-            <img src="images/wizard-demo.png" alt="" />
+          <div className="subheading">
+            Easily create a slide deck from your PR using the wizard
           </div>
+
+          <Safari>
+            <img src="images/wizard-demo.png" alt="" />
+          </Safari>
+        </div>
+      </div>
+    </div>
+
+    <div className="container-fluid">
+      <div className="row demo section">
+        <div className="col-xs-12">
+          <h2 className="big-title">
+            Present real time
+          </h2>
+
+          <div className="subheading">
+            Share a URL to your team and just start real time code review
+          </div>
+
+          <Safari>
+            <img src="images/presentation-demo.png" alt="" />
+          </Safari>
         </div>
       </div>
     </div>
