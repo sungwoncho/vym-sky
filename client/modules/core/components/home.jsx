@@ -30,7 +30,7 @@ const Home = ({}) => (
               <i className="fa fa-code"></i>
             </div>
             <div className="workflow-name">
-              Code
+              1. Code
             </div>
           </div>
 
@@ -39,7 +39,7 @@ const Home = ({}) => (
               <span className="octicon octicon-git-pull-request"></span>
             </div>
             <div className="workflow-name">
-              Pull Request
+              2. Pull Request
             </div>
           </div>
 
@@ -48,7 +48,7 @@ const Home = ({}) => (
               <i className="fa fa-th-large"></i>
             </div>
             <div className="workflow-name">
-              Create slide deck
+              3. Create slide deck
             </div>
           </div>
 
@@ -57,7 +57,7 @@ const Home = ({}) => (
               <span className="octicon octicon-browser"></span>
             </div>
             <div className="workflow-name">
-              Present real time
+              4. Present real time
             </div>
           </div>
 
@@ -66,7 +66,7 @@ const Home = ({}) => (
               <span className="octicon octicon-git-merge"></span>
             </div>
             <div className="workflow-name">
-              Merge
+              5. Merge
             </div>
           </div>
         </div>
@@ -88,6 +88,10 @@ const Home = ({}) => (
             <img src="images/wizard-demo.png" alt="" />
           </Safari>
         </div>
+
+        <div className="col-xs-12 text-xs-center mt20">
+          <a href={pathFor('features')} className="btn btn-lg btn-success-outline">Learn more</a>
+        </div>
       </div>
     </div>
 
@@ -99,12 +103,16 @@ const Home = ({}) => (
           </h2>
 
           <div className="subheading">
-            Share a URL to your team and just start real time code review
+            Share a URL with your team and just start real time code review
           </div>
 
           <Safari>
             <img src="images/presentation-demo.png" alt="" />
           </Safari>
+        </div>
+
+        <div className="col-xs-12 text-xs-center mt20">
+          <a href={pathFor('features')} className="btn btn-lg btn-success-outline">Learn more</a>
         </div>
       </div>
     </div>
@@ -152,6 +160,10 @@ const Home = ({}) => (
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="col-xs-12 text-xs-center mt20">
+          <LoginButton />
         </div>
 
         <div className="col-xs-12 text-xs-center">
