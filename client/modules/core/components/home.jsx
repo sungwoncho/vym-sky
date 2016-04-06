@@ -22,7 +22,7 @@ const Home = ({}) => (
     <div className="container-fluid">
       <div className="row workflow section">
         <div className="col-sm-12">
-          <h2 className="workflow-title">The Vym workflow</h2>
+          <h2 className="heading">The Vym workflow</h2>
 
           <div className="workflow-item">
             <div className="workflow-icon">
@@ -67,6 +67,32 @@ const Home = ({}) => (
             <div className="workflow-name">
               Merge
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="container-fluid">
+      <div className="row demo section">
+        <div className="col-xs-12">
+          <h2>
+
+          </h2>
+
+          <div className="window">
+            <div className="titlebar">
+              <div className="buttons">
+                <div className="close-btn">
+                </div>
+                <div className="minimize">
+                </div>
+                <div className="zoom">
+                </div>
+              </div>
+
+              <div className="url-address"></div>
+            </div>
+            <img src="images/wizard-demo.png" alt="" />
           </div>
         </div>
       </div>
