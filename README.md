@@ -1,7 +1,6 @@
-# Vym
+# Vym-Sky
 
-This is the codebase that powers [vym.io](https://vym.io), a service that turns
-pull requests to real time presentations.
+This version does not work. It's *work in progress*.
 
-It uses [Mantra](https://kadirahq.github.io/mantra/), an application architecture
-for Meteor.
+Please see the [official Vym repo](https://github.com/vymio/vym) for the code
+that actually runs [vym.io](https://vym.io).
